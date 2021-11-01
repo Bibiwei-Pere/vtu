@@ -1,0 +1,60 @@
+ {% extends 'base.html' %} {% load humanize %}{% load static%} {% block title %}Notifications | Husmodata.com{% endblock %} {% load notifications_tags %} {% register_notify_callbacks callbacks='fill_notification_list,fill_notification_badge' %} {% block content %} 
+ {% load static %}
+
+<link rel="stylesheet" href="{% static 'ogbam/form.css' %}">
+
+<div style="padding-top:120px;margin-bottom:90px;">
+    <div class="row">
+        <div class="col-75 ">
+            <div class="box w3-card-4">
+
+
+                <div class='w3-center w3-text-blue ' style="padding-bottom:60px">
+
+                    <a href='#air'>
+                        <h2 class="w3-center" style="color: green">Notifications</b>
+                        </h2>
+
+                        <a href="{% url 'notifications:mark_all_as_read'  %}"> <button type="submit" class="btn btn-info " style='margin-bottom:15px;'>mark all as read </button>
+                        </a>
+
+                </div>
+                {% if Noti %}
+
+                <div class="email-list">
+                   
+                    {% for notice in Noti %}
+
+                   
+                    <div class="email-list-item   {% if notice.unread %}  email-list-item--unread  {% endif %}">
+                        
+                        <div class="email-list-detail"><span class="date float-right"><span class="icon"><i class="fas fa-clock"></i> </span>{{notice.timestamp|naturaltime}}</span>
+                            <a href="{% url 'notifications:mark_as_read' notice.slug %}">   <p class="msg">{{notice.verb}} </p> </a>
+                        </div>
+                    </div>
+                   
+                </div>
+
+               {% endfor %}
+
+               {% else %}
+                <div class=' btn-rounded ' style="padding-bottom:60px">
+                    <p>
+                        <h2>No Notification Yet</h2>
+                    </p>
+
+                </div>
+                {% endif %}
+
+
+            </div>
+
+
+        </div>
+    </div>
+
+
+    </div>
+
+
+    {% endblock %}

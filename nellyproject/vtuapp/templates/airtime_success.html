@@ -1,0 +1,22 @@
+ {% extends 'base.html' %} {% block title %} Forgot Password | Husmodata.com{% endblock %} {% block content %}
+<div class='w3-container' style="padding-top:60px">
+    <div class='w3-panel w3-card-4'>
+        {% if Airtime_funding_list %}
+
+        <h1>Buy Wrist Watches! </h1>
+        <ul>
+            {% for product in share%}
+
+            <li> <a href="{% url 'airtime_detail' product.id %}">{{ product.amount }}</a> </li>
+            {% endfor %}
+        </ul>
+        {# In case no product exists. #} {% else %}
+        <h3> No product found.</h3>
+        {% endif %}
+
+    </div>
+
+
+</div>
+</div>
+{% endblock %}

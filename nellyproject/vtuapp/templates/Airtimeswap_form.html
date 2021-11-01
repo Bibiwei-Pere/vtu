@@ -1,0 +1,424 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% load static %} {% load humanize %} {% block title %}share and sell{% endblock %} {% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="{% static 'ogbam/form.css' %}">
+
+<div style="padding:90px 15px 20px 15px" >
+    <style>
+ 
+        .control {
+            display: block;
+            width: 100%;
+            height: calc(2.25rem + 2px);
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: .25rem;
+            transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+        }
+
+        .blink_me {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+
+#process, #process2{
+        display: none;
+    }
+
+
+    
+     /*--thank you pop starts here--*/
+     .thank-you-pop{
+      width:100%;
+       padding:20px;
+      text-align:center;
+    }
+    .thank-you-pop img{
+      width:76px;
+      height:auto;
+      margin:0 auto;
+      display:block;
+      margin-bottom:25px;
+    }
+    
+    .thank-you-pop h1{
+      font-size: 42px;
+        margin-bottom: 25px;
+      color:#5C5C5C;
+    }
+    .thank-you-pop p{
+      font-size: 20px;
+        margin-bottom: 27px;
+       color:#5C5C5C;
+    }
+    .thank-you-pop h3.cupon-pop{
+      font-size: 25px;
+        margin-bottom: 40px;
+      color:#222;
+      display:inline-block;
+      text-align:center;
+      padding:10px 20px;
+      border:2px dashed #222;
+      clear:both;
+      font-weight:normal;
+    }
+    .thank-you-pop h3.cupon-pop span{
+      color:#03A9F4;
+    }
+    .thank-you-pop a{
+      display: inline-block;
+        margin: 0 auto;
+        padding: 9px 20px;
+        color: #fff;
+        text-transform: uppercase;
+        font-size: 14px;
+        background-color: #8BC34A;
+        border-radius: 17px;
+    }
+    .thank-you-pop a i{
+      margin-right:5px;
+      color:#fff;
+    }
+    #ignismyModal .modal-header{
+        border:0px;
+    }
+    /*--thank you pop ends here--*/
+    
+    </style>
+
+    <h2 class="w3-center"> Airtime Funding/ Airtime to Cash</h2>
+    <p>for Airtime pin kindly load it , fill this transfer form and transfer to the number display</p>
+  
+    <div class="box w3-card-4">
+
+     
+
+            <div class="row">
+
+                <div class="col-sm-8">
+                    {% if user.BankName == "" %}
+                    <div class="alert alert-info">
+                        <strong><i class="fa fa-bank"></i>
+                        Add Bank:  <br><div align="justify"><font size="2">Dear Customer , to perform this transaction ,kindly update your account to receive the money. </font>
+                        <a href="{%url 'Editprofile' %}" class="btn btn-primary btn-sm waves-effect waves-light">Add Bank</a></div>
+                        </strong>
+                      </div>
+                    {% elif user.AccountNumber == "" %}
+                    <div class="alert alert-info">
+                        <strong><i class="fa fa-bank"></i>
+                        Add Bank:  <br><div align="justify"><font size="2">Dear Customer , to perform this transaction ,kindly update your account to receive the money. </font>
+                        <a href="{%url 'Editprofile' %}" class="btn btn-primary btn-sm waves-effect waves-light">Add Bank</a></div>
+                        </strong>
+                      </div>
+                  
+                  
+                    {% else %}
+                    <form method='post'>
+
+                    {% csrf_token %} {% include 'baseform.html' %}
+                    <label><b>you will receive</b></label>
+                    <p class="control" id="amount"> </p>
+
+                    {% if user.BankName == "" %}
+                    <p>To add more bank accounts for withdrawal Click Here</p>
+                    {% elif user.AccountNumber == "" %}
+                    <p>To add more bank accounts for withdrawal Click Here</p>
+                          {% else %}
+                    <label><b>Bank name</b></label>
+                    <p class="control" id="bname"> {{user.BankName}}</p>
+
+                    <label><b>Account Number</b></label>
+                    <p class="control" id="Anum">{{user.AccountNumber}} </p>
+
+                           {% endif %}
+
+
+
+                  
+                    <button type="button" class="btn btn-primary" id="open">
+                        Preceed
+                      </button>
+</form>
+
+{% endif %}
+                </div>
+                <div class="col-sm-4  ">
+
+
+
+                    {% if form.non_field_errors %} {% for errormessage in form.non_field_errors %}
+
+                    <div class=' alert alert-danger' style='padding:25px 10px;margin:0 0 20px; '>
+                        {{errormessage}}</div>
+                    {% endfor %}
+
+                </div>
+                {% endif %}
+
+            </div>
+
+
+
+
+            <!-- Modal -->
+<div class="modal fade" id="processModal" tabindex="-1" role="dialog" aria-labelledby="processModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+            <center><h4 class="modal-title" id="processModalLongTitle"> To complete this request, follow the instructions below.</h4></center> 
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>
+            <h5 class='w3-text-blue  w3-padding'> Kindly Transfer the sum of {{Airtime_funding_list.amount }} to {{num_1.phone_number}} ,follow the process below </h5>
+        </p>
+        <hr>
+        <p>How to transfer Airtime on {{Airtime_funding_list.network}} network MTN Share ’N’ Sell Dial:
+         
+          <b id="code"> *600*{{num_1.phone_number}}*{{Airtime_funding_list.amount }}*PIN# </b></p>
+     
+            <p><b> If you don't have a PIN, to use 1234 as your PIN Dial: *600*0000*new pin*new pin# {i.e *600*0000*1234*1234#}
+            </b>   </p>
+       
+        <p><b>NOTE: Ensure you have paid N{{Airtime_funding_list.amount }}  into the Number above before clicking on airtime sent. Also, you must send exactly N{{Airtime_funding_list.amount}} Airtime within 30 minutes or this transaction will be cancelled.</b></p>
+        <P><b>NOTE: Confirmation is instant and payment is automated usually within 5-30mins.<br>Also note that to send to us, you need to send from your personal sim .</p>
+    
+          <p style="color:red;" class="blink_me"><b>NOTE: Click on comfirmation button without send the airtime can lead to your accoun and emain been ban.</b></p>
+      </div>
+        <div class="modal-footer">
+                <button type="button"  class=" btn process" id="btnsubmit"style="background-color: rgb(17, 199, 17);" id="btnsubmit"> <span id="process2"><i class="fa fa-circle-o-notch fa-spin " style="font-size: 30px;animation-duration: 1s;"></i> Processing Please wait </span>  <span id="subm">COMFIRM AIRTIME SENT</span></button>
+
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+           </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+    
+      <div class="modal-body">
+        <div class="thank-you-pop">
+          <img src="http://goactionstations.co.uk/wp-content/uploads/2017/03/Green-Round-Tick.png" alt="">
+          <h1>Thank You!</h1>
+          <p>Your request is received and we will process it shortly</p>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+  
+          
+         </div>
+      </div>
+   
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+    
+      <div class="modal-body">
+        <div class="thank-you-pop">
+          <img src="https://www.pngmart.com/files/10/Stop-Sign-Transparent-Background.png" alt="">
+          <p id ="errmessage" style="font-size: 20px;"></p>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+  
+         </div>
+      </div>
+
+     
+   
+    </div>
+  </div>
+</div>
+
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+            <script>
+                $(document).ready(function() {
+
+                    $("#id_network").change(function() {
+                        var name = $(this).children("option:selected").val();
+                        var networkn = $("#id_network option:selected").text();
+
+                        $("#id_amount").keyup(function() {
+                            var amount = Number($("#id_amount").val());
+                            
+                            console.log('{{mtn}}');
+
+                            if (networkn == "MTN") {
+
+                                $("#amount").text('#' + (Number(amount) * (Number("{{mtn}}") / 100)));
+
+
+                            }
+
+
+                            if (networkn == "GLO") {
+                                $("#amount").text('#' + (Number(amount) * (Number("{{glo}}") / 100)));
+
+                            }
+
+                            if (networkn == "9MOBILE") {
+                                $("#amount").text('#' + (Number(amount) * (Number("{{mobie}}") / 100)));
+
+                            }
+                            if (networkn == "AIRTEL") {
+                                $("#amount").text('#' + (Number(amount) * (Number("{{airtel}}") / 100)));
+
+                            }
+
+
+                        });
+                    });
+
+
+
+
+
+                });
+            </script>
+
+
+
+
+<script>
+
+
+  $("#open").click(function() {
+
+
+    var network = $("#id_network").val(); // get the selected country ID from the HTML input
+    
+    var mobile_number = $("#id_mobile_number").val();
+    var amount = $("#id_amount").val();
+   
+   
+    if(network == "" || amount == "" || mobile_number == "" ){
+        alert(" All fields are required");
+
+    }
+    else {
+      var networkn = $("#id_network option:selected").text(); // get the selected country ID from the HTML input
+
+      if (networkn =="MTN"){
+        $("#code").text(" *600*{{num_1.phone_number}}* " + amount +"*PIN#")
+      
+      }
+     
+      else if (networkn =="GLO"){
+        $("#code").text("*131*{{num_2.phone_number}}* " + amount +" *PIN# ")
+      }
+      else if (networkn =="AIRTEL"){
+        
+        $("#code").text(" *432*1*#  To {{num_4.phone_number}}")
+       
+        
+      }
+      else{
+        $("#code").text("*223*{{num_3.phone_number}}*" + amount +" *PIN#")
+     
+     
+      }
+      $('#processModal').modal()
+   }
+  });
+
+</script>
+
+
+
+<script>
+  $("#btnsubmit").click(function() {
+      var url = "/api/Airtime_funding/"; // get the url of the `load_cities` view
+      var network = $("#id_network").val(); // get the selected country ID from the HTML input
+      var mobile_number = $("#id_mobile_number").val();
+      var amount = $("#id_amount").val();
+      var token = '{{ csrf_token }}';
+      var use_to_fund_wallet =  $('#id_use_to_fund_wallet').is(":checked");
+       
+      var networkn = $("#id_network option:selected").text(); // get the selected country ID from the HTML input
+
+      if (networkn =="MTN"){
+        var r = confirm("Are you sure you have sent " + " " + networkn  + " " + "N"+amount + " " + "to"+ " " +    "{{num_1.phone_number}} to avoid your account and email been ban"   );
+  
+      }
+     
+      else if (networkn =="GLO"){
+        var r = confirm("Are you sure you have sent " + " " + networkn  + " " + "N"+amount + " " + "to"+ " " +   "{{num_2.phone_number}} to avoid your account and email been ban"    );
+  
+      }
+      else if (networkn =="AIRTEL"){
+        var r = confirm("Are you sure you have sent " + " " + networkn  + " " + "N"+amount + " " + "to"+ " " +    "{{num_4.phone_number}} to avoid your account and email been ban"   );
+  
+      }
+      else{
+        var r = confirm("Are you sure you have sent " + " " + networkn  + " " + "N"+amount + " " + "to"+ " " +   "{{num_3.phone_number}} to avoid your account and email been ban"    );
+  
+      }
+      
+  
+  if (r == true) {
+      $.ajax({
+          type:'POST',
+          dataType: 'json',
+          contentType: "application/json",
+     beforeSend: function(){
+        $('#process2').css("display", "block");
+        $('#subm').css("display", "none");
+  
+          }, // initialize an AJAX request
+          url: url,
+          headers: { "X-CSRFToken": token },
+          data: JSON.stringify({"network":network, "mobile_number": mobile_number,  "amount": amount,"use_to_fund_wallet":use_to_fund_wallet   } ),
+      success: function (data) {
+  
+  console.log(data);
+  console.log(data.id);
+  $('#ref').text(String(data.ident));
+  $('#processModal').modal('hide');
+  $('#successModal').modal()
+  
+  },
+          error: function(XMLHttpRequest, textStatus, errorThrown) {
+              var parsed_data = JSON.parse(XMLHttpRequest.responseText);
+              $('#errmessage').text(String(parsed_data.error));
+              $('#processModal').modal('hide');
+              $('#myModal').modal();
+
+            
+   
+    },
+  
+   complete: function(){
+      $('#process2').css("display", "none");
+        $('#subm').css("display", "block");
+  
+  }
+      });
+  }
+  });
+  </script>
+
+    </div>
+{% endblock %}

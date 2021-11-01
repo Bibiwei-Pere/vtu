@@ -1,0 +1,133 @@
+{% extends 'baseblog.html' %}{%load humanize %} {% block content %}
+<title>{%block title %}Husmodata.com- {{ post.title }} {% endblock %} </title>
+
+
+
+
+
+
+	<!-- Start main content -->
+	<main>
+		<!-- Start Blog -->
+		<section id="mu-blog" class="mu-blog-single">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="mu-blog-area">
+							<!-- Title -->
+							<div class="row">
+								<div class="col-md-8">
+									<div class="mu-blog-left">
+										<!-- start single item -->
+										<article class="mu-blog-item">
+											<img src="{{ post.image.url }}" alt="blgo image">
+											<div class="mu-blog-item-content">
+
+												<h1 class="mu-blog-item-title">{{ post.title }}</h1>
+												<ul class="mu-blog-meta">
+													<li>BY:{{ post.author}} </li>
+														</ul>
+												<p> {{ object.content | safe }} </p>
+
+
+											</div>
+
+											<!-- Start Blog Post Share -->
+											<div class="mu-blog-share">
+												<div class="mu-social-media">
+													<a href="https://www.facebook.com/Husmodata.com"><i class="fa fa-facebook"></i></a>
+													<a class="mu-twitter" href="https://www.twitter.com/Husmodata.comsN"><i class="fa fa-twitter"></i></a>
+													<a class="mu-pinterest" href="https://t.me/joinchat/OJpQwBjvGxTvjfldxlhZaw"><i class="fa fa-telegram"></i></a>
+												
+													<a class="mu-youtube" href="https://www.instagram.com/Husmodata.com"><i class="fa fa-instagram"></i></a>
+												</div>
+											</div>
+											<!-- End Blog Post Share -->
+
+											<!-- Start related post -->
+											<div class="mu-related-post">
+												<h2 class="mu-related-post-title">You may also like</h2>
+
+
+										    {% for post in post_list1 %}
+											<div class="col-md-4">
+												<article class="mu-blog-item">
+													<a href="{% url 'post_detail' post.slug  %}"><img src="{{ post.image.url }}" alt="blgo image"></a>
+													<div class="mu-blog-item-content">
+														<ul class="mu-blog-meta">
+															<li>BY: ADMIN {{ post.created_on|naturaltime}} </li>
+																</ul>
+														<h2 class="mu-blog-item-title"><a href="{% url 'post_detail' post.slug  %}">{{ post.title }}</a></h2>
+														<p style="word-break: break-all;">{{post.content|slice:":200" }} </p>
+														<a class="mu-blg-readmore-btn" href="{% url 'post_detail' post.slug  %}">Read more <i class="fa fa-long-arrow-right"></i></a>
+													</div>
+												</article>
+											</div>
+											{% endfor %}
+
+
+											<!-- End related post -->
+
+											<!-- start blog comment -->
+
+										</article>
+										<!-- End single item -->
+									</div>
+								</div>
+									
+
+								<div class="col-md-4">
+									<div class="mu-blog-sidebar">
+
+	<!-- start Single Widget -->
+									<div class="mu-sidebar-widget">
+										<h2 class="mu-sidebar-widget-title">Popular post</h2>
+										<div class="mu-popular-content-widget">
+                                          {% for post in post_list1 %}
+											<div class="media">
+											  <a href="#" class="mu-popular-post-img"><img src="{{ post.image.url }}" alt="image"></a>
+											  <div class="media-body">
+												<ul class="mu-blog-meta">
+													<li>{{ post.created_on|naturaltime}} </li>
+													</ul>
+												<h3><a href="{% url 'post_detail' post.slug  %}">{{ post.title }}</a></h3>
+											  </div>
+											</div>
+												{% endfor %}
+
+										</div>
+											</div>
+										<!-- End single widget -->
+
+										<!-- start Single Widget -->
+									<div class="mu-sidebar-widget">
+										<h2 class="mu-sidebar-widget-title">Tags</h2>
+										<div class="mu-tags">
+											<a href="{%url 'data' %}">Buy Data</a>
+											<a href="{%url 'topup' %">Buy Airtime</a>
+											<a href="{%url 'cablesub' %">Cable Subscription</a>
+											<a href="{%url 'bill' %">Bill Payment</a>
+
+										</div>
+									</div>
+									<!-- End single widget -->
+
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End Blog -->
+
+	</main>
+
+
+
+
+
+
+{% endblock content %}

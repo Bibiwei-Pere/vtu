@@ -1,0 +1,125 @@
+{% extends "baseblog.html" %}{% load static %} {% load humanize %} {% block content %}
+<title>{% block title %} Husmodata.comblog{% endblock %}
+</title>
+
+
+<main>
+	<!-- Start Blog -->
+	<section id="mu-blog">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="mu-blog-area">
+						<!-- Title -->
+						<div class="row">
+							<div class="col-md-8">
+								<div class="mu-blog-left">
+
+
+									{% for post in post_list %}
+									<!-- start single item -->
+									<article class="mu-blog-item">
+										<a href="#"><img src="{{ post.image.url }}" alt="{{ post.title }}"></a>
+										<div class="mu-blog-item-content">
+											<ul class="mu-blog-meta">
+												<li>BY: {{ post.Author }} | {{ post.created_on|naturaltime}} </li>
+
+											</ul>
+											<h1 class="mu-blog-item-title"><a href="#">{{ post.title }}</a></h1>
+											<p>{{post.content|slice:":200" }} </p>
+											<a class="mu-blg-readmore-btn" href="{% url 'post_detail' post.slug  %}">Read more <i class="fa fa-long-arrow-right"></i></a>
+										</div>
+									</article>
+									<!-- End single item -->
+									{% endfor %}
+
+									{% if is_paginated %}
+									<!-- Start paginatin -->
+									<nav aria-label="Page navigation example" class="mu-blog-pagination">
+									  <ul class="pagination">
+										{% if page_obj.has_previous %}
+										<li class="page-item">
+										  <a class="page-link" href="?page={{page_obj.previous_page_number}}" aria-label="Previous">
+											<span aria-hidden="true" class="fa fa-long-arrow-left"></span>
+											<span class="sr-only">Previous</span>
+										  </a>
+										</li>
+										{% else %}
+										{% endif %}
+
+										{% for i in paginator.page_range %} {% if page_obj.number == i %}
+
+										<li class="page-item"><a class="page-link" href="#">{{i}}</a></li>
+										{% else %}
+
+										<li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+										{% endif %} {% endfor %} {% if page_obj.has_next %}
+										<li class="page-item">
+										  <a class="page-link" href="?page={{page_obj.next_page_number}}" aria-label="Next">
+										   <span aria-hidden="true" class="fa fa-long-arrow-right"></span>
+											<span class="sr-only">Next</span>
+										  </a>
+										</li>
+										{% else %}
+										{% endif %}
+									  </ul>
+									</nav>
+									<!-- End pagination -->
+									{% endif %}
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="mu-blog-sidebar">
+
+
+									<!-- start Single Widget -->
+									<div class="mu-sidebar-widget">
+										<h2 class="mu-sidebar-widget-title">Popular post</h2>
+										<div class="mu-popular-content-widget">
+                                          {% for post in post_list1 %}
+											<div class="media">
+											  <a href="#" class="mu-popular-post-img"><img src="{{ post.image.url }}" alt="image"></a>
+											  <div class="media-body">
+												<ul class="mu-blog-meta">
+													<li>{{ post.created_on|naturaltime}} </li>
+													</ul>
+												<h3><a href="{% url 'post_detail' post.slug  %}">{{ post.title }}</a></h3>
+											  </div>
+											</div>
+												{% endfor %}
+
+
+
+										</div>
+
+									</div>
+									<!-- End single widget -->
+
+
+									<!-- start Single Widget -->
+									<div class="mu-sidebar-widget">
+										<h2 class="mu-sidebar-widget-title">Tags</h2>
+										<div class="mu-tags">
+											<a href="{%url 'data' %}">Buy Data</a>
+											<a href="{%url 'topup' %">Buy Airtime</a>
+											<a href="{%url 'cablesub' %">Cable Subscription</a>
+											<a href="{%url 'bill' %">Bill Payment</a>
+
+										</div>
+									</div>
+									<!-- End single widget -->
+
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End Blog -->
+
+</main>
+
+{%endblock%}

@@ -1,0 +1,74 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% load static %} {% load humanize %} {% block title %}Couponpayment|Gigabundle{% endblock %} {% block content %}
+
+<link rel="stylesheet" href="{% static 'ogbam/form.css' %}">
+
+<div style="padding:90px 15px 20px 15px" >
+
+
+    <h2 class="w3-center">Fund account with Coupon Code</h2>
+    <div class="row">
+        <div class="col-75 ">
+            <div class="box w3-card-4">
+
+                <form method="post" id='dataform' data-plans-url="{% url 'ajax_load_plans_2' %}" novalidate>
+
+
+                    <div class="row">
+
+                        <div class="col-50">
+
+                            {% csrf_token %} {% include 'baseform.html' %}
+
+
+                            <button type="submit" class=" btn" style='background-image: linear-gradient(-20deg, #0500FF 0%, #0563FF 100%);margin-bottom:15px;'>Proceed</button>
+
+                        </div>
+                        <div class="col-30 ">
+
+
+                            {% if form.non_field_errors %} {% for errormessage in form.non_field_errors %}
+
+                            <div class=' alert alert-danger' style='padding:25px 10px;margin:0 0 20px; '>
+                                {{errormessage}}</div>
+                            {% endfor %}
+
+                        </div>
+                        {% endif %}
+
+                    </div>
+
+            </div>
+        </div>
+
+
+
+
+
+
+    </div>
+</div>
+
+</div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $("#id_network").change(function() {
+        var url = $("#dataform").attr("data-plans-url"); // get the url of the `load_cities` view
+        var networkId = $(this).val(); // get the selected country ID from the HTML input
+
+        $.ajax({ // initialize an AJAX request
+            url: url, // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+            data: {
+                'network': networkId // add the country id to the GET parameters
+            },
+            success: function(data) { // `data` is the return of the `load_cities` view function
+                $("#id_plan").html(data); // replace the contents of the city input with the data that came from the server
+            }
+        });
+
+    });
+</script>
+
+{% endblock %}

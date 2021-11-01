@@ -1,0 +1,64 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% load static %} {% load humanize %} {% block title %}BulkSms|Husmodata.com{% endblock %} {% block content %}
+
+<link rel="stylesheet" href="{% static 'ogbam/form.css' %}">
+<style>
+  #div_id_DND{
+    display:none;
+  }
+</style>
+<div style="padding:90px 15px 20px 15px" >
+
+
+    <h2 class="w3-center">BulkSms</h2>
+
+    <div class="box w3-card-4">
+
+        <form method='post' id="dataform">
+
+
+            <div class="row">
+
+                <div class="col-sm-8">
+
+                    {% csrf_token %} {% include 'baseform.html' %}
+
+
+                    <button type="submit" value="Continue to Funding" id="btnsubmit" class=" btn" style='background-image: linear-gradient(-20deg, #0500FF 0%, #0563FF 100%);margin-bottom:15px;'>Proceed</button>
+
+                </div>
+                <div class="col-sm-4  ">
+
+                    <h2> ₦3 per unit </h2> {% if form.non_field_errors %} {% for errormessage in form.non_field_errors %}
+
+                    <div class=' alert alert-danger' style='padding:25px 10px;margin:0 0 20px; '>
+                        {{errormessage}}</div>
+                    {% endfor %}
+
+                </div>
+                {% endif %}
+
+            </div>
+
+    </div>
+</div>
+
+
+
+
+<script>
+
+$(function()
+{
+  $('#btnsubmit').on('click',function()
+  {
+    $(this).text('Please wait ...')
+      .attr('disabled','disabled');
+    $('#dataform').submit();
+  });
+
+});
+</script>
+
+
+</div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Testimonial | Niledata {% endblock %}
+
+
+{% block content %}
+
+<!--<div class='w3-container w3-blue w3-round' style="padding-top:80px" '>-->
+    <div  class='w3-container'>
+    <div  class='w3-panel w3-card-4 w3-blue w3-round' id='header' style='padding:0 5px;margin:50px 1px;'>
+           
+            <h3 class='w3-center' id='header'>Reply</h3>
+             <div class='w3-container w3-card-4 w3-white'style='padding:10px;  border-radius:20px; '>
+            <div class='w3-container w3-card-4 w3-white'style='padding:10px; border-radius:20px;  '>
+           
+                    {% if form.non_field_errors %}
+                    {% for errormessage in form.non_field_errors %}
+        
+                    <div class=' w3-red'style='padding:25px 10px;margin:0 0 20px; '>
+                       {{errormessage}} </div>
+                    {% endfor %}
+                    {% endif %}
+             <form method="post"  >
+           
+              {% csrf_token %}
+              {% include 'baseform.html' %}
+             <button type="submit" class="w3-button w3-right w3-theme w3-blue w3-round ">Submit</button>
+
+    </form>
+  
+</div>
+           </div>
+        </div>
+{% endblock %}
+

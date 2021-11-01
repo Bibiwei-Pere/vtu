@@ -1,0 +1,454 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% load static %} 
+{% block title %}pin{% endblock %} 
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'ogbam/form.css' %}">
+
+<div style="padding:90px 15px 20px 15px" >
+
+
+  
+
+<div class="row">
+ 
+{% if  not user.pin %}
+ <div class="col-sm-5">
+    <div class="box " >
+  <h2 class="w3-center">Setup Your Pin</h2>
+ <form method="post" name="pinsetup" id="pinsetup" >
+                <div class="form-group">
+                 <label for="id_pin" class=" requiredField">
+                Enter Pin<span class="asteriskField">*</span>
+            </label>
+                    <input type="password" name="pin1" max-value="99999" class="form-control" required id="pin1">
+                    <small>Enter 5 digit pin </small>
+
+                </div>
+
+                <div class="form-group">
+                   <label for="id_pin" class=" requiredField">
+                Re-Enter Pin<span class="asteriskField">*</span>
+            </label>
+                    <input type="password" name="pin2" max-value="99999" class="form-control" required id="pin2">
+
+                    <small>Enter same  5 digit pin </small>
+                    
+                </div>
+             <div class="form-group">
+             <button type="submit" class="btn btn-info">Save Pin</button></div>
+    </form>
+    </div>
+    </div>
+{% endif %}
+
+
+
+{% if  user.pin %}
+ <div class="col-sm-5">
+    <div class="box " style="margin-bottom:20px ">
+  <h2 class="w3-center">Change Your Pin</h2>
+ <form method="post" name="changePinForm" id="changePinForm">
+    {% csrf_token %}
+  <div class="form-group">
+                 <label for="id_pin" class=" requiredField">
+                Old Pin<span class="asteriskField">*</span>
+            </label>
+                    <input type="password" name="oldpin" max-value="99999" class="form-control" required id="oldpin">
+
+                </div>
+                <div class="form-group">
+                 <label for="id_pin" class=" requiredField">
+                Enter New Pin<span class="asteriskField">*</span>
+            </label>
+                    <input type="password" name="oldpin" max-value="99999" class="form-control" required id="pin1">
+
+                </div>
+
+                <div class="form-group">
+                   <label for="id_pin" class=" requiredField">
+                Re-Enter New Pin<span class="asteriskField">*</span>
+            </label>
+                    <input type="password" name="pin2" max-value="99999" class="form-control" required id="pin2">
+                    
+                </div>
+             <div class="form-group">
+             <button type="submit" class="btn btn-info">Change Pin</button></div>
+    </form>
+    </div>
+
+    </div>
+
+
+     <div class="col-sm-5">
+    <div class="box " style="margin-bottom:20px ">
+  <h2 class="w3-center">Reset Pin Lost Pin</h2>
+ <form method="post" name="pinreset" id="pinreset">
+    {% csrf_token %}
+  <div class="form-group">
+                 <label for="id_pin" class=" requiredField">
+                Enter your Password<span class="asteriskField">*</span>
+            </label>
+                    <input type="password" name="password"  class="form-control"  id="password">
+
+                </div>
+                <div class="form-group">
+                 <label for="id_pin" class=" requiredField">
+                Enter New Pin<span class="asteriskField">*</span>
+            </label>
+                    <input type="password" name="resetpin1" max-value="99999" class="form-control"  id="resetpin1">
+
+                </div>
+
+                <div class="form-group">
+                   <label for="id_pin" class=" requiredField">
+                Re-Enter New Pin<span class="asteriskField">*</span>
+            </label>
+                    <input type="password" name="resetpin2" max-value="99999" class="form-control"  id="resetpin2">
+                    
+                </div>
+             <div class="form-group">
+             <button type="submit" class="btn btn-info ">Reset Pin</button></div>
+    </form>
+    </div>
+
+    </div>
+    {% endif %}
+    </div>
+    
+
+
+</div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+
+
+<script>
+$(function() {
+  
+  $("form[name='pinsetup']").validate({
+    // Specify validation rules
+    rules: {
+      // The key name on the left side is the name attribute
+      // of an input field. Validation rules are defined
+      // on the right side
+      pin1: {
+        required: true,
+        minlength: 5,
+        maxlength: 5,
+       
+      },
+      pin2: {
+        required: true,
+        minlength: 5,
+        maxlength: 5,
+      },
+
+      
+     
+    },
+    // Specify validation error messages
+    messages: {
+      
+        pin1: {
+          required: "Please enter valid  pin",
+          minlength: "Your pin must be 5 digit in length",
+        
+        },
+
+        pin2: {
+          required: "Please enter valid pin",
+          minlength: "Your pin must be 5 digit in length",
+        
+        },
+
+       
+      
+    },
+    // Make sure the form is submitted to the destination defined
+    // in the "action" attribute of the form when valid
+    submitHandler: function(form) {
+    
+            
+          $('#pinsetup').submit(function(e){
+                e.preventDefault();
+                $form = $(this)
+                var formData = new FormData(this);
+                var pin1 = $("#pin1").val();
+                var pin2 = $("#pin2").val();
+                var url = "/api/pin?pin1=" + pin1 + "&pin2=" + pin2; // get the url of the `load_cities` view
+                var token = '{{ csrf_token }}';
+                $.ajax({
+                    type:'GET',
+                    dataType: 'json',
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function(){
+                        $.LoadingOverlay("show");
+                            },
+                    url: url,
+                    headers: { "X-CSRFToken": token },
+                success: function (data) {
+
+                swal("Success","Pin setup successfully", "success");
+                window.location.href='/profile';
+            },
+                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                          $.LoadingOverlay("hide");
+                          console.log(textStatus)
+                          if ( String(JSON.parse(XMLHttpRequest.status)) == 500){
+                              swal("Oops!","Something went wrong please contact admin ","error")
+                          }
+                          else{
+                              var parsed_data = JSON.parse(XMLHttpRequest.responseText);
+                              swal("Oops!",String(parsed_data.error),"error")
+                          }
+              },
+
+            complete: function(){
+                $.LoadingOverlay("hide");
+                    }
+                });
+
+          });
+
+          
+   }
+    
+ 
+  });
+});
+
+
+</script>
+
+
+
+<script>
+$(function() {
+  
+  $("form[name='pinreset']").validate({
+    // Specify validation rules
+    rules: {
+      // The key name on the left side is the name attribute
+      // of an input field. Validation rules are defined
+      // on the right side
+     resetpin1: {
+        required: true,
+        minlength: 5,
+        maxlength: 5,
+       
+      },
+      resetpin2: {
+        required: true,
+        minlength: 5,
+        maxlength: 5,
+      },
+
+       password: {
+        required: true,
+       
+      },
+     
+    },
+    // Specify validation error messages
+    messages: {
+      
+        resetpin1: {
+          required: "Please enter valid  pin",
+          minlength: "Your pin must be 5 digit in length",
+        
+        },
+
+        resetpin2: {
+          required: "Please enter valid pin",
+          minlength: "Your pin must be 5 digit in length",
+        
+        },
+
+        password: {
+          required: "Please valid password",
+         
+        
+        },
+      
+    },
+    // Make sure the form is submitted to the destination defined
+    // in the "action" attribute of the form when valid
+    submitHandler: function(form) {
+    
+            
+          $('#pinreset').submit(function(e){
+                e.preventDefault();
+                $form = $(this)
+                var formData = new FormData(this);
+                var pin1 = $("#resetpin1").val();
+                var pin2 = $("#resetpin2").val();
+                var password  = $("#password").val();
+                var url = "/api/resetpin?password="+password + "&pin1=" + pin1 + "&pin2=" + pin2; // get the url of the `load_cities` view
+                var token = '{{ csrf_token }}';
+                $.ajax({
+                    type:'GET',
+                    dataType: 'json',
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function(){
+                        $.LoadingOverlay("show");
+                            },
+                    url: url,
+                    headers: { "X-CSRFToken": token },
+                success: function (data) {
+
+                swal("Success","Pin Reset successfully", "success");
+                window.location.href='/profile';
+            },
+                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                          $.LoadingOverlay("hide");
+                          console.log(textStatus)
+                          if ( String(JSON.parse(XMLHttpRequest.status)) == 500){
+                              swal("Oops!","Something went wrong please contact admin ","error")
+                          }
+                          else{
+                              var parsed_data = JSON.parse(XMLHttpRequest.responseText);
+                              swal("Oops!",String(parsed_data.error),"error")
+                          }
+              },
+
+            complete: function(){
+                $.LoadingOverlay("hide");
+                    }
+                });
+
+          });
+
+          
+   }
+    
+ 
+  });
+});
+
+
+</script>
+
+
+<script>
+$(function() {
+  
+  $("form[name='changePinForm']").validate({
+    // Specify validation rules
+    rules: {
+      // The key name on the left side is the name attribute
+      // of an input field. Validation rules are defined
+      // on the right side
+      pin1: {
+        required: true,
+        minlength: 5,
+        maxlength: 5,
+       
+      },
+      pin2: {
+        required: true,
+        minlength: 5,
+        maxlength: 5,
+       
+      },
+      oldpin: {
+        required: true,
+        minlength: 5,
+        maxlength: 5,
+       
+      },
+     
+    },
+    // Specify validation error messages
+    messages: {
+      
+      pin1: {
+        required: "Please enter pin",
+        minlength: "Your pin must be 5 digit in length",
+       
+      },
+
+      pin2: {
+        required: "Please enter pin",
+        minlength: "Your pin must be 5 digit in length",
+       
+      },
+
+      oldpin: {
+        required: "Please enter pin",
+        minlength: "Your pin must be 5 digit in length",
+       
+      },
+      
+    },
+    // Make sure the form is submitted to the destination defined
+    // in the "action" attribute of the form when valid
+    submitHandler: function(form) {
+    
+    
+
+ $('#changePinForm').submit(function(e){
+        e.preventDefault();
+        $form = $(this)
+        var formData = new FormData(this);
+        var oldpin = $("#oldpin").val();
+        var pin1 = $("#pin1").val();
+        var pin2 = $("#pin2").val();
+        var url = "/api/changepin?pin1=" + pin1 + "&pin2=" + pin2 + "&oldpin=" + oldpin;
+        var token = '{{ csrf_token }}';
+        $.ajax({
+            type:'GET',
+            dataType: 'json',
+            cache: false,
+            contentType: false,
+            processData: false,
+            beforeSend: function(){
+                $.LoadingOverlay("show");
+                    },
+            url: url,
+            headers: { "X-CSRFToken": token },
+        success: function (data) {
+
+        swal("Success","pin Changed successfully", "success");
+        window.location.href='/profile';
+    },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                  $.LoadingOverlay("hide");
+                  console.log(textStatus)
+                  if ( String(JSON.parse(XMLHttpRequest.status)) == 500){
+                      swal("Oops!","Something went wrong please contact admin ","error")
+                  }
+                  else{
+                       var parsed_data = JSON.parse(XMLHttpRequest.responseText);
+                      swal("Oops!",String(parsed_data.error),"error")
+                  }
+      },
+
+     complete: function(){
+        $.LoadingOverlay("hide");
+             }
+        });
+
+  });
+
+
+
+   }
+    
+ 
+  });
+});
+
+
+</script>
+
+
+
+
+{% endblock %}

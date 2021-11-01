@@ -1,0 +1,808 @@
+{% extends 'base.html' %} {% load humanize %} {% block title %}History{% endblock %} {% block content %}
+
+<div  style="padding:90px 10px 0 10px" >
+<style>
+
+.btn-danger {
+    background-color: rgb(230, 68, 47) !important; color: white;
+}
+
+.btn-success {
+    background-color: rgb(4, 219, 4) !important; color: white;
+}
+
+.btn-info{
+    background-color: rgb(4, 122, 219) !important; color: white;
+}
+</style>
+    <h2 class=''> <b>Your Account History And Activities.</b> </h2>
+
+    <div class="">
+        <div class="">
+            <h4>FILTER</h4>
+        </div>
+        <div>
+            <p>
+
+                <a href='#airtime' <span class="badge badge-info badge-pill w3-hover-blue w3-margin-bottom ">Airtime Payment</span> </a>
+                <a href='#data'> <span class="badge badge-info badge-pill w3-hover-blue w3-margin-bottom">Data Plan</span> </a>
+                <a href='#transfer'> <span class="badge badge-info badge-pill w3-hover-blue w3-margin-bottom">Transfer</span> </a>
+                <a href='#coupon'> <span class="badge badge-info badge-pill w3-hover-blue w3-margin-bottom">Coupon Payment</span> </a>
+                <a href='#topup'><span class="badge badge-info badge-pill w3-hover-blue w3-margin-bottom">Airtime Topup</span>  </a>
+                 <a href='#share'> <span class="badge badge-info badge-pill w3-hover-blue w3-margin-bottom">Share and Share</span> </a>
+                <a href='#withdraw'> <span class="badge badge-info badge-pill w3-hover-blue w3-margin-bottom">Withdraw</span> </a>
+                <a href='#Cablesub'> <span class="badge badge-info badge-pill w3-hover-blue w3-margin-bottom">Cable subscription</span> </a>
+                <a href='#bank'> <span class="badge badge-info badge-pill w3-hover-blue w3-margin-bottom">Bank payment</span> </a>
+                <a href='#paystact'> <span class="badge badge-info badge-pill w3-hover-blue w3-margin-bottom">Paystack payment</span> </a>
+                <a href='#bill'> <span class="badge badge-info badge-pill w3-hover-blue w3-margin-bottom">Bill payment</span> </a>
+                <a href='#epin'> <span class="badge badge-info badge-pill w3-hover-blue w3-margin-bottom">Recharge Pin</span> </a>
+
+            </p>
+        </div>
+    </div>
+    <hr>
+
+
+
+
+
+ {% if epin %}
+  <div class="card" id="epin">
+      <div class="card-body">
+          <h5 class="card-title">Recahrge pin History</h5>
+          <div class="table-responsive">
+              <table id="zero_config" class="table table-striped table-bordered">
+                  <thead>
+                      <tr>
+                        <th>Reference</th>
+                        <th>Batch</th>
+                        <th>Amount</th>
+                        <th>Amount Paid</th>
+                        <th>quantity</th>
+                        <th>Date</th>
+                        <th>View</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+
+
+                      {% for dat in epin %}
+                      <tr>
+                            <td>{{ dat.id}}</td>
+                            <td><a href="/Recharge-Pin-order/{{ dat.id}}/">{{dat.Batch}}</a></td>
+                            <td>&#8358;{{dat.network_amount.amount}}</td>
+                            <td>&#8358;{{dat.amount}}</td>
+                            <td>{{dat.quantity}}</td>
+                            <td>{{dat.create_date}}</td>
+                            <td><a href="/Recharge-Pin-order/{{ dat.id}}/" class="btn btn-secondary">view</a></td>
+                      </tr>
+                      {% endfor %}
+                  </tbody>
+
+              </table>
+          </div>
+
+      </div>
+  </div>
+  {% endif %}
+<!-- history end here -->
+
+
+  <!-- history start here -->
+  {% if Result_Checker %}
+  <div class="card" id="paystact">
+      <div class="card-body">
+          <h5 class="card-title">Result_Checker History</h5>
+          <div class="table-responsive">
+              <table id="basic-datatables" class=" display table table-striped table-bordered">
+                  <thead>
+
+                      <tr>
+                          <th>Reference</th>
+                          <th>exam_name</th>
+
+                          <th>Date</th>
+                           <th>View</th>
+
+                      </tr>
+                  </thead>
+                  <tbody>
+
+
+                      {% for dat in Result_Checker %}
+                      <tr>
+                          <td>{{ dat.id}}</td>
+
+                              <td>{{ dat.exam_name}}</td>
+
+                          <td>{{dat.create_date}}</td>
+                          <td><a class= "btn btn-secondary" href="/Result-Checker-Pin-order/{{dat.id}}/">View</a> </td>
+
+
+
+
+
+                      </tr>
+                      {% endfor %}
+                  </tbody>
+
+              </table>
+          </div>
+
+      </div>
+  </div>
+  {% endif %}
+
+    <div class="">
+  <!-- history start here -->
+  {% if sellbtc %}
+  <div class="card" id="paystact">
+      <div class="card-body">
+          <h5 class="card-title">Sell Bitcoin History</h5>
+          <div class="table-responsive">
+              <table id="basic-datatables" class=" display table table-striped table-bordered">
+                  <thead>
+
+                      <tr>
+                          <th>Reference</th>
+                          <th>Amount USD</th>
+                          <th>Amount Naira</th>
+
+                          <th>Bank Name</th>
+                          <th>Account Number</th>
+                          <th>Account Name</th>
+                          <th>Date</th>
+                          <th>Status</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+
+
+                      {% for dat in sellbtc %}
+                      <tr>
+                          <td>{{ dat.id}}</td>
+                             <td>${{dat.amount_in_USD}}</td>
+                             <td>&#8358;{{dat.amount_in_naira}}</td>
+                          <td>{{dat.BankName}}</td>
+                          <td>{{dat.AccountNumber}}</td>
+                          <td>{{dat.AccountName}}</td>
+                          <td>{{dat.create_date}}</td>
+                          {% if dat.Status == 'failed' %}
+                          <td > <button type="button" class="btn btn-danger">Failed</button> </td>
+                          {% elif dat.Status == 'successful' %}
+                          <td > <button type="button" class="btn btn-success">Successful</button> </td>
+                          {% else %}
+                          <td > <button type="button" class="btn btn-info">processing</button> </td>
+                          {% endif %}
+
+
+
+
+                      </tr>
+                      {% endfor %}
+                  </tbody>
+
+              </table>
+          </div>
+
+      </div>
+  </div>
+  {% endif %}
+<!-- history end here -->
+
+
+{% if buybtc %}
+  <div class="card" id="paystact">
+      <div class="card-body">
+          <h5 class="card-title">Sell Bitcoin History</h5>
+          <div class="table-responsive">
+              <table id="basic-datatables" class=" display table table-striped table-bordered">
+                  <thead>
+
+                      <tr>
+                          <th>Reference</th>
+                          <th>Amount USD</th>
+                          <th>Amount Naira</th>
+
+                          <th>wallet address</th>
+
+                          <th>Date</th>
+                          <th>Status</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+
+
+                      {% for dat in buybtc %}
+                      <tr>
+                          <td>{{ dat.id}}</td>
+                             <td>${{dat.amount_in_USD}}</td>
+                             <td>&#8358;{{dat.amount_in_naira}}</td>
+                          <td>{{dat.wallet_address}}</td>
+
+                          <td>{{dat.create_date}}</td>
+                          {% if dat.Status == 'failed' %}
+                          <td > <button type="button" class="btn btn-danger">Failed</button> </td>
+                          {% elif dat.Status == 'successful' %}
+                          <td > <button type="button" class="btn btn-success">Successful</button> </td>
+                          {% else %}
+                          <td > <button type="button" class="btn btn-info">processing</button> </td>
+                          {% endif %}
+
+
+
+
+                      </tr>
+                      {% endfor %}
+                  </tbody>
+
+              </table>
+          </div>
+
+      </div>
+  </div>
+  {% endif %}
+<!-- history end here -->
+
+
+
+        <!-- history start here -->
+        {% if paystact %}
+        <div class="card" id="paystact">
+            <div class="card-body">
+                <h5 class="card-title">Card payment History</h5>
+                <div class="table-responsive">
+                    <table id="basic-datatables" class=" display table table-striped table-bordered">
+                        <thead>
+
+                            <tr>
+                                <th>Reference</th>
+                                <th>Amount</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <!--<th>Action</th>-->
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+                            {% for dat in paystact %}
+                            <tr>
+                                <td>{{ dat.reference}}</td>
+                                   <td>&#8358;{{dat.amount}}</td>
+                                <td>{{dat.created_on}}</td>
+                                {% if dat.Status == 'failed' %}
+                                    <td > <button type="button" class="btn btn-danger">Failed</button> </td>
+                                {% elif dat.Status == 'successful' %}
+                                    <td > <button type="button" class="btn btn-success">Successful</button> </td>
+                                {% else %}
+                                    <td > <button type="button" class="btn btn-info">processing</button> </td>
+                                {% endif %}
+                                <!--<td><a href="#" class="btn btn-secondary">View</a></td>-->
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+
+                    </table>
+                </div>
+
+            </div>
+        </div>
+        {% endif %}
+ <!-- history end here -->
+
+        <!-- history start here -->
+        {% if data %}
+        <div class="card" id="data">
+            <div class="card-body">
+                <h5 class="card-title">Data History</h5>
+                <div class="table-responsive">
+                    <table id="basic-datatables" class=" display table table-striped table-bordered">
+                        <thead>
+
+                            <tr>
+                                <th>ID</th>
+                                <th>Plan</th>
+                                <th>Plan amount</th>
+                                <th>Number</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+                            {% for dat in data %}
+                            <tr>
+                                <td>{{ dat.ident}}</td>
+                                <td>{{dat.plan.plan_size}}{{dat.plan.plan_Volume}}</td>
+                                <td>&#8358;{{dat.plan.plan_amount}}</td>
+                                <td>{{dat.mobile_number}}</td>
+                                <td>{{dat.create_date}}</td>
+                                {% if dat.Status == 'failed' %}
+                                    <td > <button type="button" class="btn btn-danger">Failed</button> </td>
+                                {% elif dat.Status == 'successful' %}
+                                    <td > <button type="button" class="btn btn-success">Successful</button> </td>
+                                {% else %}
+                                    <td > <button type="button" class="btn btn-info">processing</button> </td>
+                                {% endif %}
+                                <td > <a href="/Data_success/{{dat.id}}/" class="btn btn-secondary text-white">View</button> </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+
+                    </table>
+                </div>
+
+            </div>
+        </div>{% endif %}
+ <!-- history end here -->
+
+
+
+   <!-- history start here -->
+   {% if airtime %}
+   <div class="card" id="airtime">
+       <div class="card-body">
+           <h5 class="card-title">Airtime Pin Payment History</h5>
+           <div class="table-responsive">
+               <table id="basic-datatables" class=" display table table-striped table-bordered">
+                   <thead>
+
+                       <tr>
+                           <th>ID</th>
+                           <th>Pin</th>
+                           <th>Amount</th>
+                           <th>Amount to receive </th>
+                             <th>Date</th>
+                           <th>Status</th>
+                       </tr>
+                   </thead>
+                   <tbody>
+
+
+                       {% for dat in airtime %}
+                       <tr>
+                           <td>{{ dat.ident}}</td>
+                           <td>{{dat.pin}}</td>
+                             <td>&#8358;{{dat.amount}}</td>
+                           <td>&#8358;{{dat.Receivece_amount}}</td>
+
+                             <td>{{dat.create_date}}</td>
+                           {% if dat.Status == 'failed' %}
+                           <td > <button type="button" class="btn btn-danger">Failed</button> </td>
+                           {% elif dat.Status == 'successful' %}
+                           <td > <button type="button" class="btn btn-success">Successful</button> </td>
+                           {% else %}
+                           <td > <button type="button" class="btn btn-info">processing</button> </td>
+                           {% endif %}
+
+
+
+
+                       </tr>
+                       {% endfor %}
+                   </tbody>
+
+               </table>
+           </div>
+
+       </div>
+   </div>{% endif %}
+<!-- history end here -->
+
+
+
+        <!-- history start here -->
+        {% if bank %}
+        <div class="card" id="bank">
+            <div class="card-body">
+                <h5 class="card-title">Bank Payment History</h5>
+                <div class="table-responsive">
+                    <table id="basic-datatables" class=" display table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Depositor Name</th>
+                                <th>Amount</th>
+
+                                <th>Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            {% for dat in bank %}
+                            <tr>
+                                <td>{{ dat.ident}}</td>
+                                <td>{{dat.Depositor_Name}}</td>
+                                <td>&#8358;{{dat.amount}}</td>
+
+                                <td>{{dat.create_date}}</td>
+                                {% if dat.Status == 'failed' %}
+                                <td > <button type="button" class="btn btn-danger">Failed</button> </td>
+                                {% elif dat.Status == 'successful' %}
+                                <td > <button type="button" class="btn btn-success">Successful</button> </td>
+                                {% else %}
+                                <td > <button type="button" class="btn btn-info">processing</button> </td>
+                                {% endif %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+
+                    </table>
+                </div>
+
+            </div>
+        </div>{% endif %}
+ <!-- history end here -->
+
+
+
+        <!-- history start here -->
+        {% if withdraw %}
+        <div class="card" id="withdraw">
+            <div class="card-body">
+                <h5 class="card-title">Withdraw History.</h5>
+                <div class="table-responsive">
+                    <table id="basic-datatables" class=" display table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>BankName</th>
+                                <th>Amount</th>
+                                <th>AccountName</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+                            {% for dat in withdraw %}
+                            <tr>
+                                <td>{{ dat.ident}}</td>
+                                <td>{{dat.bankName}}</td>
+                                <td>&#8358;{{dat.amount}}</td>
+                                <td>{{dat.accountName}}</td>
+                                <td>{{dat.create_date}}</td>
+                                {% if dat.Status == 'failed' %}
+                                <td > <button type="button" class="btn btn-danger">Failed</button> </td>
+                                {% elif dat.Status == 'successful' %}
+                                <td > <button type="button" class="btn btn-success">Successful</button> </td>
+                                {% else %}
+                                <td > <button type="button" class="btn btn-info">processing</button> </td>
+                                {% endif %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+
+                    </table>
+                </div>
+
+            </div>
+        </div>{% endif %}
+ <!-- history end here -->
+
+
+
+        <!-- history start here -->
+        {% if  airtimeTopup %}
+        <div class="card" id="topup">
+            <div class="card-body">
+                <h5 class="card-title">Airtime Topup History</h5>
+                <div class="table-responsive">
+                    <table id="basic-datatables" class=" display table table-striped table-bordered">
+                        <thead>
+
+                            <tr>
+                                <th>ID</th>
+                                <th>Network</th>
+                                <th>Amount</th>
+                                <th>Number</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+                            {% for  dat in airtimeTopup %}
+                                <tr>
+                                    <td>{{ dat.ident}}</td>
+                                    <td>{{dat.network}}</td>
+                                    <td>&#8358;{{dat.amount}}</td>
+                                    <td>{{dat.mobile_number}}</td>
+                                    <td>{{dat.create_date}}</td>
+                                    {% if dat.Status == 'failed' %}
+                                        <td > <button type="button" class="btn btn-danger">Failed</button> </td>
+                                    {% elif dat.Status == 'successful' %}
+                                        <td > <button type="button" class="btn btn-success">Successful</button> </td>
+                                    {% else %}
+                                        <td > <button type="button" class="btn btn-info">processing</button> </td>
+                                    {% endif %}
+                                    <td > <a href="/AirtimeTopup_success/{{dat.id}}/" class="btn btn-secondary text-white">View</a> </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+
+                    </table>
+                </div>
+
+            </div>
+        </div>{% endif %}
+ <!-- history end here -->
+
+
+
+        <!-- history start here -->
+        {% if Cablesub %}
+        <div class="card" id="Cablesub">
+            <div class="card-body">
+                <h5 class="card-title">Cable Subscription Historty.</h5>
+                <div class="table-responsive">
+                    <table id="basic-datatables" class=" display table table-striped table-bordered">
+                        <thead>
+
+                            <tr>
+                                <th>ID</th>
+                                <th>Cable Plan</th>
+                                <th>Plan Amount</th>
+                                <th>IUC</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>receipt</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+                            {% for dat in Cablesub %}
+                            <tr>
+                                <td>{{ dat.ident}}</td>
+                                <td>{{dat.cableplan.package}}</td>
+                                <td>&#8358;{{dat.cableplan.plan_amount}}</td>
+                                <td>{{dat.smart_card_number}}</td>
+                                <td>{{dat.create_date}}</td>
+                                {% if dat.Status == 'failed' %}
+                                <td > <button type="button" class="btn btn-danger">Failed</button> </td>
+                                {% elif dat.Status == 'successful' %}
+                                <td > <button type="button" class="btn btn-success">Successful</button> </td>
+                                {% else %}
+                                <td > <button type="button" class="btn btn-info">processing</button> </td>
+                                {% endif %}
+                                <td><a href="/Cablesub_success/{{dat.id}}/" class="btn btn-secondary">view</a></td>
+
+
+
+
+
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+
+                    </table>
+                </div>
+
+            </div>
+        </div>{% endif %}
+ <!-- history end here -->
+
+
+
+        <!-- history start here -->
+        {% if  transfer %}
+        <div class="card" id="transfer">
+            <div class="card-body">
+                <h5 class="card-title">Wallet Transfer History</h5>
+                <div class="table-responsive">
+                    <table id="basic-datatables" class=" display table table-striped table-bordered">
+                        <thead>
+
+                            <tr>
+                                <th>ID</th>
+                                <th>Transfer Amount</th>
+                                <th>Receiver Username</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+                            {% for dat in  transfer %}
+                            <tr>
+                                <td>{{ dat.ident}}</td>
+                                <td>&#8358;{{dat.amount}}</td>
+                                <td>{{dat.receiver_username}}</td>
+                                <td>{{dat.create_date}}</td>
+                                {% if dat.Status == 'failed' %}
+                                <td > <button type="button" class="btn btn-danger">Failed</button> </td>
+                                {% elif dat.Status == 'successful' %}
+                                <td > <button type="button" class="btn btn-success">Successful</button> </td>
+                                {% else %}
+                                <td > <button type="button" class="btn btn-info">processing</button> </td>
+                                {% endif %}
+
+
+
+
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+
+                    </table>
+
+                     </div>
+
+            </div>
+        </div>{% endif %}
+ <!-- history end here -->
+
+
+
+        <!-- history start here -->
+        {% if CouponPayment %}
+        <div class="card" id="coupon">
+            <div class="card-body">
+                <h5 class="card-title">Coupon Payment History</h5>
+                <div class="table-responsive">
+                    <table id="basic-datatables" class=" display table table-striped table-bordered">
+                        <thead>
+
+                            <tr>
+                                <th>ID</th>
+                                <th>Coupon Code</th>
+                                <th>Amount</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+                            {% for dat in CouponPayment %}
+                            <tr>
+                                <td>{{ dat.ident}}</td>
+                                <td>{{dat.Code}}</td>
+                                <td>&#8358;{{dat.amount}}</td>
+                                <td>{{dat.create_date}}</td>
+                                {% if dat.Status == 'failed' %}
+                                <td > <button type="button" class="btn btn-danger">Failed</button> </td>
+                                {% elif dat.Status == 'successful' %}
+                                <td > <button type="button" class="btn btn-success">Successful</button> </td>
+                                {% else %}
+                                <td > <button type="button" class="btn btn-info">processing</button> </td>
+                                {% endif %}
+
+
+
+
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+
+                    </table>
+                </div>
+
+            </div>
+        </div>{% endif %}
+ <!-- history end here -->
+
+
+
+
+        <!-- history start here -->
+        {% if bill %}
+        <div class="card" id="bill">
+            <div class="card-body">
+                <h5 class="card-title">Bill Payment History</h5>
+                <div class="table-responsive">
+                    <table id="basic-datatables" class=" display table table-striped table-bordered">
+                        <thead>
+
+                            <tr>
+                                <th>ID</th>
+                                <th> Disco Name</th>
+                                <th>Amount</th>
+                                <th> Meter Number</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>receipt</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+                            {% for dat in bill %}
+                            <tr>
+                                <td>{{ dat.ident}}</td>
+                                <td>{{dat.disco_name}}</td>
+                                <td>&#8358;{{dat.amount}}</td>
+                                <td>{{dat.meter_number}}</td>
+                                <td>{{dat.create_date}}</td>
+                                {% if dat.Status == 'failed' %}
+                                    <td > <button type="button" class="btn btn-danger">Failed</button> </td>
+                                {% elif dat.Status == 'successful' %}
+                                    <td > <button type="button" class="btn btn-success">Successful</button> </td>
+                                {% else %}
+                                    <td > <button type="button" class="btn btn-info">processing</button> </td>
+                                {% endif %}
+                                <td><a href="/bill_success/{{dat.id}}/" class="btn btn-secondary">view</a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+
+                    </table>
+                </div>
+
+            </div>
+        </div>{% endif %}
+ <!-- history end here -->
+
+
+
+        <!-- history start here -->
+        {% if bulk %}
+        <div class="card" id="bulk">
+            <div class="card-body">
+                <h5 class="card-title">Bulk SMS History</h5>
+                <div class="table-responsive">
+                    <table id="basic-datatables" class=" display table table-striped table-bordered">
+                        <thead>
+
+                            <tr>
+                                <th>ID</th>
+                                <th>Unit</th>
+                                <th>Amount</th>
+                                <th>Page</th>
+                                <th>total</th>
+                                <th>sender</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+                            {% for dat in bulk %}
+                            <tr>
+                                <td>{{ dat.ident}}</td>
+                                <td>{{dat.unit}}</td>
+                                <td>&#8358;{{dat.amount}}</td>
+                                <td>{{dat.page}}</td>
+                                <td>{{dat.total}}</td>
+                                <td>{{dat.sendername}}</td>
+                                <td>{{dat.create_date}}</td>
+                                {% if dat.Status == 'failed' %}
+                                <td > <button type="button" class="btn btn-danger">Failed</button> </td>
+                                {% elif dat.Status == 'successful' %}
+                                <td > <button type="button" class="btn btn-success">Successful</button> </td>
+                                {% else %}
+                                <td > <button type="button" class="btn btn-info">processing</button> </td>
+                                {% endif %}
+
+
+
+
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+
+                    </table>
+                </div>
+
+
+            </div>
+        </div>{% endif %}
+ <!-- history end here -->
+
+
+</div>
+</div>
+
+
+
+{% endblock %}

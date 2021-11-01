@@ -1,0 +1,66 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% load static %} {% load humanize %} {% block title %}Transfer|Husmodata.com{% endblock %} {% block content %}
+
+<link rel="stylesheet" href="{% static 'ogbam/form.css' %}">
+
+<div style="padding:90px 15px 20px 15px" >
+
+
+    <h2 class="w3-center">Transfer your bonus to your wallet</h2>
+
+    <div class="box w3-card-4">
+
+        <form method='post'>
+
+
+            <div class="row">
+
+                <div class="col-sm-8">
+
+                    {% csrf_token %} {% include 'baseform.html' %}
+
+
+                    <button type="submit" class=" btn" style='margin-bottom:15px;' onClick="this.form.submit(); this.disabled=true; this.innerText ='Processing.....'; ">Proceed</button>
+
+                </div>
+                <div class="col-sm-4  ">
+
+
+
+                    {% if form.non_field_errors %} {% for errormessage in form.non_field_errors %}
+
+                    <div class=' alert alert-danger' style='padding:25px 10px;margin:0 0 20px; '>
+                        {{errormessage}}</div>
+                    {% endfor %}
+
+                </div>
+                {% endif %}
+
+            </div>
+
+
+
+
+
+
+    </div>
+
+
+
+{% if user.is_authenticated and  not  user.is_superuser and   user.Bonus < 0  %}
+
+<script>
+$( document ).ready(function() {
+swal({
+
+  text: "Wallet below minimum bonus to wallet N{{user.Bonus |intcomma}}",
+  icon: "info",
+  button: "ok",
+  timer: 60000,
+}).then(() => {
+  window.location="{% url 'profile' %}"
+});
+});
+</script>
+{% endif %}
+
+{% endblock %}

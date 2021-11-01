@@ -1,0 +1,47 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% load static %} {% load humanize %} {% block title %}Edit profile|Husmodata.com{% endblock %} {% block content %}
+
+<link rel="stylesheet" href="{% static 'ogbam/form.css' %}">
+
+<div style="padding:90px 15px 20px 15px" >
+
+
+    <h2 class="w3-center">Edit Profile</h2>
+
+    <div class="box w3-card-4">
+
+        <form method='post'>
+
+
+            <div class="row">
+
+                <div class="col-sm-8">
+
+                    {% csrf_token %} {% include 'baseform.html' %}
+
+                    <a href="{% url 'password_change' %}" class=" w3-text-blue  "> <b> Change Password? </b></a>
+                    <button type="submit" value="" class=" btn" style='margin-bottom:15px; color: white;'>Proceed</button>
+
+                </div>
+                <div class="col-sm-8  ">
+
+
+
+                    {% if form.non_field_errors %} {% for errormessage in form.non_field_errors %}
+
+                    <div class=' alert alert-danger' style='padding:25px 10px;margin:0 0 20px; '>
+                        {{errormessage}}</div>
+                    {% endfor %}
+
+                </div>
+                {% endif %}
+
+            </div>
+
+
+
+
+
+
+
+    </div>
+{% endblock %}

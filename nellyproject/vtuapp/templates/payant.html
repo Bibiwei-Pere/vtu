@@ -1,0 +1,72 @@
+<form>
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    <button type="button" onclick="payWithPaystack()"> Pay </button>
+</form>
+
+<script>
+    function payWithPaystack() {
+        var handler = PaystackPop.setup({
+            key: 'pk_live_905c3497bc9427a0f1750db4b657e514b89b20d3',
+            email: 'customer@email.com',
+            amount: 10000,
+            currency: "NGN",
+            ref: '' + Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
+            metadata: {
+                custom_fields: [{
+                    display_name: "Mobile Number",
+                    variable_name: "mobile_number",
+                    value: "+2348012345678"
+                }]
+            },
+            callback: function(response) {
+                if (response.status == "success") {
+
+                    window.location = "https://www.Husmodata.com/Husmodata.com/paystackpaymentdone?ref=" + response.reference;
+                } else {
+                    window.location = "https://www.Husmodata.com/";
+                }
+            },
+            onClose: function() {
+
+            }
+        });
+        handler.openIframe();
+    }
+</script>
+
+<!--<form>
+    <script src="https://api.demo.payant.ng/assets/js/inline.min.js"></script>
+    <button type="button" onclick="payWithPayant()"> Pay </button> 
+  </form>
+   
+  <script>
+    function payWithPayant() {
+      var handler = Payant.invoice({
+        "key": "49f12b037682aacdd540fd67130c6dd439c3e338",
+        "client": {
+              "first_name": "Albert",
+              "last_name": "Jane",
+              "email": "jane@alberthospital.com",
+              "phone": "+2348012345678"
+          },
+        "due_date": "12/30/2016",
+        "fee_bearer": "client",
+        "items": [
+          {
+            "item": ".Com Domain Name Registration",
+            "description": "alberthostpital.com",
+            "unit_cost": "2500.00",
+            "quantity": "1"
+          }
+        ],
+        callback: function(response) {
+          console.log(response);
+        },
+        onClose: function() {
+          console.log('Window Closed.');
+        }
+      });
+  
+      handler.openIframe();
+    }
+  </script>-->

@@ -1,0 +1,62 @@
+/{% extends 'base.html' %} {% load static %} {% load humanize %} {% load threadedcomments_tags %} {% block title %} Testimonial | Husmodata.com{% endblock %} {% block content %}
+
+<div class='w3-container ' style="padding-top:60px">
+
+    <div class='w3-center w3-text-blue ' style="padding-bottom:60px">
+        <div>
+
+            <hr>
+            <h3> <a href="{% url 'Testimonials' %}"><i class="fa fa-arrow-left w3-left" style="font-size:30px" ></i> </a><span class='w3-center'>{{testimonial.user.username}}'s Testimonial </h3></div>
+
+<hr>
+</div>
+
+
+  <div class="w3-justify">
+          <img src="{% static 'ogbam/images/ava1.png' %}" alt="{{testimonial.user.username}}"  style=" vertical-align: middle;width: 100px;height:120px;border-radius: 50%;" class="w3-padding-16">
+          <div style="font-size:20px;">{{testimonial.user.username}}  <span class="w3-opacity w3-medium">| {{testimonial.create_date|naturaltime}}. </span></div>
+
+        <div style='margin:20px; '>
+            <p>{{testimonial.message}} </p>
+        </div>
+
+        <div class="w3-row w3-margin-bottom" id="reply{{forloop.counter}}">
+            <hr>
+
+            <div style='margin-left:50px; '>
+                {% for comment in testimonial.comment_set.all %}
+
+                <img src="{% static 'ogbam/images/av3.png' %}" style="width:80px; height:80px; border-radius:50%;">
+
+                <div class="comment w3-round w3-padding" style='margin:20px; background-color:grey;color:white;'>
+                    <h4>Ogdam |<span class="w3-opacity w3-medium">{{ comment.create_date|naturaltime }}</span></h4>
+
+                    <p>{{ comment.Reply|linebreaks }}</p>
+                </div>
+                {% empty %}
+                <p>No replys here yet :</p>
+                {% endfor %}
+
+            </div>
+
+        </div>
+    </div>
+
+    {% if user.is_superuser or user.username == testimonial.user.username %}
+    <div class="w3-container w3-margin w3-padding-large">
+
+
+
+        <a class="btn btn-default" href="{% url 'add_comment_to_testimonial' pk=testimonial.pk %}"> <button type="submit" class="w3-button w3-right w3-theme w3-blue w3-round ">Reply <i class="fa fa-comments"></i> </button></a>
+
+
+        {% endif %}
+
+    </div>
+
+
+
+</div>
+
+
+{% endblock %}

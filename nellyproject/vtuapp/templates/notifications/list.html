@@ -1,0 +1,70 @@
+
+{% extends 'base.html' %}
+{% load humanize %}
+{% block title %}Notifications{% endblock %}
+{% load notifications_tags %} 
+{% register_notify_callbacks callbacks='fill_notification_list,fill_notification_badge' %}
+{% block content %}
+
+
+
+
+
+
+<div class='w3-container ' style="padding-top:90px" >
+
+<div class='w3-center w3-text-teal ' style="padding-bottom:60px" >
+
+{% if notifications %}
+
+<a href='#air'>
+      <h2 >Unread Notifications</b></h2>
+
+<a href="{% url 'notifications:mark_all_as_read'  %}">   <button type="submit" class="w3-button w3-right w3-theme w3-teal w3-round ">mark all as read </button>
+</a>
+   </div>
+   
+
+
+<ul class="w3-ul">
+
+  {% for notice in notifications %}
+
+   
+
+<div class="{% if notice.unread %} w3-white {% endif %} ">
+  <a href="{% url 'notifications:mark_as_read' notice.slug %}">
+    
+          <li>
+             <p><b>{{notice.verb}} </b> <span class='w3-right'>{{notice.timestamp|naturaltime}}</span> </p>
+          </li>
+           </a>
+          <hr>
+    
+</div>
+
+  {% endfor %}
+</ul>
+
+
+
+{% else %}
+        
+    <div class=' w3-round w3-card-4 w3-white'  style="padding-bottom:60px" >
+  <p> <h2>No More Unread Notification </h2> </p>
+   
+    </div>
+   
+
+
+
+
+{% endif %}
+ </div>
+   
+
+
+
+
+
+{% endblock %}

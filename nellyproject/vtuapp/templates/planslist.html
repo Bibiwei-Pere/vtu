@@ -1,0 +1,5 @@
+
+<option value="">---------</option>
+{% for plan in plans %}
+<option plantype= "{{ plan.plan_type }}" value="{{ plan.pk }}" amt = '₦{% if user.user_type ==  "Affilliate" %}{{ plan.Affilliate_price }} {% elif user.user_type ==  "TopUser" %} {{plan.TopUser_price}} {% elif user.user_type ==  "API"%} {{plan.api_price}} {% else %} {{ plan.plan_amount }} {% endif %}''>{{ plan.plan_size }}{{ plan.plan_Volume }}     {{ plan.plan_type }} = ₦ {% if user.user_type ==  "Affilliate" %}{{ plan.Affilliate_price }} {% elif user.user_type ==  "TopUser" %} {{plan.TopUser_price}} {% else %} {{ plan.plan_amount }} {% endif %} {{plan.month_validate}}</option>
+{% endfor %}

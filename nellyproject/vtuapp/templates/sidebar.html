@@ -1,0 +1,35 @@
+{% block sidebar %} {% load static %}
+<style>
+    .card {
+        box-shadow: 0 16px 48px #E3E7EB;
+    }
+</style>
+
+<!-- Sidebar Widgets Column -->
+<div class="col-md-4 float-right ">
+    <div class="card my-4">
+         <div class="card-body">
+            <div class="card bg-light mb-3">
+                <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i>OTHER SERVICES</div>
+                <ul class="list-group category_block">
+                     <li class="list-group-item"><a href="{%url 'topup' %}">Buy airtime</a></li>
+                     <li class="list-group-item"><a href="{%url 'data' %}">Buy Data</a></li>
+                     <li class="list-group-item"><a href="{%url 'airtime' %}">Airtime to cash</a></li>
+                     <li class="list-group-item"><a href="{%url 'bulksms' %}">Send Bulk sms</a></li>
+                     <li class="list-group-item"><a href="{%url 'cablesub' %}">Cable Subscriptions</a></li>
+                 
+                     </ul>
+            </div>
+            <div class="container" style="padding-top: 20px;">
+                <a href="{%url 'topup' %}"><span class="badge badge-pill badge-primary">Buy airtime</span> </a>
+                <a href="{%url 'data' %}"><span class="badge badge-pill badge-primary">Buy data</span> </a>
+                <a href="{%url 'bulksms' %}"><span class="badge badge-pill badge-primary">Bulk sms</span> </a>
+                <a href="{%url 'airtime' %}"><span class="badge badge-pill badge-primary">Airtime to cash</span> </a>
+                <a href="{%url 'cablesub' %}"><span class="badge badge-pill badge-primary">Cable sub</span> </a>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock sidebar %}

@@ -1,0 +1,195 @@
+ 
+
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% load static %} {% load humanize %} {% block title %}Send Airtime|Husmodata.com{% endblock %} {% block content %}
+
+<link rel="stylesheet" href="{% static 'ogbam/form.css' %}">
+<link rel="stylesheet" href="{% static 'ogbam/form.css' %}">
+<!-- Latest compiled and minified CSS -->
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
+<style>
+    .control {
+        display: block;
+        width: 100%;
+        height: calc(2.25rem + 2px);
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+</style>
+<div style="padding:90px 15px 20px 15px" >
+
+
+    <h2 class="w3-center">ORDER DETAIL</h2>
+
+    <div class="box w3-card-4">
+
+  
+
+            <div class="row">
+
+                <div class="col-sm-8">
+
+					<table class='table table-all'>
+                        <tr>
+
+                            <td><b>ID</b></td>
+                            <td>{{Airtime_funding_list.ident}}</td>
+                        </tr>
+
+                        <tr>
+
+                            <td><b>Depositor</b></td>
+                            <td>{{user.username}}</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td><b>Amount</b></td>
+                            <td>#{{Airtime_funding_list.amount }}</td>
+                        </tr>
+
+                        <tr>
+
+                            <td><b>Recieve Amount</b></td>
+                            <td>#{{Airtime_funding_list.Receivece_amount}} </td>
+                        </tr>
+
+                        <tr>
+
+                            <td><b>Mobile Number</b></td>
+                            <td>{{Airtime_funding_list.mobile_number}}</td>
+                        </tr>
+
+                        <tr>
+
+                            <td><b>Network</b></td>
+                            <td>{{Airtime_funding_list.network }}</td>
+                        </tr>
+
+                        <tr>
+
+                            <td><b>Payment Method</b></td>
+                            <td> {{Airtime_funding_list.network }} Transfer</td>
+                        </tr>
+							   
+			
+					</table>
+					<hr>
+					<p>
+					  <center><h4> To complete this order, follow the instructions below.</h4></center> 
+					</p>
+                    {% if Airtime_funding_list.network == net %}
+
+                    <p>
+                        <h5 class='w3-text-blue  w3-padding'> Kindly Transfer the sum of {{Airtime_funding_list.amount }} to {{num_1.phone_number}} ,follow the process below </h5>
+                    </p>
+                    <hr>
+                    <p>How to transfer Airtime on {{Airtime_funding_list.network}} network MTN Share ’N’ Sell Dial:
+                        <b> *600*{{num_1.phone_number}}*{{Airtime_funding_list.amount }}*PIN# </b></p>
+                    <p> If you don't have a PIN, to use 1234 as your PIN Dial: *600*0000*new pin*new pin# {i.e *600*0000*1234*1234#}
+                    </p>
+            
+                    {% elif Airtime_funding_list.network == net_2 %}
+                    <div class='w3-container w3-card-4 w3-white' style='padding:25px;  border-radius:20px 20px 20px 0; '>
+                        <p>
+                            <h5 class='w3-text-blue w3-center w3-padding'> Kindly Transfer the sum of {{Airtime_funding_list.amount }} to {{num_2.phone_number}} ,follow the process below </h5>
+                        </p>
+                        <hr>
+                        <p>How to transfer on {{Airtime_funding_list.network}} network
+                            <p>
+                                Dial:<b> *131*{{num_2.phone_number}}*{{Airtime_funding_list.amount }}*PIN# </b> If you don't have a PIN, Create new ,to use 1234 as your PIN Dial: <b>*132*00000*newpin*newpin#  {i.e *132*00000*1234*1234#}
+                    </b> </p>
+            
+                            {% elif Airtime_funding_list.network == net_3 %}
+                            <div class='w3-container w3-card-4 w3-white' style='padding:25px;  border-radius:20px 20px 20px 0; '>
+                                <p>
+                                    <h5 class='w3-text-blue w3-center w3-padding'> Kindly Transfer the sum of {{Airtime_funding_list.amount }} to {{num_3.phone_number}} ,follow the process below </h5>
+                                </p>
+                                <hr>
+                                <p>How to transfer on {{Airtime_funding_list.network}} network
+                                    <p>
+                                        Dial:<b> *223*{{num_3.phone_number}}*{{Airtime_funding_list.amount }}*PIN# </b> If you don't have a PIN, to use 1234 as your PIN Dial: *247*0000*new pin# {i.e *247*0000*1234#}
+                                    </p>
+                                    {% else %}
+                                    <div class='w3-container w3-card-4 w3-white' style='padding:25px;  border-radius:20px 20px 20px 0; '>
+                                        <p>
+                                            <h5 class='w3-text-blue w3-center w3-padding'> Kindly Transfer the sum of {{Airtime_funding_list.amount }} to {{num_4.phone_number}} ,follow the process below </h5>
+                                        </p>
+                                        <hr>
+                                        <p>How to transfer on {{Airtime_funding_list.network}} network
+                                            <p>
+                                                Dial:<b> *432*1*#</b> To {{num_4.phone_number}} If you don't have a PIN *432*1*# (Default pin:1234)</p>
+                                            {% endif %}	
+			
+				<button type="button" onclick="document.getElementById('subscribe').style.display='block'" class="btn btn-primary btn-lg btn-block">AIRTIME SENT</button>
+				
+				<p><b>NOTE: Ensure you have paid N{{Airtime_funding_list.amount }}  into the Number above before clicking on airtime sent. Also, you must send exactly N{{Airtime_funding_list.amount}} Airtime within 30 minutes or this transaction will be cancelled.</b></p>
+					<P>NOTE: Confirmation is instant and payment is automated usually within 5-30mins.</P>
+				
+				<p>Also note that to send to us, you need to send from your personal sim . Thanks.</p>
+				
+			</div>
+			
+               
+                
+                <div class="col-sm-4 ">
+
+					<div class="card card-md">
+                        <div class="card-header">
+							<h4>Note</h4>
+        
+                        </div>
+						<div class="card-body text-center">
+							<p class="lead">Confirmation is instant and payment is automated usually within 5-30mins. </p>
+</div>
+					
+				</div>
+                </div>
+               
+
+            </div>
+
+
+
+
+
+    </div>
+</div>
+
+<div id="subscribe" class="w3-modal w3-animate-opacity">
+	<div class="w3-modal-content" style="padding:32px; border-radius:20px; margin-top:100px;">
+		<div class="w3-container w3-white">
+
+			<div class='w3-center'>
+				<span class=' class="w3-button  w3-green ' style=' border-radius:50%; padding:2px 6px 2px 6px ; font-size:30px;margin-bottom:20px; '> ✓ </span>
+				<h5> <b>SUCCESS!</b></h5>
+
+				<p>Dear Customer , We will  process your request shortly .</p>
+				<a href="{% url 'profile' %}" class="w3-button  w3-blue w3-margin-bottom" onclick="document.getElementById('subscribe').style.display='none' " style=' border-radius:10px; padding:6px 18px 6px 18px; '>OK</a>
+
+
+
+			</div>
+
+
+		</div>
+	</div>
+{% endblock %}
+
+

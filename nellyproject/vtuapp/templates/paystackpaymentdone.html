@@ -1,0 +1,38 @@
+{%load static %}
+<html>
+
+<head>
+    <title>success</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+    <h1> payment successful redirecting pls wait to complete</h1>
+    <img src="{% static 'homepage/img/payment.gif' %}">
+
+
+    <script>
+        window.location = "{%url 'profile' %}";
+
+        function HandleBackFunctionality() {
+            if (window.event) {
+                if (window.event.clientX < 40 && window.event.clientY < 0) {
+                    alert("payment successful is  redirecting dont interupt for payment to successful");
+                } else {
+                    alert("payment successful is  redirecting dont interupt for payment to successful");
+                }
+            } else {
+                if (event.currentTarget.performance.navigation.type == 1) {
+                    alert("payment successful is  redirecting dont interupt for payment to successful");
+                }
+                if (event.currentTarget.performance.navigation.type == 2) {
+                    alert("payment successful is  redirecting dont interupt for payment to successful");
+                }
+            }
+        }
+    </script>
+
+
+</body>
+
+</html>

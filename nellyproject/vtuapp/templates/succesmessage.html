@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %} Airtime Pin Payment  {% endblock %}
+
+
+{% block content %}
+
+<!--<div class='w3-container w3-blue w3-round' style="padding-top:80px" '>-->
+    <div  class='w3-container'>
+
+    <div  class='w3-panel w3-card-4 w3-blue w3-round' id='header' style='padding:0 5px;margin:50px 20px;'>
+           
+      </div>
+           <!--<a  href="{% url 'airtime' %}"  class="w3-button  w3-teal w3-round w3-right "  onclick = "document.getElementById('subscribe').style.display='block' "  style=' border-radius:0  0 20px 20px; '>Proceed</a>
+          -->
+          
+       <div id="sub" class="w3-modal w3-animate-opacity">
+  <div class="w3-modal-content" style="padding:32px; border-radius:20px; margin-top:100px;">
+    <div class="w3-container w3-white"  >
+  
+<div class = 'w3-center'>
+     <span class =' class="w3-button  w3-green ' style=' border-radius:60px; padding:6px 14px 6px 14px; font-size:40px; '> ✓ </span>
+     <h5> <b>SUCCESS!</b></h5>
+
+      <p>Dear Customer , We will be shortly processing your request .</p>
+      <a href="{% url 'profile' %}" class="w3-button  w3-blue w3-margin-bottom" 
+      onclick="document.getElementById('sub').style.display='none' "
+      style=' border-radius:10px; padding:6px 18px 6px 18px; '>OK</a>
+
+     
+   
+ </div>  
+
+
+    </div>
+  </div>
+</div>
+
+        </div>
+</div>
+     
+        </div>
+          
+
+   
+{% endblock %}

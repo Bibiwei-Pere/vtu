@@ -1,0 +1,1488 @@
+{% load static %}{% load humanize %}
+<!DOCTYPE html>
+<html lang="en-US">
+  
+   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+   
+   <head>
+
+    <meta charset="utf-8">
+    <meta name="description" content="Aila">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Husmodata | Buy Data, VTU Recharge, Bills Payment</title>
+
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/static/img/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <script src="https://use.fontawesome.com/d3bea22ec6.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <link rel="stylesheet" href="/static/gigabundle/bootstrap.css">
+    <link rel="stylesheet" href="/static/gigabundle/main.css">
+    <script src="/static/gigabundle/jquery-2.2.4.min.js"></script>
+    <script src="/static/gigabundle/main.js"></script>
+
+    <meta name="msapplication-TileColor" content="#5230b0 ">
+    <meta name="msapplication-TileImage" content="/static/img/bg.jpg">
+    <meta itemprop="name" content="Husmodata- Buy Airtime and Data for all Network. Make payment for DSTV, GOTV, PHCN other services">
+    <meta itemprop="description" content="Buy Cheap Internet Data Plan and Airtime Recharge for Airtel, 9mobile, GLO, MTN, Pay DSTV, GOTV, PHCN.">
+    <meta itemprop="image" content="/static/img/bg.jpg">
+    <link rel="stylesheet" href="{% static 'ogbam/w3.css' %}">
+
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="/static/img/bg.jpg">
+    <meta name="twitter:title" content="Husmodata- Buy Airtime and Data for all Network. Make payment for DSTV, GOTV, PHCN other services">
+    <meta name="twitter:description" content="Buy Cheap Internet Data Plan and Airtime Recharge for Airtel, 9mobile, GLO, MTN, Pay DSTV, GOTV, PHCN.">
+    <meta name="twitter:image:src" content="/static/img/bg.jpg">
+
+    <!-- Open Graph data -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:title" content="Husmodata- Buy Airtime and Data for all Network. Make payment for DSTV, GOTV, PHCN other services">
+    <meta property="og:image" content="/static/img/bg.jpg">
+    <meta property="og:description" content="Buy Cheap Internet Data Plan and Airtime Recharge for Airtel, 9mobile, GLO, MTN, Pay DSTV, GOTV, PHCN."/>
+    <meta property="og:site_name" content="Husmodata"/>
+    <meta property="og:url" content="https://www.Husmodata.com">
+    <meta property="og:type" content="website">
+
+      <!-- <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+      <title>HusmoData || The home of cheap and afffordable data plans</title> -->
+      <meta name='robots' content='max-image-preview:large' />
+      <link rel='dns-prefetch' href='http://www.google.com/' />
+      <link rel='dns-prefetch' href='http://fonts.googleapis.com/' />
+      <link rel='dns-prefetch' href='http://s.w.org/' />
+      <link rel="alternate" type="application/rss+xml" title="Apdash &raquo; Feed" href="https://apdash-wp.themetags.com/feed/" />
+      <link rel="alternate" type="application/rss+xml" title="Apdash &raquo; Comments Feed" href="https://apdash-wp.themetags.com/comments/feed/" />
+      <script type="text/javascript">
+         window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.0.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.0.1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/apdash-wp.themetags.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.7.2"}};
+         !function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([55357,56424,8205,55356,57212],[55357,56424,8203,55356,57212])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+      </script>
+      <style type="text/css">
+         img.wp-smiley,
+         img.emoji {
+         display: inline !important;
+         border: none !important;
+         box-shadow: none !important;
+         height: 1em !important;
+         width: 1em !important;
+         margin: 0 .07em !important;
+         vertical-align: -0.1em !important;
+         background: none !important;
+         padding: 0 !important;
+         }
+      </style>
+      <link rel='stylesheet' id='wp-block-library-css'  href='/static/stylem/assets/wp-includes/css/dist/block-library/style.min9f31.css?ver=5.7.2' type='text/css' media='all' />
+      <link rel='stylesheet' id='contact-form-7-css'  href='/static/stylem/assets/wp-content/plugins/contact-form-7/includes/css/stylesc225.css?ver=5.4.1' type='text/css' media='all' />
+      <link rel='stylesheet' id='apdash-style_main-css'  href='/static/stylem/assets/wp-content/themes/apdash/style6e0e.css?ver=3.0.0' type='text/css' media='all' />
+      <link rel='stylesheet' id='bootstrap-css'  href='/static/stylem/assets/wp-content/themes/apdash/assets/css/bootstrap.min9f31.css?ver=5.7.2' type='text/css' media='all' />
+      <link rel='stylesheet' id='font-awesome-five-css'  href='/static/stylem/assets/wp-content/themes/apdash/assets/css/font-awesome9f31.css?ver=5.7.2' type='text/css' media='all' />
+      <link rel='stylesheet' id='preloder-css'  href='/static/stylem/assets/wp-content/themes/apdash/assets/css/loader.min9f31.css?ver=5.7.2' type='text/css' media='all' />
+      <link rel='stylesheet' id='themify-css'  href='/static/stylem/assets/wp-content/themes/apdash/assets/css/themify-icons9f31.css?ver=5.7.2' type='text/css' media='all' />
+      <link rel='stylesheet' id='magnific-popup-css'  href='/static/stylem/assets/wp-content/themes/apdash/assets/css/magnific-popup9f31.css?ver=5.7.2' type='text/css' media='all' />
+      <link rel='stylesheet' id='animate-css-css'  href='/static/stylem/assets/wp-content/themes/apdash/assets/css/animate9f31.css?ver=5.7.2' type='text/css' media='all' />
+      <link rel='stylesheet' id='apdash-style-css'  href='/static/stylem/assets/wp-content/themes/apdash/assets/css/app6e0e.css?ver=3.0.0' type='text/css' media='all' />
+      <style id='apdash-style-inline-css' type='text/css'>
+         #preloader {
+         position: fixed;
+         top: 0;
+         left: 0;
+         bottom: 0;
+         right: 0;
+         background-color: rgba(150,41,230,0.97);
+         z-index: 9999999;
+         }
+         #loader {
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         transform: translate(-50%, -50%);
+         }
+         .element{ color: #ffbc00; }
+      </style>
+     
+      <link rel='stylesheet' id='apdash-fonts-css'  href='https://fonts.googleapis.com/css?family=Montserrat%3A400%2C500%2C600%2C700%7CRoboto%3A300%2C400%2C500%2C600%2C700%2C800&amp;subset=latin%2Clatin-ext' type='text/css' media='all' />
+      <link rel='stylesheet' id='elementor-icons-css'  href='/static/stylem/assets/wp-content/plugins/elementor/assets/lib/eicons/css/elementor-icons.min21f9.css?ver=5.11.0' type='text/css' media='all' />
+      <link rel='stylesheet' id='elementor-frontend-legacy-css'  href='/static/stylem/assets/wp-content/plugins/elementor/assets/css/frontend-legacy.minee9a.css?ver=3.2.2' type='text/css' media='all' />
+      <link rel='stylesheet' id='elementor-frontend-css'  href='/static/stylem/assets/wp-content/plugins/elementor/assets/css/frontend.minee9a.css?ver=3.2.2' type='text/css' media='all' />
+      <link rel='stylesheet' id='elementor-post-7-css'  href='/static/stylem/assets/wp-content/uploads/elementor/css/post-73a26.css?ver=1619704119' type='text/css' media='all' />
+      <link rel='stylesheet' id='themify-icons-css'  href='/static/stylem/assets/wp-content/plugins/apdash-core/assets/vendors/themify-icon/themify-icons9f31.css?ver=5.7.2' type='text/css' media='all' />
+      <link rel='stylesheet' id='bootstrap-slider-css'  href='/static/stylem/assets/wp-content/plugins/apdash-core/assets/css/bootstrap-slider.min9f31.css?ver=5.7.2' type='text/css' media='all' />
+      <link rel='stylesheet' id='elegant-icons-css'  href='/static/stylem/assets/wp-content/plugins/apdash-core/assets/vendors/components-elegant-icons/css/elegant-icons.min9f31.css?ver=5.7.2' type='text/css' media='all' />
+      <link rel='stylesheet' id='flaticon-css'  href='/static/stylem/assets/wp-content/plugins/apdash-core/assets/vendors/components-elegant-icons/css/elegant-icons.min9f31.css?ver=5.7.2' type='text/css' media='all' />
+      <link rel='stylesheet' id='elementor-global-css'  href='/static/stylem/assets/wp-content/uploads/elementor/css/global3a26.css?ver=1619704119' type='text/css' media='all' />
+      <link rel='stylesheet' id='elementor-post-591-css'  href='/static/stylem/assets/wp-content/uploads/elementor/css/post-59160b2.css?ver=1619786248' type='text/css' media='all' />
+      <link rel='stylesheet' id='google-fonts-1-css'  href='https://fonts.googleapis.com/css?family=Roboto%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CRoboto+Slab%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic&amp;display=auto&amp;ver=5.7.2' type='text/css' media='all' />
+      <link rel='stylesheet' id='elementor-icons-shared-0-css'  href='https://apdash-wp.themetags.com/wp-content/plugins/elementor/assets/lib/font-awesome/css/fontawesome.min9e0b.css?ver=5.15.1' type='text/css' media='all' />
+      <link rel='stylesheet' id='elementor-icons-fa-regular-css'  href='/static/stylem/assets/wp-content/plugins/elementor/assets/lib/font-awesome/css/regular.min9e0b.css?ver=5.15.1' type='text/css' media='all' />
+      <link rel='stylesheet' id='elementor-icons-fa-solid-css'  href='/static/stylem/assets/wp-content/plugins/elementor/assets/lib/font-awesome/css/solid.min9e0b.css?ver=5.15.1' type='text/css' media='all' />
+      <link rel='stylesheet' id='elementor-icons-fa-brands-css'  href='/static/stylem/assets/wp-content/plugins/elementor/assets/lib/font-awesome/css/brands.min9e0b.css?ver=5.15.1' type='text/css' media='all' />
+      <script type='text/javascript' src='/static/stylem/assets/wp-includes/js/jquery/jquery.min9d52.js?ver=3.5.1' id='jquery-core-js'></script>
+      <script type='text/javascript' src='/static/stylem/assets/wp-includes/js/jquery/jquery-migrate.mind617.js?ver=3.3.2' id='jquery-migrate-js'></script>
+      <link rel="https://api.w.org/" href="https://apdash-wp.themetags.com/wp-json/" />
+      <link rel="alternate" type="application/json" href="https://apdash-wp.themetags.com/wp-json/wp/v2/pages/591" />
+      <link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://apdash-wp.themetags.com/xmlrpc.php?rsd" />
+      <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://apdash-wp.themetags.com/assets/wp-includes/wlwmanifest.xml" />
+      <meta name="generator" content="WordPress 5.7.2" />
+      <link rel="canonical" href="index.html" />
+      <link rel='shortlink' href='https://apdash-wp.themetags.com/?p=591' />
+      <link rel="alternate" type="application/json+oembed" href="https://apdash-wp.themetags.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fapdash-wp.themetags.com%2Fhome-four%2F" />
+      <link rel="alternate" type="text/xml+oembed" href="https://apdash-wp.themetags.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fapdash-wp.themetags.com%2Fhome-four%2F&amp;format=xml" />
+      <script>
+         /*<![CDATA[*/
+         var tt_ajax_url = "https://apdash-wp.themetags.com/wp-admin/admin-ajax.php";
+         /*]]>*/
+      </script>
+      <link rel="icon" href="/static/stylem/assets/wp-content/uploads/2020/10/favicon.png" sizes="32x32" />
+      <link rel="icon" href="/static/stylem/assets/wp-content/uploads/2020/10/favicon.png" sizes="192x192" />
+      <link rel="apple-touch-icon" href="/static/stylem/assets/wp-content/uploads/2020/10/favicon.png" />
+      <meta name="msapplication-TileImage" content="https://apdash-wp.themetags.com/wp-content/uploads/2020/10/favicon.png" />
+      <style type="text/css">.site-footer .footer-wrapper{padding-top:95px;padding-bottom:30px;}.page-header-bg{background-image:url(assets/wp-content/uploads/2020/10/page-header.jpg);background-position:center center;background-repeat:no-repeat;background-attachment:scroll;background-size:cover;}.page-header .overlay-bg{background-image:linear-gradient(to right,#4f1bc5,#7b17c5);background-color:#4f1bc5;}.single-post-header-bg{background-image:url(https://apdash-wp.themetags.com/wp-content/uploads/2020/10/blog-banner.jpg);background-position:center center;background-repeat:no-repeat;background-attachment:fixed;background-size:cover;}.error_page{background-image:url(https://apdash-wp.themetags.com/wp-content/uploads/2020/10/cta-bg.jpg);background-position:center center;background-repeat:no-repeat;background-size:cover;}body{color:#696969;font-size:16px;line-height:26px;}h1{font-size:40px;}h2{font-size:32px;}h3{font-size:28px;}h4{font-size:24px;}h5{font-size:20px;}h6{font-size:16px;}</style>
+      <style type="text/css">.site-footer .footer-wrapper{padding-top:195px;}</style>
+   </head>
+   <body class="page-template page-template-elementor_header_footer page page-id-591 no-sidebar elementor-default elementor-template-full-width elementor-kit-7 elementor-page elementor-page-591">
+      <!-- <div id="preloader">
+         <div id="loader">
+            <div class="loader-inner ball-pulse">
+               <div></div>
+               <div></div>
+               <div></div>
+            </div>
+         </div>
+         
+      </div> -->
+      <!-- /#preloader -->
+      <div id="site-content" class="site">
+         <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+         <header id="masthead" class="site-header header-1 header-width"  data-header-fixed="true"   data-mobile-menu-resolution="992">
+            <div class="container">
+               <div class="header-inner">
+                  <nav id="site-navigation" class="main-nav">
+                     <div class="site-logo">
+                        <a href="#home" rel="home">
+                        <img srcset="/static/stylem/assets/logo.png 2x" src="/static/stylem/assets/logo.png" style="height:70px !important" alt="husmodata"  class="main-logo" />
+                        <img srcset="/static/stylem/assets/logo-sticky.png 2x" src="/static/stylem/assets/logo-sticky.png" style="height:70px !important" alt="husmodata" class="logo-sticky">
+                        </a>
+                     </div>
+                     <div class="tt-hamburger" id="page-open-main-menu" tabindex="1">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                     </div>
+                     <div class="main-nav-container canvas-menu-wrapper" id="mega-menu-wrap">
+                        <div class="close-menu page-close-main-menu" id="page-close-main-menu">
+                           <i class="ti-close"></i>
+                        </div>
+                        <div class="menu-wrapper">
+                           <div class="menu-primary-menu-container">
+                              <ul id="menu-primary-menu" class="site-main-menu">
+                                 <li id="menu-item-17" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children menu-item-17 menu-item current-menu-item">
+                                    <a title="Home" href="#home">Home</a>
+                                 </li>
+                                 <li id="menu-item-18" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-18 menu-item"><a title="About" href="#about">About</a></li>
+                                 <li id="menu-item-19" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-19 menu-item"><a title="Feature" href="#services">Services</a></li>
+                                 <li id="menu-item-19" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-19 menu-item"><a title="Feature" href="#faqs">F.A.Qs</a></li>
+                                 <li id="menu-item-21" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-21 menu-item"><a title="Pricing" href="#pricing">Pricing</a></li>
+                                 {% if user.is_authenticated %}
+                                 <li id="menu-item-22" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-22 menu-item"><a title="Contact" class="btn btn-info" href="/profile">Dashboard</a></li>
+                                 <li id="menu-item-22" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-22 menu-item"><a title="Contact" class="btn btn-info" href="/logout">LogOut</a></li>
+                                 {% else %}
+                                 <li id="menu-item-22" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-22 menu-item"><a title="Contact" href="/login">Login</a></li>
+                                 <li id="menu-item-22" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-22 menu-item"><a title="Contact" class="btn btn-info" href="/signup">Register</a></li>
+                                 {% endif %}
+                              </ul>
+                           </div>
+                        </div>
+                        <!-- /.main-menu -->
+                     </div>
+                     <!-- #menu-wrapper -->
+                  </nav>
+                  <!-- #site-navigation -->
+               </div>
+               <!-- /.header-inner -->
+            </div>
+            <!-- /.container -->
+         </header>
+         <!-- #masthead -->
+         <main id="main" class="site-main">
+            <div data-elementor-type="wp-page" data-elementor-id="591" class="elementor elementor-591" data-elementor-settings="[]">
+               <div class="elementor-inner">
+                  <div class="elementor-section-wrap">
+                     <section id="home" class="elementor-section elementor-top-section elementor-element elementor-element-c51c433 elementor-section-full_width elementor-section-height-default elementor-section-height-default" data-id="c51c433" data-element_type="section">
+                        <div class="elementor-container elementor-column-gap-no">
+                           <div class="elementor-row">
+                              <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-cd8146f" data-id="cd8146f" data-element_type="column">
+                                 <div class="elementor-column-wrap elementor-element-populated">
+                                    <div class="elementor-widget-wrap">
+                                       <div class="elementor-element elementor-element-97b0443 elementor-widget elementor-widget-tt-hero-static" data-id="97b0443" data-element_type="widget" data-widget_type="tt-hero-static.default">
+                                          <div class="elementor-widget-container">
+                                             <section class="banner banner--four banner_bg d-flex align-items-center">
+                                                <div class="container h-100">
+                                                   <div class="row align-items-center h-100 justify-content-between">
+                                                      <div class="col-lg-6 col-md-7">
+                                                         <div class="banner__content">
+                                                            <h4 class="banner__title wow fadeInUp" data-wow-delay=".3s">
+                                                              <span style="color: orange;">Husmo</span>Data						
+                                                            </h4>
+                                                            <p class="wow fadeInUp banner__description" data-wow-delay=".5s">
+                                                               The home of cheap and afffordable data plans <br>
+                                                               Buy and Resell Cheap Data & Airtime | Pay  Electricity Bills | Cable TV Subscriptions | Convert Airtime to Cash
+                                                            </p>
+                                                            <div class="banner__btns">
+                                                               {% if user.is_authenticated %}
+                                                               <a href="/profile" style="border: 3px solid white;"
+                                                                  class="pt-2 pb-2 pl-4  wow fadeInUp tt-btn-link tt-btn btn-circle btn-md btn-outline" data-wow-delay=".9s">
+                                                               <i class="ti-user p-3 text-white" style="font-weight: bold; font-size: 30px;"></i>
+                                                               <span class="btn_text text-white">Dashboard</span>
+                                                               </a>
+                                                                {% else %}
+                                                               <a href="/login" style="border: 3px solid white;"
+                                                                  class="pt-2 pb-2 pl-4  wow fadeInUp tt-btn-link tt-btn btn-circle btn-md btn-outline" data-wow-delay=".9s">
+                                                               <i class="ti-user p-3 text-white" style="font-weight: bold; font-size: 30px;"></i>
+                                                               <span class="btn_text text-white">Login</span>
+                                                               </a>
+
+                                                               <a href="/signup" style="border: 3px solid white;"
+                                                                  class="pt-2 pb-2 pl-4  wow fadeInUp tt-btn-link tt-btn btn-circle btn-md btn-outline" data-wow-delay=".9s">
+                                                               <i class="ti-plus p-3 text-white" style="font-weight: bold; font-size: 30px;"></i>
+                                                               <span class="btn_text text-white">Register</span>
+                                                               </a>
+                                                               {% endif %}
+                                                            </div>
+                                                            <!-- /.countdown-ccontainer -->
+                                                         </div>
+                                                      </div>
+                                                      <div class="col-lg-5 col-md-5">
+                                                         <div class="banner__feature-image wow fadeInRight text-right">
+                                                            <img src="/static/stylem/assets/wp-content/uploads/2020/10/app-mobile-image.png"
+                                                               alt="Best Way to Connect with Customers" >
+                                                         </div>
+                                                         <!-- /.banner-feature-image -->
+                                                      </div>
+                                                      <!-- /.col-md-6 -->
+                                                   </div>
+                                                </div>
+                                                <div class="banner__shape-bottom">
+                                                   <img src="https://apdash-wp.themetags.com/wp-content/plugins/apdash-core/modules/widgets/images/hero-bottom-shape-2.svg"
+                                                         alt="Best Way to Connect with Customers">
+                                                </div>
+                                             </section>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </section>
+                     <section id="services" class="elementor-section elementor-top-section elementor-element elementor-element-0c9154b elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="0c9154b" data-element_type="section">
+                        <div class="elementor-container elementor-column-gap-default">
+                           <div class="elementor-row">
+                              <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-7ee22da" data-id="7ee22da" data-element_type="column">
+                                 <div class="elementor-column-wrap elementor-element-populated">
+                                    <div class="elementor-widget-wrap">
+                                       <div class="elementor-element elementor-element-8cd84df elementor-widget elementor-widget-apdash-heading" data-id="8cd84df" data-element_type="widget" data-widget_type="apdash-heading.default">
+                                          <div class="elementor-widget-container">
+                                             <div class="section-heading">
+                                                <h2 class="section-title wow fadeInUp" data-wow-delay="0.3s">Premium services</h2>
+                                                <div class="description wow fadeInUp" data-wow-delay="0.5s">Enjoy Instant Discount on Airtime Recharge, Internet Data, Electricity Payments, Cable TV Subscription and Airtime to Cash Conversion with your E-Wallet.</div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <section class="elementor-section elementor-inner-section elementor-element elementor-element-7c44008 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="7c44008" data-element_type="section">
+                                          <div class="elementor-container elementor-column-gap-default">
+                                             <div class="elementor-row">
+                                                <div class="elementor-column elementor-col-33 elementor-inner-column elementor-element elementor-element-66a5215 elementor-invisible" data-id="66a5215" data-element_type="column" data-settings="{&quot;animation&quot;:&quot;fadeInRight&quot;,&quot;animation_delay&quot;:500}">
+                                                   <div class="elementor-column-wrap elementor-element-populated">
+                                                      <div class="elementor-widget-wrap">
+                                                         <div class="elementor-element elementor-element-b8a8deb elementor-widget elementor-widget-tt-icon-box" data-id="b8a8deb" data-element_type="widget" data-widget_type="tt-icon-box.default">
+                                                            <div class="elementor-widget-container">
+                                                               <div class="tt-icon-box style-one">
+                                                                  <!-- <div class="icon-container"> -->
+                                                                     <img src="/static/stylem/assets/airtime.png" >
+                                                                  <!-- </div> -->
+                                                                  <!-- /.icon-container -->
+                                                                  <div class="box-content">
+                                                                     <h4 class="box-title">
+                                                                        Airtime Top Up
+                                                                     </h4>
+                                                                     <p class="description">
+                                                                        Enjoy good discount on airtime purchase on husmodata.com. We offer airtime for MTN, Glo, Airtel and 9mobile.         
+                                                                     </p>
+                                                                  </div>
+                                                               </div>
+                                                               <!-- /.dt-icon-box -->		
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                                <div class="elementor-column elementor-col-33 elementor-inner-column elementor-element elementor-element-53b6d69 elementor-invisible" data-id="53b6d69" data-element_type="column" data-settings="{&quot;animation&quot;:&quot;fadeInRight&quot;,&quot;animation_delay&quot;:700}">
+                                                   <div class="elementor-column-wrap elementor-element-populated">
+                                                      <div class="elementor-widget-wrap">
+                                                         <div class="elementor-element elementor-element-d8ee063 elementor-widget elementor-widget-tt-icon-box" data-id="d8ee063" data-element_type="widget" data-widget_type="tt-icon-box.default">
+                                                            <div class="elementor-widget-container">
+                                                               <div class="tt-icon-box style-one">
+                                                                  <img src="/static/stylem/assets/Data-Networks.png" >
+                                                                  <!-- /.icon-container -->
+                                                                  <div class="box-content">
+                                                                     <h4 class="box-title">
+                                                                        Data Subscription
+                                                                     </h4>
+                                                                     <p class="description">
+                                                                        Stay connected. Buy and resell cheap data  on husmodata.com and earn money with us. Get cheapest data bundles for all networks.      
+                                                                     </p>
+                                                                  </div>
+                                                               </div>
+                                                               <!-- /.dt-icon-box -->		
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                                <div class="elementor-column elementor-col-33 elementor-inner-column elementor-element elementor-element-13f20e0 elementor-invisible" data-id="13f20e0" data-element_type="column" data-settings="{&quot;animation&quot;:&quot;fadeInRight&quot;,&quot;animation_delay&quot;:700}">
+                                                   <div class="elementor-column-wrap elementor-element-populated">
+                                                      <div class="elementor-widget-wrap">
+                                                         <div class="elementor-element elementor-element-8d49c86 elementor-widget elementor-widget-tt-icon-box" data-id="8d49c86" data-element_type="widget" data-widget_type="tt-icon-box.default">
+                                                            <div class="elementor-widget-container">
+                                                               <div class="tt-icon-box style-one">
+                                                                  <img src="/static/stylem/assets/cabletv.jpg" >
+                                                                  <!-- /.icon-container -->
+                                                                  <div class="box-content">
+                                                                     <h4 class="box-title">
+                                                                        Cable TV
+                                                                     </h4>
+                                                                     <p class="description">
+                                                                        Don’t miss that TV programme. Subscribe your Cable TV (DSTv, GOTv & Startimes) at the cheapest price and get instant activation.                                                                     </p>
+                                                                  </div>
+                                                               </div>
+                                                               <!-- /.dt-icon-box -->		
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </section>
+                                       <section class="elementor-section elementor-inner-section elementor-element elementor-element-7c44008 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="7c44008" data-element_type="section">
+                                          <div class="elementor-container elementor-column-gap-default">
+                                             <div class="elementor-row">
+                                                <div class="elementor-column elementor-col-33 elementor-inner-column elementor-element elementor-element-848e333 elementor-invisible" data-id="848e333" data-element_type="column" data-settings="{&quot;animation&quot;:&quot;fadeInRight&quot;,&quot;animation_delay&quot;:1100}">
+                                                   <div class="elementor-column-wrap elementor-element-populated">
+                                                      <div class="elementor-widget-wrap">
+                                                         <div class="elementor-element elementor-element-b667ff6 elementor-widget elementor-widget-tt-icon-box" data-id="b667ff6" data-element_type="widget" data-widget_type="tt-icon-box.default">
+                                                            <div class="elementor-widget-container">
+                                                               <div class="tt-icon-box style-one">
+                                                                  <img src="/static/stylem/assets/electricity.jpeg" >
+                                                                  <!-- /.icon-container -->
+                                                                  <div class="box-content">
+                                                                     <h4 class="box-title">
+                                                                        Electricity Bill
+                                                                     </h4>
+                                                                     <p class="description">
+                                                                        Never get your power meters disconnected. We offer all discos postpaid & prepaid including AEDC, EKEDC, IBEDC, IKEDC, JED, KAEDCO, KEDCO & PHED. Pay and get instant token via SMS, email, order status.          
+                                                                     </p>
+                                                                  </div>
+                                                               </div>
+                                                               <!-- /.dt-icon-box -->		
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                                <div class="elementor-column elementor-col-33 elementor-inner-column elementor-element elementor-element-53b6d69 elementor-invisible" data-id="53b6d69" data-element_type="column" data-settings="{&quot;animation&quot;:&quot;fadeInRight&quot;,&quot;animation_delay&quot;:700}">
+                                                   <div class="elementor-column-wrap elementor-element-populated">
+                                                      <div class="elementor-widget-wrap">
+                                                         <div class="elementor-element elementor-element-d8ee063 elementor-widget elementor-widget-tt-icon-box" data-id="d8ee063" data-element_type="widget" data-widget_type="tt-icon-box.default">
+                                                            <div class="elementor-widget-container">
+                                                               <div class="tt-icon-box style-one">
+                                                                  <img src="/static/stylem/assets/a2c.png" >
+                                                                  <!-- /.icon-container -->
+                                                                  <div class="box-content">
+                                                                     <h4 class="box-title">
+                                                                        Airtime to Cash
+                                                                     </h4>
+                                                                     <p class="description">
+                                                                        Convert airtime to cash online in Nigeria. We are very fast in paying out your cash either via your E-wallet or via your bank account. We convert MTN, Airtel, Glo and 9mobile.                                                                     </p>
+                                                                  </div>
+                                                               </div>
+                                                               <!-- /.dt-icon-box -->		
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                                <div class="elementor-column elementor-col-33 elementor-inner-column elementor-element elementor-element-13f20e0 elementor-invisible" data-id="13f20e0" data-element_type="column" data-settings="{&quot;animation&quot;:&quot;fadeInRight&quot;,&quot;animation_delay&quot;:700}">
+                                                   <div class="elementor-column-wrap elementor-element-populated">
+                                                      <div class="elementor-widget-wrap">
+                                                         <div class="elementor-element elementor-element-8d49c86 elementor-widget elementor-widget-tt-icon-box" data-id="8d49c86" data-element_type="widget" data-widget_type="tt-icon-box.default">
+                                                            <div class="elementor-widget-container">
+                                                               <div class="tt-icon-box style-one">
+                                                                  <img src="/static/stylem/assets/bulksms.png" >
+                                                                  <!-- /.icon-container -->
+                                                                  <div class="box-content">
+                                                                     <h4 class="box-title">
+                                                                        Bulk SMS
+                                                                     </h4>
+                                                                     <p class="description">
+                                                                        Get your SMS in bulk at convenient rates, all you have to do is SIGN UP NOW!                                                                  </div>
+                                                               </div>
+                                                               <!-- /.dt-icon-box -->		
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                                
+                                             </div>
+                                             
+                                          </div>
+                                       </section>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </section>
+                     <section class="elementor-section elementor-top-section elementor-element elementor-element-3bc1e72 elementor-section-content-middle elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="3bc1e72" data-element_type="section" id="about" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+                        <div class="elementor-container elementor-column-gap-default">
+                           <div class="elementor-row">
+                              <div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-a5ff064" data-id="a5ff064" data-element_type="column">
+                                 <div class="elementor-column-wrap elementor-element-populated">
+                                    <div class="elementor-widget-wrap">
+                                       <div class="elementor-element elementor-element-eb7cddc elementor-widget elementor-widget-apdash-heading" data-id="eb7cddc" data-element_type="widget" data-widget_type="apdash-heading.default">
+                                          <div class="elementor-widget-container">
+                                             <div class="section-heading">
+                                                <h2 class="section-title wow fadeInUp" data-wow-delay="0.3s">
+                                                   About Husmodata
+                                                </h2>
+                                                <div class="description wow fadeInUp" data-wow-delay="0.5s">We offer instant recharge of Airtime, Databundle, CableTV (DStv, GOtv & Startimes), Electricity Bill Payment and Airtime to Cash.</div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="elementor-element elementor-element-565e6c8 elementor-widget elementor-widget-tt-list" data-id="565e6c8" data-element_type="widget" data-widget_type="tt-list.default">
+                                          <div class="elementor-widget-container">
+                                             <ul class="tt-list list-dice">
+                                                <li>
+                                                   <p>We use cutting-edge technology to run our services. Our data delivery and wallet funding is automated, airtime top-up and data purchase are automated and get delivered to you almost instantly.</p>
+                                                </li>
+                                                <li>
+                                                   <p>The only way your business can evolve to the information.We use cutting-edge technology to run our services. Our data delivery and wallet funding is automated, airtime top-up and data purchase are automated and get delivered to you almost instantly.</p>
+                                                </li>
+                                                <li>
+                                                   <p>Our customers are premium to us, hence satisfying them is our topmost priority. Our customer service is just a click away.</p>
+                                                </li>
+                                             </ul>
+                                          </div>
+                                       </div>
+                                       <div class="elementor-element elementor-element-fe78889 elementor-widget elementor-widget-tt-counter" data-id="fe78889" data-element_type="widget" data-widget_type="tt-counter.default">
+                                          <div class="elementor-widget-container">
+                                             <div class="countdown-container">
+                                                <div class="tt-countdown-wrapper style-three">
+                                                   <div class="tt-countdown text-left">
+                                                      <p class="counter" data-counter="2023">
+                                                         2023                            
+                                                      </p>
+                                                      <h4 class="counter-title">Customers</h4>
+                                                   </div>
+                                                   <div class="tt-countdown text-left">
+                                                      <p class="counter" data-counter="12">
+                                                         12                            
+                                                      </p>
+                                                      <h4 class="counter-title">Active Agent</h4>
+                                                   </div>
+                                                   <div class="tt-countdown text-left">
+                                                      <p class="counter" data-counter="1453">
+                                                         1453                            
+                                                      </p>
+                                                      <h4 class="counter-title">Satisfied</h4>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                             <!-- /.countdown-ccontainer -->
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-bacca4f" data-id="bacca4f" data-element_type="column">
+                                 <div class="elementor-column-wrap elementor-element-populated">
+                                    <div class="elementor-widget-wrap">
+                                       <div class="elementor-element elementor-element-8e837f2 elementor-invisible elementor-widget elementor-widget-image" data-id="8e837f2" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;fadeInLeft&quot;,&quot;_animation_delay&quot;:300}" data-widget_type="image.default">
+                                          <div class="elementor-widget-container">
+                                             <div class="elementor-image">
+                                                <img width="551" height="682" src="/static/stylem/assets/wp-content/uploads/2020/10/apdash_img2.png" class="attachment-large size-large" alt="" loading="lazy" srcset="/static/stylem/assets/wp-content/uploads/2020/10/apdash_img2.png 551w, /static/stylem/assets/wp-content/uploads/2020/10/apdash_img2.png 242w" sizes="(max-width: 551px) 100vw, 551px" />														
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </section>
+                     <section class="elementor-section elementor-top-section elementor-element elementor-element-6087250 elementor-section-content-middle elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="6087250" data-element_type="section">
+                        <div class="elementor-container elementor-column-gap-default">
+                           <div class="elementor-row">
+                              <div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-fb91323" data-id="fb91323" data-element_type="column">
+                                 <div class="elementor-column-wrap elementor-element-populated">
+                                    <div class="elementor-widget-wrap">
+                                       <div class="elementor-element elementor-element-e656cb3 tt-svg-responsive elementor-invisible elementor-widget elementor-widget-image" data-id="e656cb3" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;fadeInRight&quot;}" data-widget_type="image.default">
+                                          <div class="elementor-widget-container">
+                                             <div class="elementor-image">
+                                                <img src="/static/stylem/assets/wp-content/uploads/2020/11/about-us.png" title="about-us" alt="about-us" />														
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-87cc807" data-id="87cc807" data-element_type="column">
+                                 <div class="elementor-column-wrap elementor-element-populated">
+                                    <div class="elementor-widget-wrap">
+                                       <div class="elementor-element elementor-element-a312a51 elementor-widget elementor-widget-apdash-heading" data-id="a312a51" data-element_type="widget" data-widget_type="apdash-heading.default">
+                                          <div class="elementor-widget-container">
+                                             <div class="section-heading">
+                                                <h2 class="section-title wow fadeInUp" data-wow-delay="0.3s">Referral Program</h2>
+                                                <div class="description wow fadeInUp" data-wow-delay="0.5s">We offer our Referrers the best referral program incentives to encourage entrepreneurial and managerial skill acquisition; enhance growth and development and general empowerment among our students on campuses of higher learning and youths in diaspora. Finally, to promote technology via the use of ICT tools in our society.</div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="elementor-element elementor-element-681c521 elementor-invisible elementor-widget elementor-widget-tt-list" data-id="681c521" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;fadeInUp&quot;,&quot;_animation_delay&quot;:700}" data-widget_type="tt-list.default">
+                                          <div class="elementor-widget-container">
+                                             <ul class="tt-list list-dice">
+                                                <li>
+                                                   <p><i class="ti-check"></i> Refer.</p>
+                                                </li>
+                                                <li>
+                                                   <p><i class="ti-check"></i> Bonus</p>
+                                                </li>
+                                                <li>
+                                                   <p><i class="ti-check"></i> Earnings</p>
+                                                </li>
+                                               
+                                             </ul>
+                                          </div>
+                                       </div>
+                                       <div class="elementor-element elementor-element-de1653c elementor-invisible elementor-widget elementor-widget-tt-button" data-id="de1653c" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;fadeInUp&quot;,&quot;_animation_delay&quot;:900}" data-widget_type="tt-button.default">
+                                          <div class="elementor-widget-container">
+                                             <div class="tt-btn-wrapper">
+                                                <a href="/signup" class="tt-btn-link tt-btn btn-circle btn-md btn-outline">
+                                                <span class="tt-btn-content-wrapper">
+                                                <span class="tt-btn-text">Get Started</span>
+                                                </span>
+                                                </a>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </section>
+                    
+                     <section class="elementor-section elementor-top-section elementor-element elementor-element-bb3f3da elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="bb3f3da" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+                        <div class="elementor-background-overlay"></div>
+                        <div class="elementor-container elementor-column-gap-default">
+                           <div class="elementor-row">
+                              <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-c412957" data-id="c412957" data-element_type="column">
+                                 <div class="elementor-column-wrap elementor-element-populated">
+                                    <div class="elementor-widget-wrap">
+                                       <div class="elementor-element elementor-element-c3f9c57 elementor-widget elementor-widget-apdash-heading" data-id="c3f9c57" data-element_type="widget" data-widget_type="apdash-heading.default">
+                                          <div class="elementor-widget-container">
+                                             <div class="section-heading">
+                                                <h2 class="section-title wow fadeInUp" data-wow-delay="0.3s">
+                                                   Contact Us
+                                                </h2>
+                                                <div class="description wow fadeInUp" data-wow-delay="0.5s">Start working with the best customer care can provide everything you need to generate awareness, We are available 24/7 for any issue or complain.</div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="elementor-element elementor-element-17d5a2f elementor-align-center elementor-widget elementor-widget-apdash-download-button" data-id="17d5a2f" data-element_type="widget" data-widget_type="apdash-download-button.default">
+                                          <div class="elementor-widget-container">
+                                             <div class="button-wrapper text-center">
+                                                <a class="tt-app-btn btn-fill wow fadeInUp btn-round btn-active"
+                                                   href="#"   data-wow-delay="0.3s">
+                                                <span class="btn-icon">
+                                                <i aria-hidden="true"  class="ti-map-alt"></i></span>
+                                                <span class="btn-lebels">
+                                                <span style="font-size: 20px;" >Our Address</span>
+                                                <span class="sub" style="font-size: 15px;">No 5, Igbinomwahia Street <br>
+                                                   Ugbowo, Benin City ,Edo State. </span>
+                                                </span>
+                                                </a>
+                                                <a class="tt-app-btn btn-fill wow fadeInUp btn-round btn-active"
+                                                   href="#"   data-wow-delay="0.3s">
+                                                <span class="btn-icon">
+                                                <i aria-hidden="true" class="ti-envelope"></i>	                    </span>
+                                                <span class="btn-lebels">
+                                                <span style="font-size: 20px;">Email Us</span>
+                                                <span class="sub" style="font-size: 15px;">usmanreal43@gmail.com <br> or support@husmodata.com</span>
+                                                </span>
+                                                </a>
+                                                <a class="tt-app-btn btn-fill wow fadeInUp btn-round btn-active"
+                                                   href="#"   data-wow-delay="0.3s">
+                                                <span class="btn-icon">
+                                                <i aria-hidden="true" class="ti-mobile"></i>	                    </span>
+                                                <span class="btn-lebels">
+                                                <span class="sub" style="font-size: 20px;">Call Us</span>
+                                                <span style="font-size: 15px;">+234 8166 1718 24</span>
+                                                </span>
+                                                </a>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </section>
+                     
+                     <section class="elementor-section elementor-top-section elementor-element elementor-element-8d08143 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="8d08143" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+                        <div class="elementor-container elementor-column-gap-default">
+                           <div class="elementor-row">
+                              <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-542f0a2" data-id="542f0a2" data-element_type="column">
+                                 <div class="elementor-column-wrap elementor-element-populated">
+                                    <div class="elementor-widget-wrap">
+                                       <div class="elementor-element elementor-element-10aaf19 elementor-widget elementor-widget-apdash-heading" data-id="10aaf19" data-element_type="widget" data-widget_type="apdash-heading.default">
+                                          <div class="elementor-widget-container">
+                                             <div class="section-heading">
+                                                <h2 class="section-title wow fadeInUp" data-wow-delay="0.3s">Our Work Process</h2>
+                                                <div class="description wow fadeInUp" data-wow-delay="0.5s">Simple steps on how to use our platform.</div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <section class="elementor-section elementor-inner-section elementor-element elementor-element-443dec0 elementor-section-content-middle elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="443dec0" data-element_type="section">
+                                          <div class="elementor-container elementor-column-gap-default">
+                                             <div class="elementor-row">
+                                                <div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-15c68e8" data-id="15c68e8" data-element_type="column">
+                                                   <div class="elementor-column-wrap elementor-element-populated">
+                                                      <div class="elementor-widget-wrap">
+                                                         <div class="elementor-element elementor-element-e041a89 elementor-invisible elementor-widget elementor-widget-tt-process-box" data-id="e041a89" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;fadeInRight&quot;,&quot;_animation_delay&quot;:500}" data-widget_type="tt-process-box.default">
+                                                            <div class="elementor-widget-container">
+                                                               <div class="tt-process-box box-align-left">
+                                                                  <div class="icon-container">
+                                                                     <i aria-hidden="true" class="ti-layout-grid2"></i>            
+                                                                  </div>
+                                                                  <!-- /.icon-container -->
+                                                                  <div class="box-content">
+                                                                     <h4 class="box-title">
+                                                                       Register
+                                                                     </h4>
+                                                                     <p class="description">
+                                                                       Click <a href="/signup">here</a> to register, in one click.          
+                                                                     </p>
+                                                                  </div>
+                                                                  <svg x="0px" y="0px" width="312px" height="130px" class="left-border">
+                                                                     <path class="dashed1" fill="none" stroke="rgb(95, 93, 93)" stroke-width="1" stroke-dasharray="1300" stroke-dashoffset="0" d="M3.121,2.028 C3.121,2.028 1.003,124.928 99.352,81.226 C99.352,81.226 272.319,21.200 310.000,127.338"></path>
+                                                                     <path class="dashed2" fill="none" stroke="#ffffff" stroke-width="2" stroke-dasharray="6" stroke-dashoffset="1300" d="M3.121,2.028 C3.121,2.028 1.003,124.928 99.352,81.226 C99.352,81.226 272.319,21.200 310.000,127.338 "></path>
+                                                                  </svg>
+                                                               </div>
+                                                               <!-- /.dt-icon-box -->
+                                                               <div class="tt-process-box box-align-right">
+                                                                  <div class="icon-container">
+                                                                     <i aria-hidden="true" class="ti-credit-card"></i>            
+                                                                  </div>
+                                                                  <!-- /.icon-container -->
+                                                                  <div class="box-content">
+                                                                     <h4 class="box-title">
+                                                                       Fund Wallet
+                                                                     </h4>
+                                                                     <p class="description">
+                                                                       Credit your wallet with any of our convenient payment platform of your choice.             
+                                                                     </p>
+                                                                  </div>
+                                                                  <svg x="0px" y="0px" width="312px" height="130px" class="right-border">
+                                                                     <path class="dashed1" fill="none" stroke="rgb(95, 93, 93)" stroke-width="1" stroke-dasharray="1300" stroke-dashoffset="0" d="M311.000,0.997 C311.000,0.997 313.123,123.592 214.535,79.996 C214.535,79.996 41.149,20.122 3.377,125.996"></path>
+                                                                     <path class="dashed2" fill="none" stroke="#ffffff" stroke-width="2" stroke-dasharray="6" stroke-dashoffset="1300" d="M311.000,0.997 C311.000,0.997 313.123,123.592 214.535,79.996 C214.535,79.996 41.149,20.122 3.377,125.996"></path>
+                                                                  </svg>
+                                                               </div>
+                                                               <!-- /.dt-icon-box -->
+                                                               <div class="tt-process-box box-align-left">
+                                                                  <div class="icon-container">
+                                                                     <i aria-hidden="true" class="ti-package"></i>            
+                                                                  </div>
+                                                                  <!-- /.icon-container -->
+                                                                  <div class="box-content">
+                                                                     <h4 class="box-title">
+                                                                       Buy Services
+                                                                     </h4>
+                                                                     <p class="description">
+                                                                        Buy any of our services with funds in your e-wallet any time any day. Your funds are safe with us.             
+                                                                     </p>
+                                                                  </div>
+                                                                  <svg x="0px" y="0px" width="312px" height="130px" class="left-border">
+                                                                     <path class="dashed1" fill="none" stroke="rgb(95, 93, 93)" stroke-width="1" stroke-dasharray="1300" stroke-dashoffset="0" d="M3.121,2.028 C3.121,2.028 1.003,124.928 99.352,81.226 C99.352,81.226 272.319,21.200 310.000,127.338"></path>
+                                                                     <path class="dashed2" fill="none" stroke="#ffffff" stroke-width="2" stroke-dasharray="6" stroke-dashoffset="1300" d="M3.121,2.028 C3.121,2.028 1.003,124.928 99.352,81.226 C99.352,81.226 272.319,21.200 310.000,127.338 "></path>
+                                                                  </svg>
+                                                               </div>
+                                                               <!-- /.dt-icon-box -->
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                                <div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-b92e09d" data-id="b92e09d" data-element_type="column">
+                                                   <div class="elementor-column-wrap elementor-element-populated">
+                                                      <div class="elementor-widget-wrap">
+                                                         <div class="elementor-element elementor-element-12d77cb tt-image-responsive elementor-invisible elementor-widget elementor-widget-image" data-id="12d77cb" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;fadeInLeft&quot;,&quot;_animation_delay&quot;:500}" data-widget_type="image.default">
+                                                            <div class="elementor-widget-container">
+                                                               <div class="elementor-image">
+                                                                  <img  src="/static/stylem/assets/app.png" class="attachment-full size-full" alt="" loading="lazy"/>														
+                                                               </div>
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </section>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </section>
+                    
+                     <section class="elementor-section elementor-top-section elementor-element elementor-element-c8f54c3 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="c8f54c3" data-element_type="section" id="pricing">
+                        <div class="elementor-container elementor-column-gap-default">
+                           <div class="elementor-row">
+                              <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-4c1d221" data-id="4c1d221" data-element_type="column">
+                                 <div class="elementor-column-wrap elementor-element-populated">
+                                    <div class="elementor-widget-wrap">
+                                       <div class="elementor-element elementor-element-b98a9a7 elementor-widget elementor-widget-apdash-heading" data-id="b98a9a7" data-element_type="widget" data-widget_type="apdash-heading.default">
+                                          <div class="elementor-widget-container">
+                                             <div class="section-heading">
+                                                <h2 class="section-title wow fadeInUp" data-wow-delay="0.3s">Flexible Data Price List</h2>
+                                                <div class="description wow fadeInUp" data-wow-delay="0.5s">No extra costs. What you see is what you pay for.</div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="elementor-element elementor-element-302c834 elementor-widget elementor-widget-tt-pricing-table-simple" data-id="302c834" data-element_type="widget" data-widget_type="tt-pricing-table-simple.default">
+                                          <div class="elementor-widget-container">
+                                             <div class="pricing">
+                                                <div class="container">
+                                                   <div class="tab-content priceing-tab">
+                                                     
+                                                      <!-- /.swicher-wrap -->
+                                                      <div class="row advanced-pricing-table text-center justify-content-center">
+                                                         <div class="col-lg-3 col-md-6 wow pixFadeUp" data-wow-dealy="0.4s">
+                                                            <div class="pricing-table " id="pric-505-0">
+                                                               <div class="table-feature-image">
+                                                                  <img src="/static/stylem/assets/mtn.jpg" alt=""  style="border-radius:50%;">
+                                                               </div>
+                                                               <table class="table">
+                                                                <tbody>
+                                                                  {% for plans in plan %}
+                                                                  <tr>
+                                                                    <td>{{plans.plan_size}}{{plans.plan_Volume}}</td>
+                                                                    <td>&#8358;{{plans.plan_amount}}</td>
+                                                                    <td class="white-space-nowrap">{{plans.month_validate}}</td>
+                                                                  </tr>
+                                                                  {% endfor %}
+                                                                </tbody>
+                                                              </table>
+                                                              
+                                                              
+                                                            </div>
+                                                         </div>
+                                                         <div class="col-lg-3 col-md-6 wow pixFadeUp" data-wow-dealy="0.4s">
+                                                            <div class="pricing-table " id="pric-505-1">
+                                                               <div class="table-feature-image">
+                                                                  <img src="/static/stylem/assets/glo.jpg" alt=""  style="border-radius:50%;">
+                                                               </div>
+                                                               <table class="table">
+                                                                <tbody>
+                                                                  {% for plans in plan_2 %}
+                                                              <tr>
+                                                                <td>{{plans.plan_size}}{{plans.plan_Volume}}</td>
+                                                                <td>&#8358;{{plans.plan_amount}}</td>
+                                                                <td class="white-space-nowrap">{{plans.month_validate}}</td>
+                                                              </tr>
+                                                              {% endfor %}
+                                                                </tbody>
+                                                              </table>
+                                                            </div>
+                                                         </div>
+                                                         <div class="col-lg-3 col-md-6 wow pixFadeUp" data-wow-dealy="0.4s">
+                                                            <div class="pricing-table " id="pric-505-2">
+                                                               <div class="table-feature-image">
+                                                                  <img src="/static/stylem/assets/airtel.jpg" alt=""  style="border-radius:50%;">
+                                                               </div>
+                                                               <table class="table">
+                                                                <tbody>
+                                                                  {% for plans in plan_4 %}
+                                                              <tr>
+                                                                <td>{{plans.plan_size}}{{plans.plan_Volume}}</td>
+                                                                <td>&#8358;{{plans.plan_amount}}</td>
+                                                                <td class="white-space-nowrap">{{plans.month_validate}}</td>
+                                                              </tr>
+                                                              {% endfor %}
+                                                                </tbody>
+                                                              </table>
+                                                            </div>
+                                                         </div>
+                                                         <div class="col-lg-3 col-md-6 wow pixFadeUp" data-wow-dealy="0.4s">
+                                                            <div class="pricing-table " id="pric-505-2">
+                                                               <div class="table-feature-image">
+                                                                  <img src="/static/stylem/assets/9mobile.jpg" alt=""  style="border-radius:50%;  border: 1px solid rgb(9, 48, 19);">
+                                                               </div>
+                                                               <table class="table">
+                                                                <tbody>
+                                                                  {% for plans in plan_3 %}
+                                                              <tr>
+                                                                <td>{{plans.plan_size}}{{plans.plan_Volume}}</td>
+                                                                <td>&#8358;{{plans.plan_amount}}</td>
+                                                                <td class="white-space-nowrap">{{plans.month_validate}}</td>
+                                                              </tr>
+                                                              {% endfor %}
+                                                                </tbody>
+                                                              </table>
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                                <!-- /.container -->
+                                             </div>
+                                             <!-- /.pricing -->		
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </section>
+
+                     <section id="faqs" class="elementor-section elementor-top-section elementor-element elementor-element-05d3bf2 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="05d3bf2" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+                        <div class="elementor-container elementor-column-gap-default">
+                           <div class="elementor-row">
+                              <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-652c198" data-id="652c198" data-element_type="column">
+                                 <div class="elementor-column-wrap elementor-element-populated">
+                                    <div class="elementor-widget-wrap">
+                                       <div class="elementor-element elementor-element-77cc322 elementor-widget elementor-widget-apdash-heading" data-id="77cc322" data-element_type="widget" data-widget_type="apdash-heading.default">
+                                          <div class="elementor-widget-container">
+                                             <div class="section-heading">
+                                                <h2 class="section-title wow fadeInUp" data-wow-delay="0.3s">Frequently Asked Questions</h2>
+                                                <div class="description wow fadeInUp" data-wow-delay="0.5s">Here are most common questions from our estemed users</div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <section class="elementor-section elementor-inner-section elementor-element elementor-element-62c718e elementor-section-content-middle elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="62c718e" data-element_type="section">
+                                          <div class="elementor-container elementor-column-gap-default">
+                                             <div class="elementor-row">
+                                                <div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-b440c94" data-id="b440c94" data-element_type="column">
+                                                   <div class="elementor-column-wrap elementor-element-populated">
+                                                      <div class="elementor-widget-wrap">
+                                                         <div class="elementor-element elementor-element-eb72435 tt-image-responsive elementor-invisible elementor-widget elementor-widget-image" data-id="eb72435" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;fadeInRight&quot;,&quot;_animation_delay&quot;:500}" data-widget_type="image.default">
+                                                            <div class="elementor-widget-container">
+                                                               <div class="elementor-image">
+                                                                  <img width="564" height="594" src="https://subpadi.com/static/src/img-min/logo/home-bg.png" class="attachment-large size-large" alt="" loading="lazy" srcset="https://subpadi.com/static/src/img-min/logo/home-bg.png 564w, https://subpadi.com/static/src/img-min/logo/home-bg.png 285w" sizes="(max-width: 564px) 100vw, 564px" />														
+                                                               </div>
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                                <div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-3c4383d elementor-invisible" data-id="3c4383d" data-element_type="column" data-settings="{&quot;animation&quot;:&quot;fadeInLeft&quot;,&quot;animation_delay&quot;:500}">
+                                                   <div class="elementor-column-wrap elementor-element-populated">
+                                                      <div class="elementor-widget-wrap">
+                                                         <div class="elementor-element elementor-element-cc9fc88 dt-heading-fill-color elementor-widget elementor-widget-tt-accordion" data-id="cc9fc88" data-element_type="widget" data-widget_type="tt-accordion.default">
+                                                            <div class="elementor-widget-container">
+                                                               <div class="faq_content collaps_style">
+                                                                  <div class="faq_arrordion_content">
+                                                                     <div  class="faq faq-two pixFade" id="apdash-accordion-214">
+                                                                        <div class="card active">
+                                                                           <div class="card-header" id="apdash-acco-214-0">
+                                                                              <h5 class="mb-0">
+                                                                                 <button class="btn btn-link" data-toggle="collapse" data-target="#faq-collapse-apdash-acco-214-0" aria-expanded="true">
+                                                                                    How To Use Our Services?       </button>
+                                                                              </h5>
+                                                                           </div>
+                                                                           <div id="faq-collapse-apdash-acco-214-0" class="collapse show" data-parent="#apdash-accordion-214">
+                                                                              <div class="card-body">
+                                                                                 <ol>
+                                                                                    <li>STEP 1: Fund your wallet.</li>
+                                                                                    <li>STEP 2: Fill the data order form. </li>
+                                                                                    <li>STEP 3: Wait for 1-15 minutes, the recipient will receive notification(s) of data recharge(Except for 9mobile(SME), which should be confirmed with its balance code)</li>
+                                                                                    </ol>                                                                   </div>
+                                                                           </div>
+                                                                        </div>
+                                                                        <div class="card ">
+                                                                           <div class="card-header" id="apdash-acco-214-01">
+                                                                              <h5 class="mb-0">
+                                                                                 <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#faq-collapse-apdash-acco-214-01" aria-expanded="false">
+                                                                                    How To Buy Data?                                      </button>
+                                                                              </h5>
+                                                                           </div>
+                                                                           <div id="faq-collapse-apdash-acco-214-01" class="collapse" data-parent="#apdash-accordion-214">
+                                                                              <div class="card-body">
+                                                                                 <ol>
+                                                                                    <li>Log in to your account</li>
+                                                                                    <li> If not click here to register </li>
+                                                                                    <li> After log in click fund my account </li>
+                                                                                    <li>Select Coupon payment ,NB:You can buy coupon code from our agents</li>
+                                                                                    </ol>                                                                             
+                                                                               </div>
+                                                                           </div>
+                                                                        </div>
+                                                                        <div class="card ">
+                                                                           <div class="card-header" id="apdash-acco-214-1">
+                                                                              <h5 class="mb-0">
+                                                                                 <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#faq-collapse-apdash-acco-214-1" aria-expanded="false">
+                                                                                    What Are The Codes For Checking Data Balance ?                                   </button>
+                                                                              </h5>
+                                                                           </div>
+                                                                           <div id="faq-collapse-apdash-acco-214-1" class="collapse" data-parent="#apdash-accordion-214">
+                                                                              <div class="card-body">
+                                                                                 <ol>
+                                                                                    <li>MTN-&gt; *461*4#</li>
+                                                                                    <li>9mobile[SME]-&gt; *229*9#</li>
+                                                                                    <li>9mobile[Gifting]-&gt; *228#</li>
+                                                                                    <li>Airtel-&gt; *140#</li>
+                                                                                    <li>Glo-&gt; *127*0#.</li>
+                                                                                 </ol>                                                                             
+                                                                               </div>
+                                                                           </div>
+                                                                        </div>
+                                                                        <div class="card ">
+                                                                           <div class="card-header" id="apdash-acco-214-2">
+                                                                              <h5 class="mb-0">
+                                                                                 <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#faq-collapse-apdash-acco-214-2" aria-expanded="false">
+                                                                                    How Do I Fund My Wallet?                          </button>
+                                                                              </h5>
+                                                                           </div>
+                                                                           <div id="faq-collapse-apdash-acco-214-2" class="collapse" data-parent="#apdash-accordion-214">
+                                                                              <div class="card-body">
+                                                                                 <ol>
+                                                                                    <p>You can fund your wallet using any of our Four payment means:</p>
+                                                                                    <li> Bank payment.</li>
+                                                                                    <li>Online Payment with your ATM card details via Pay stack Payment Gateway.</li>
+                                                                                    <li>Payment with airtime.</li>
+                                                                                    <li>Payment with Coupon Code(s).</li>
+                                                                                    </ol>                                                                              </div>
+                                                                           </div>
+                                                                        </div>
+                                                                        <div class="card ">
+                                                                           <div class="card-header" id="apdash-acco-214-3">
+                                                                              <h5 class="mb-0">
+                                                                                 <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#faq-collapse-apdash-acco-214-3" aria-expanded="false">
+                                                                                    Can I Send Airtime?                              </button>
+                                                                              </h5>
+                                                                           </div>
+                                                                           <div id="faq-collapse-apdash-acco-214-3" class="collapse" data-parent="#apdash-accordion-214">
+                                                                              <div class="card-body">
+                                                                                 Yes you can, but payment with airtime attracts little additional charge. Kindly fund your wallet with airtime                                                                               </div>
+                                                                           </div>
+                                                                        </div>
+                                                                     </div>
+                                                                  </div>
+                                                               </div>
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </section>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </section>
+
+                     <section  class="elementor-section elementor-top-section elementor-element elementor-element-e46488c elementor-section-content-middle elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="e46488c" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;gradient&quot;}">
+                        <div class="elementor-container elementor-column-gap-default">
+                           <div class="elementor-row">
+                              <div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-5704f49" data-id="5704f49" data-element_type="column">
+                                 <div class="elementor-column-wrap elementor-element-populated">
+                                    <div class="elementor-widget-wrap">
+                                       <div class="elementor-element elementor-element-58ae2a2 elementor-widget elementor-widget-apdash-heading" data-id="58ae2a2" data-element_type="widget" data-widget_type="apdash-heading.default">
+                                          <div class="elementor-widget-container">
+                                             <div class="section-heading">
+                                                <h2 class="section-title wow fadeInUp" data-wow-delay="0.3s">Testimonials</h2>
+                                                <div class="description wow fadeInUp" data-wow-delay="0.5s">Hear from our esteemed and beloved customers.</div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-f44b068 elementor-invisible" data-id="f44b068" data-element_type="column" data-settings="{&quot;animation&quot;:&quot;fadeInUp&quot;}">
+                                 <div class="elementor-column-wrap elementor-element-populated">
+                                    <div class="elementor-widget-wrap">
+                                       <div class="elementor-element elementor-element-80d5624 elementor-widget elementor-widget-tt-testimonial" data-id="80d5624" data-element_type="widget" data-widget_type="tt-testimonial.default">
+                                          <div class="elementor-widget-container">
+                                             <div class="testimonial-wrapper">
+                                                <div class="swiper-container tt-testimonial testimonial-style-1" data-testi="{&quot;loop&quot;:true,&quot;speed&quot;:700,&quot;autoplay&quot;:{&quot;delay&quot;:3000},&quot;pagination&quot;:{&quot;el&quot;:&quot;.swiper-pagination&quot;,&quot;clickable&quot;:true},&quot;spaceBetween&quot;:30}">
+                                                   <div class="swiper-wrapper">
+                                                      <div class="swiper-slide">
+                                                         <div class="testimonial">
+                                                            <div class="quote">
+                                                               <i class="ti-quote-right"></i>
+                                                            </div>
+                                                            <div class="info-wrap">
+                                                               <div class="avatar">
+                                                                  <img loading="lazy" src="/static/stylem/assets/wp-content/uploads/2020/10/3.jpg"
+                                                                     alt="Mominul Islam" height="100"
+                                                                     width="100">
+                                                               </div>
+                                                               <div class="bio-wrapper">
+                                                                  <h4 class="name">Etim Kraft</h4>
+                                                                  <span class="designation">Web Developer</span>
+                                                               </div>
+                                                            </div>
+                                                            <div class="testimonial-content-inner">
+                                                               <p>
+                                                                  Best platform for reselling of vtu service i have ever seen. <br> thumbs up for them for their great services.                         
+                                                               </p>
+                                                            </div>
+                                                            <!-- /.testimonial-cotent-inner -->
+                                                         </div>
+                                                      </div>
+                                                      <!-- /.swiper-slide -->
+                                                      <div class="swiper-slide">
+                                                         <div class="testimonial">
+                                                            <div class="quote">
+                                                               <i class="ti-quote-right"></i>
+                                                            </div>
+                                                            <div class="info-wrap">
+                                                               <div class="avatar">
+                                                                  <img loading="lazy" src="/static/stylem/assets/wp-content/uploads/2020/10/2.jpg"
+                                                                     alt="John Charles" height="100"
+                                                                     width="100">
+                                                               </div>
+                                                               <div class="bio-wrapper">
+                                                                  <h4 class="name">John Charles</h4>
+                                                                  <span class="designation">UI/UX Designer</span>
+                                                               </div>
+                                                            </div>
+                                                            <div class="testimonial-content-inner">
+                                                               <p>
+                                                                I can really say that since I joined this site I have been earning more than before... Kudus To LENSGOLD Kudos to the developer of this great site.                                                               </p>
+                                                            </div>
+                                                            <!-- /.testimonial-cotent-inner -->
+                                                         </div>
+                                                      </div>
+                                                      <!-- /.swiper-slide -->
+                                                      <div class="swiper-slide">
+                                                         <div class="testimonial">
+                                                            <div class="quote">
+                                                               <i class="ti-quote-right"></i>
+                                                            </div>
+                                                            <div class="info-wrap">
+                                                               <div class="avatar">
+                                                                  <img loading="lazy" src="/static/stylem/assets/wp-content/uploads/2020/10/1.jpg"
+                                                                     alt="John Charles" height="100"
+                                                                     width="100">
+                                                               </div>
+                                                               <div class="bio-wrapper">
+                                                                  <h4 class="name">Bakare Kareen</h4>
+                                                                  <span class="designation">UI/UX Designer</span>
+                                                               </div>
+                                                            </div>
+                                                            <div class="testimonial-content-inner">
+                                                               <p>
+                                                                I love the quick response to issues. We might just get along well. So far so good. I recommnd this platform to everyone.
+                                                            </p>
+                                                            </div>
+                                                            <!-- /.testimonial-cotent-inner -->
+                                                         </div>
+                                                      </div>
+                                                      
+                                                   </div>
+                                                   <!-- /.swiper-wrapper -->
+                                                </div>
+                                                <div class="swiper-pagination"></div>
+                                             </div>
+                                             <!-- /.testimonial-wrapper -->
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </section>
+                   
+                     <section class="elementor-section elementor-top-section elementor-element elementor-element-4dbed22 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="4dbed22" data-element_type="section">
+                        <div class="elementor-container elementor-column-gap-default">
+                           <div class="elementor-row">
+                              <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-a9a941e" data-id="a9a941e" data-element_type="column">
+                                 <div class="elementor-column-wrap elementor-element-populated">
+                                    <div class="elementor-widget-wrap">
+                                       <div class="elementor-element elementor-element-7c755f3 elementor-widget elementor-widget-apdash-heading" data-id="7c755f3" data-element_type="widget" data-widget_type="apdash-heading.default">
+                                          <div class="elementor-widget-container">
+                                             <div class="section-heading">
+                                                <h2 class="section-title wow fadeInUp" data-wow-delay="0.3s">Our Valuable Partners</h2>
+                                                <div class="description wow fadeInUp" data-wow-delay="0.5s">Meet our trusted, ever ready and always available parteners.</div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="elementor-element elementor-element-4fa79d3 elementor-widget elementor-widget-tt-logo-carousel" data-id="4fa79d3" data-element_type="widget" data-widget_type="tt-logo-carousel.default">
+                                          <div class="elementor-widget-container">
+                                             <div class="dt-logo-carousel">
+                                                <div class="swiper-container tt-client-logo" data-logo="{&quot;breakpoints&quot;:{&quot;992&quot;:{&quot;slidesPerView&quot;:5,&quot;spaceBetween&quot;:&quot;30&quot;},&quot;620&quot;:{&quot;slidesPerView&quot;:3,&quot;spaceBetween&quot;:&quot;30&quot;},&quot;320&quot;:{&quot;slidesPerView&quot;:2,&quot;spaceBetween&quot;:&quot;20&quot;}},&quot;loop&quot;:true,&quot;speed&quot;:700,&quot;autoplay&quot;:{&quot;delay&quot;:30}}">
+                                                   <div class="swiper-wrapper">
+                                                      <div class="swiper-slide">
+                                                         <div class="client-logo text-center">
+                                                            <img src="/static/stylem/assets/mtn.jpg" style="border-radius:50%;" alt="Brand logo">
+                                                         </div>
+                                                      </div>
+                                                      <!-- /.swiper-slide -->
+                                                      <div class="swiper-slide">
+                                                         <div class="client-logo text-center">
+                                                            <img src="/static/stylem/assets/airtel.jpg" style="border-radius:50%; "  alt="Brand logo">
+                                                         </div>
+                                                      </div>
+                                                      <!-- /.swiper-slide -->
+                                                      <div class="swiper-slide">
+                                                         <div class="client-logo text-center">
+                                                            <img src="/static/stylem/assets/glo.jpg"  alt="Brand logo">
+                                                         </div>
+                                                      </div>
+                                                      <!-- /.swiper-slide -->
+                                                      <div class="swiper-slide">
+                                                         <div class="client-logo text-center">
+                                                            <img src="/static/stylem/assets/9mobile.jpg" style="border-radius:50%;  border: 1px solid rgb(9, 48, 19);"  alt="Brand logo">
+                                                         </div>
+                                                      </div>
+                                                      <!-- /.swiper-slide -->
+                                                      <div class="swiper-slide">
+                                                         <div class="client-logo text-center">
+                                                            <img src="/static/stylem/assets/gotv.png" style="height:90px !important;"  alt="Brand logo">
+                                                         </div>
+                                                      </div>
+                                                      <!-- /.swiper-slide -->
+                                                      <div class="swiper-slide">
+                                                         <div class="client-logo text-center">
+                                                            <img src="/static/stylem/assets/ikeja.png" style="border-radius:50%; height:90px !important;" alt="Brand logo">
+                                                         </div>
+                                                      </div>
+                                                      <!-- /.swiper-slide -->
+                                                      <div class="swiper-slide">
+                                                         <div class="client-logo text-center">
+                                                            <img src="/static/stylem/assets/jos-electricity.png" style="border-radius:50%; height:90px !important;"  alt="Brand logo">
+                                                         </div>
+                                                      </div>
+                                                      <!-- /.swiper-slide -->
+                                                      <div class="swiper-slide">
+                                                         <div class="client-logo text-center">
+                                                            <img src="/static/stylem/assets/logo-1.png"  style="border-radius:50%; height:90px !important;" alt="Brand logo">
+                                                         </div>
+                                                      </div>
+                                                      <!-- /.swiper-slide -->
+                                                      <div class="swiper-slide">
+                                                         <div class="client-logo text-center">
+                                                            <img src="/static/stylem/assets/logo-2.png" style="border-radius:50%; height:90px !important;"  alt="Brand logo">
+                                                         </div>
+                                                      </div>
+                                                      <!-- /.swiper-slide -->
+                                                      <div class="swiper-slide">
+                                                         <div class="client-logo text-center">
+                                                            <img src="/static/stylem/assets/logo-3.png" style="height:90px !important; height:90px !important;"  alt="Brand logo">
+                                                         </div>
+                                                      </div>
+                                                      <!-- /.swiper-slide -->
+                                                      <div class="swiper-slide">
+                                                         <div class="client-logo text-center">
+                                                            <img src="/static/stylem/assets/logo-4.png"  style="border-radius:50%; height:90px !important;" alt="Brand logo">
+                                                         </div>
+                                                      </div>
+                                                      <!-- /.swiper-slide -->
+                                                      <div class="swiper-slide">
+                                                         <div class="client-logo text-center">
+                                                            <img src="/static/stylem/assets/logo-5.png" style="border-radius:50%; height:90px !important;"  alt="Brand logo">
+                                                         </div>
+                                                      </div>
+                                                      <!-- /.swiper-slide -->
+                                                      <div class="swiper-slide">
+                                                         <div class="client-logo text-center">
+                                                            <img src="/static/stylem/assets/logo-7.png" style="height:90px !important; height:90px !important;"  alt="Brand logo">
+                                                         </div>
+                                                      </div>
+                                                      <!-- /.swiper-slide -->
+                                                      <div class="swiper-slide">
+                                                         <div class="client-logo text-center">
+                                                            <img src="/static/stylem/assets/logo-13.jpg"  style="border-radius:50%; height:90px !important;" alt="Brand logo">
+                                                         </div>
+                                                      </div>
+                                                      <!-- /.swiper-slide -->
+                                                      <div class="swiper-slide">
+                                                         <div class="client-logo text-center">
+                                                            <img src="/static/stylem/assets/logo-8.png" style="border-radius:50%; height:90px !important;"  alt="Brand logo">
+                                                         </div>
+                                                      </div>
+                                                      <!-- /.swiper-slide -->
+                                                      <div class="swiper-slide">
+                                                         <div class="client-logo text-center">
+                                                            <img src="/static/stylem/assets/logo-9.png" style="height:90px !important; height:90px !important;"  alt="Brand logo">
+                                                         </div>
+                                                      </div>
+                                                      <!-- /.swiper-slide -->
+                                                      <div class="swiper-slide">
+                                                         <div class="client-logo text-center">
+                                                            <img src="/static/stylem/assets/mastercard.png"  style="border-radius:50%; height:90px !important;" alt="Brand logo">
+                                                         </div>
+                                                      </div>
+                                                      <!-- /.swiper-slide -->
+                                                      <div class="swiper-slide">
+                                                         <div class="client-logo text-center">
+                                                            <img src="/static/stylem/assets/logo-11.png" style="border-radius:50%; height:90px !important;"  alt="Brand logo">
+                                                         </div>
+                                                      </div>
+                                                      <!-- /.swiper-slide -->
+                                                      <div class="swiper-slide">
+                                                         <div class="client-logo text-center">
+                                                            <img src="/static/stylem/assets/logo-12.png" style="height:90px !important; height:90px !important;"  alt="Brand logo">
+                                                         </div>
+                                                      </div>
+                                                      <!-- /.swiper-slide -->
+                                                      <div class="swiper-slide">
+                                                         <div class="client-logo text-center">
+                                                            <img src="/static/stylem/assets/monnify.png"  style="height:40px !important;" alt="Brand logo">
+                                                         </div>
+                                                      </div>
+                                                      <!-- /.swiper-slide -->
+                                                      <div class="swiper-slide">
+                                                         <div class="client-logo text-center">
+                                                            <img src="/static/stylem/assets/paystack.png" style="height:40px !important;"  alt="Brand logo">
+                                                         </div>
+                                                      </div>
+                                                      <!-- /.swiper-slide -->
+                                                      <div class="swiper-slide">
+                                                         <div class="client-logo text-center">
+                                                            <img src="/static/stylem/assets/visa.png" style="height:40px !important;"  alt="Brand logo">
+                                                         </div>
+                                                      </div>
+                                                      <!-- /.swiper-slide -->
+                                                      <div class="swiper-slide">
+                                                         <div class="client-logo text-center">
+                                                            <img src="/static/stylem/assets/verve.png" style="height:40px !important;"  alt="Brand logo">
+                                                         </div>
+                                                      </div>
+                                                      <!-- /.swiper-slide -->
+                                                   </div>
+                                                   <!-- /.swiper-wrapper -->
+                                                </div>
+                                                <!-- /.swiper-container -->
+                                             </div>
+                                             <!-- /.dt-logo-carousel -->
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </section>
+                     <section class="elementor-section elementor-top-section elementor-element elementor-element-cb81f87 elementor-section-boxed elementor-section-height-default elementor-section-height-default elementor-invisible" data-id="cb81f87" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;animation&quot;:&quot;fadeInUp&quot;}">
+                        <div class="elementor-container elementor-column-gap-default">
+                           <div class="elementor-row">
+                              <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-55b8511" data-id="55b8511" data-element_type="column">
+                                 <div class="elementor-column-wrap elementor-element-populated">
+                                    <div class="elementor-widget-wrap">
+                                       <div class="elementor-element elementor-element-5f478b8 elementor-widget elementor-widget-tt-newsletter" data-id="5f478b8" data-element_type="widget" data-widget_type="tt-newsletter.default">
+                                          <div class="elementor-widget-container">
+                                             <div class="newsletter" id="newsletter">
+                                                <div class="container">
+                                                   <div class="row">
+                                                      <div class="col-lg-7">
+                                                         <div class="section-heading">
+                                                            <h2 class="section-title">
+                                                               Use Our API                               
+                                                            </h2>
+                                                            <h3 class="subtitle">Integrate our API on your website and still enjoy our premium services.</h3>
+                                                         </div>
+                                                         <!-- /.newsletter-content -->
+                                                      </div>
+                                                      <div class="col-lg-5">
+                                                         <form action="#" method="post" class="newsletter-form wow pixFadeUp" data-apdash-form="newsletter-subscribe">
+                                                            <!-- <input type="button" name="action" value="apdash_mailchimp_subscribe"> -->
+                                                            <a href="/docuation">
+                                                            <div class="newsletter-inner form-row justify-content-center">
+                                                              
+                                                                <input type="button" name="email" class="form-control" id="newsletter-form-email" style="color: purple;"  value="Integrate now">
+                                                                <button type="button" href="/documentation" name="submit" id="newsletter-submit" class="newsletter-submit">
+                                                                <i class="ti-link" style="font-size: 40px; font-weight: bold;"></i>
+                                                                <i class="fa fa-circle-o-notch fa-spin"></i>
+                                                                </button>
+                                                               
+                                                            </div>
+                                                        </a>
+                                                            
+                                                            <!-- /.form-result-->
+                                                         </form>
+                                                         <!-- /.newsletter-form -->
+                                                      </div>
+                                                   </div>
+                                                   <!-- /.row -->
+                                                </div>
+                                                <!-- /.container -->
+                                             </div>
+                                             <!-- /.newsletter -->
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </section>
+                  </div>
+               </div>
+            </div>
+         </main>
+         <!-- /#site-main -->
+      </div>
+      <!-- /#site-content -->
+      <footer id="site_footer" class="site-footer">
+         <div class="footer-wrapper">
+            <div class="container">
+               <aside class="widget-area row">
+                  <div class="col-sm-6 col-lg-4">
+                     <div id="apdash_widget_contact-2" class="widget apdash_widget about-widget_wrapper">
+                        <img src="/static/stylem/assets/logo-sticky.png" height="20" class="footer-logo" alt="">
+                        <p class="about_text">The home of cheap and afffordable data plans Buy and Resell Cheap Data & Airtime | Pay Electricity Bills | Cable TV Subscriptions | Convert Airtime to Cash.</p>
+                        <ul class="footer-social-link">
+                           <li>
+                              <a href="#">
+                              <i class="ti-facebook"></i>
+                              </a>
+                           </li>
+                           <li>
+                              <a href="#">
+                              <i class="ti-twitter-alt"></i>
+                              </a>
+                           </li>
+                           <li>
+                              <a href="#">
+                              <i class="ti-dribbble"></i>
+                              </a>
+                           </li>
+                           <li>
+                              <a href="#">
+                              <i class="ti-linkedin"></i>
+                              </a>
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+                  <div class="col-sm-6 col-lg-3">
+                     <div id="nav_menu-2" class="widget apdash_widget widget_nav_menu">
+                        <h3 class="widget-title">Services</h3>
+                        <div class="menu-company-container">
+                           <ul id="menu-company" class="menu">
+                              <li id="menu-item-80" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-80"><a href="/profile">Data subscription</a></li>
+                              <li id="menu-item-81" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-81"><a href="/profile">Airtime purchase</a></li>
+                              <li id="menu-item-82" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-82"><a href="/profile">Cable subscription</a></li>
+                              <li id="menu-item-83" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-83"><a href="/profile">Utility bill payment</a></li>
+                              <li id="menu-item-84" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-84"><a href="/profile">Bulk sms</a></li>
+                              <li id="menu-item-84" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-84"><a href="/profile">Airtime to cash</a></li>
+                           </ul>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-sm-6 col-lg-3">
+                     <div id="nav_menu-3" class="widget apdash_widget widget_nav_menu">
+                        <h3 class="widget-title">Contact</h3>
+                        <div class="menu-resources-container">
+                           <ul id="menu-resources" class="menu">
+                              <li id="menu-item-85" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-85"><a href="#">Call: <strong>234 8166 1718 24</strong></a></li>
+                              <li id="menu-item-86" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-86"><a href="#">Email: <strong>usmanreal43@gmail.com</strong></a></li>
+                              <li id="menu-item-87" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-87"><a href="#">Adress: <strong>No 5, Igbinomwahia Street, Ugbowo, Benin City ,Edo State. s</strong></a></li>
+                             
+                           </ul>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-sm-6 col-lg-2">
+                     <div id="nav_menu-4" class="widget apdash_widget widget_nav_menu">
+                        <h3 class="widget-title">Quick Links</h3>
+                        <div class="menu-support-container">
+                           <ul id="menu-support" class="menu">
+                              <li id="menu-item-75" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-75"><a href="#home">Home</a></li>
+                              <li id="menu-item-76" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-76"><a href="#about">About</a></li>
+                              <li id="menu-item-77" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-77"><a href="#feature">Services</a></li>
+                              <li id="menu-item-78" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-78"><a href="#faqs">FAQs</a></li>
+                              <li id="menu-item-79" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-79"><a href="#pricing">Pricing</a></li>
+                              <li id="menu-item-79" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-79"><a href="/login">Login</a></li>
+                              <li id="menu-item-79" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-79"><a href="/signup">Register</a></li>
+                           </ul>
+                        </div>
+                     </div>
+                  </div>
+               </aside>
+               <!-- .widget-area -->
+            </div>
+            <!-- .container -->
+         </div>
+         <!-- /.footer-wrapper -->
+         <div class="site-info">
+            <div class="container">
+               <div class="site-info-wrapper">
+                  <div class="copyright">
+                     <p>
+                        &copy; 2021 HusmoData - All Rights Reserved. <br> Developed by <a href="https://www.msorgdevelopers.com/">MS-ORG DEVELOPERS</a>                
+                     </p>
+                  </div>
+               </div>
+               <!-- /.site-info-wrapper -->
+            </div>
+            <!-- /.container -->
+         </div>
+      </footer>
+      <!-- #site-footer -->
+      <script type='text/javascript' src='/static/stylem/assets/wp-includes/js/dist/vendor/wp-polyfill.min89b1.js?ver=7.4.4' id='wp-polyfill-js'></script>
+      <script type='text/javascript' id='wp-polyfill-js-after'>
+         ( 'fetch' in window ) || document.write( '<script src="/static/stylem/assets/wp-includes/js/dist/vendor/wp-polyfill-fetch.min6e0e.js?ver=3.0.0"></scr' + 'ipt>' );( document.contains ) || document.write( '<script src="assets/wp-includes/js/dist/vendor/wp-polyfill-node-contains.min2e00.js?ver=3.42.0"></scr' + 'ipt>' );( window.DOMRect ) || document.write( '<script src="assets/wp-includes/js/dist/vendor/wp-polyfill-dom-rect.min2e00.js?ver=3.42.0"></scr' + 'ipt>' );( window.URL && window.URL.prototype && window.URLSearchParams ) || document.write( '<script src="assets/wp-includes/js/dist/vendor/wp-polyfill-url.min5aed.js?ver=3.6.4"></scr' + 'ipt>' );( window.FormData && window.FormData.prototype.keys ) || document.write( '<script src="assets/wp-includes/js/dist/vendor/wp-polyfill-formdata.mine9bd.js?ver=3.0.12"></scr' + 'ipt>' );( Element.prototype.matches && Element.prototype.closest ) || document.write( '<script src="assets/wp-includes/js/dist/vendor/wp-polyfill-element-closest.min4c56.js?ver=2.0.2"></scr' + 'ipt>' );( 'objectFit' in document.documentElement.style ) || document.write( '<script src="assets/wp-includes/js/dist/vendor/wp-polyfill-object-fit.min531b.js?ver=2.3.4"></scr' + 'ipt>' );
+      </script>
+      <script type='text/javascript' id='contact-form-7-js-extra'>
+         /* <![CDATA[ */
+         var wpcf7 = {"api":{"root":"https:\/\/apdash-wp.themetags.com\/wp-json\/","namespace":"contact-form-7\/v1"}};
+         /* ]]> */
+      </script>
+      <script type='text/javascript' src='/static/stylem/assets/wp-content/plugins/contact-form-7/includes/js/indexc225.js?ver=5.4.1' id='contact-form-7-js'></script>
+      <script type='text/javascript' src='/static/stylem/assets/wp-content/themes/apdash/assets/js/bootstrap.min5b31.js?ver=4.3.1' id='bootstrap-js-js'></script>
+      <script type='text/javascript' src='/static/stylem/assets/wp-content/themes/apdash/assets/js/isotope.pkgd.min4830.js?ver=3.1.12' id='isotope-js'></script>
+      <script type='text/javascript' src='/static/stylem/assets/wp-content/themes/apdash/assets/js/wow.min4830.js?ver=3.1.12' id='wow-js'></script>
+      <script type='text/javascript' src='/static/stylem/assets/wp-content/themes/apdash/assets/js/jquery.magnific-popup.min4830.js?ver=3.1.12' id='magnefic-popup-js'></script>
+      <script type='text/javascript' src='/static/stylem/assets/wp-content/themes/apdash/assets/js/header4830.js?ver=3.1.12' id='header-js-js'></script>
+      <script type='text/javascript' src='/static/stylem/assets/wp-content/plugins/apdash-core/assets/js/jquery.countdown324d.js?ver=3.1.0' id='countdown-js'></script>
+      <script type='text/javascript' src='/static/stylem/assets/wp-content/themes/apdash/assets/js/app6e0e.js?ver=3.0.0' id='apdash-theme-js'></script>
+      <script type='text/javascript' src='../../www.google.com/recaptcha/api60aa.js?render=6LfgmUYaAAAAAHLNAOrIOzdcDNNjF-q7ILowgV_w&amp;ver=3.0' id='google-recaptcha-js'></script>
+      <script type='text/javascript' id='wpcf7-recaptcha-js-extra'>
+         /* <![CDATA[ */
+         var wpcf7_recaptcha = {"sitekey":"6LfgmUYaAAAAAHLNAOrIOzdcDNNjF-q7ILowgV_w","actions":{"homepage":"homepage","contactform":"contactform"}};
+         /* ]]> */
+      </script>
+      <script type='text/javascript' src='/static/stylem/assets/wp-content/plugins/contact-form-7/modules/recaptcha/indexc225.js?ver=5.4.1' id='wpcf7-recaptcha-js'></script>
+      <script type='text/javascript' src='/static/stylem/assets/wp-includes/js/wp-embed.min9f31.js?ver=5.7.2' id='wp-embed-js'></script>
+      <script type='text/javascript' src='/static/stylem/assets/wp-content/plugins/apdash-core/assets/js/countUp.min324d.js?ver=3.1.0' id='countUp-js'></script>
+      <script type='text/javascript' src='/static/stylem/assets/wp-content/plugins/apdash-core/assets/js/jquery.appear324d.js?ver=3.1.0' id='appear-js-js'></script>
+      <script type='text/javascript' src='/static/stylem/assets/wp-content/plugins/elementor/assets/js/webpack.runtime.minee9a.js?ver=3.2.2' id='elementor-webpack-runtime-js'></script>
+      <script type='text/javascript' src='/static/stylem/assets/wp-content/plugins/elementor/assets/js/frontend-modules.minee9a.js?ver=3.2.2' id='elementor-frontend-modules-js'></script>
+      <script type='text/javascript' src='/static/stylem/assets/wp-content/plugins/elementor/assets/lib/waypoints/waypoints.min05da.js?ver=4.0.2' id='elementor-waypoints-js'></script>
+      <script type='text/javascript' src='/static/stylem/assets/wp-includes/js/jquery/ui/core.min35d0.js?ver=1.12.1' id='jquery-ui-core-js'></script>
+      <script type='text/javascript' src='/static/stylem/assets/wp-content/plugins/elementor/assets/lib/swiper/swiper.min48f5.js?ver=5.3.6' id='swiper-js'></script>
+      <script type='text/javascript' src='/static/stylem/assets/wp-content/plugins/elementor/assets/lib/share-link/share-link.minee9a.js?ver=3.2.2' id='share-link-js'></script>
+      <script type='text/javascript' src='/static/stylem/assets/wp-content/plugins/elementor/assets/lib/dialog/dialog.mina288.js?ver=4.8.1' id='elementor-dialog-js'></script>
+      <script type='text/javascript' id='elementor-frontend-js-before'>
+         var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false,"isScriptDebug":false},"i18n":{"shareOnFacebook":"Share on Facebook","shareOnTwitter":"Share on Twitter","pinIt":"Pin it","download":"Download","downloadImage":"Download image","fullscreen":"Fullscreen","zoom":"Zoom","share":"Share","playVideo":"Play Video","previous":"Previous","next":"Next","close":"Close"},"is_rtl":false,"breakpoints":{"xs":0,"sm":480,"md":768,"lg":1025,"xl":1440,"xxl":1600},"responsive":{"breakpoints":{"mobile":{"label":"Mobile","value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"Mobile Extra","value":880,"direction":"max","is_enabled":false},"tablet":{"label":"Tablet","value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Tablet Extra","value":1365,"direction":"max","is_enabled":false},"laptop":{"label":"Laptop","value":1620,"direction":"max","is_enabled":false},"widescreen":{"label":"Widescreen","value":2400,"direction":"min","is_enabled":false}}},"version":"3.2.2","is_static":false,"experimentalFeatures":[],"urls":{"assets":"https:\/\/apdash-wp.themetags.com\/wp-content\/plugins\/elementor\/assets\/"},"settings":{"page":[],"editorPreferences":[]},"kit":{"active_breakpoints":["viewport_mobile","viewport_tablet"],"global_image_lightbox":"yes","lightbox_enable_counter":"yes","lightbox_enable_fullscreen":"yes","lightbox_enable_zoom":"yes","lightbox_enable_share":"yes","lightbox_title_src":"title","lightbox_description_src":"description"},"post":{"id":591,"title":"Home%20Four%20%E2%80%93%20Apdash","excerpt":"","featuredImage":false}};
+      </script>
+      <script type='text/javascript' src='/static/stylem/assets/wp-content/plugins/elementor/assets/js/frontend.minee9a.js?ver=3.2.2' id='elementor-frontend-js'></script>
+      <script type='text/javascript' src='/static/stylem/assets/wp-content/plugins/apdash-core/assets/js/elementor324d.js?ver=3.1.0' id='apdash-elementor-js'></script>
+      <script type='text/javascript' src='/static/stylem/assets/wp-content/plugins/elementor/assets/js/preloaded-modules.minee9a.js?ver=3.2.2' id='preloaded-modules-js'></script>
+   </body>
+  
+</html>
+

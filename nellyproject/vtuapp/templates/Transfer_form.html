@@ -1,0 +1,144 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% load static %} {% load humanize %} {% block title %}Transfer|Husmodata.com{% endblock %} {% block content %}
+{% if not  user.is_superuser %}
+<script>
+    window.location = "{%url 'profile' %}"
+</script>
+
+{% endif %}
+<link rel="stylesheet" href="{% static 'ogbam/form.css' %}">
+
+<div style="padding:90px 15px 20px 15px">
+
+
+    <h2 class="w3-center">Transfer to other user</h2>
+
+    <div class="box w3-card-4">
+
+        <form method='post' id="myform">
+            <div class="row">
+                <div class="col-sm-8">
+                    {% csrf_token %} {% include 'baseform.html' %}
+
+                    <button type="button" class="btn" style='margin-bottom:15px;'>Proceed</button>
+
+                </div>
+                <div class="col-sm-4  ">
+                    {% if form.non_field_errors %} {% for errormessage in form.non_field_errors %}
+                    <div class=' alert alert-danger' style='padding:25px 10px;margin:0 0 20px; '>
+                        {{errormessage}}
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+
+            <script>
+                $('button').click(function() {
+                            recieverName = $('#id_receiver_username').val();
+                            amount = $('#id_amount').val();
+                            if (!recieverName) {
+                                swal("Invalid!", "username cannot be empty", "error");
+                            } else {
+                                swal({
+                                        title: "Dear {{user.username}}",
+                                        text: "You're about to send ₦" + amount + " to " + recieverName,
+                                        icon: "warning",
+                                        buttons: true,
+                                        dangerMode: true,
+                                    })
+                                    .then((willDelete) => {
+
+                                        //new start
+                                           if (willDelete) {
+
+
+                                        //send form - ajax function starts here
+                                        $.ajax({
+                                            type: 'POST',
+                                            dataType: 'json',
+                                            contentType: "application/json",
+                                            beforeSend: function() {
+                                                $.LoadingOverlay("show");
+                                            },
+                                            url: '/api/transfer/',
+                                            headers: {
+                                                "X-CSRFToken": '{{ csrf_token }}'
+                                            },
+                                            data: JSON.stringify({
+                                                "receiver_username": recieverName,
+                                                "amount": amount,
+                                            }),
+                                            success: function(data) {
+                                                swal({
+                                                    title: "Successful!",
+                                                    text: "You transferred ₦" + data.amount + " to " + data.receiver_username,
+                                                    icon: "success",
+                                                    button: "View reciept",
+                                                })
+                                                $('.swal-button--confirm').click(function() {
+                                                    $.ajax({
+                                                        beforeSend: function() {
+                                                            $.LoadingOverlay("show");
+                                                        },
+                                                        success: window.location.href = '/Transfer_success/' + String(data.id)
+                                                    });
+                                                });
+                                            },
+                                            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                                                $.LoadingOverlay("hide");
+                                                console.log(textStatus)
+                                                var parsed_data = JSON.parse(XMLHttpRequest.responseText);
+
+                                                if (String(JSON.parse(XMLHttpRequest.status)) == 500) {
+                                                    swal("Oops!", "Something went wrong please contact admin ", "error")
+                                                } else if (parsed_data.error) {
+                                                    swal("Oops!", String(parsed_data.error), "error")
+                                                } else {
+                                                    swal("Oops!", String(XMLHttpRequest.responseText), "error")
+                                                }
+                                                //$('#errmessage').text(String(parsed_data.error))
+                                                //$('#myModal').modal()
+                                            },
+
+                                            complete: function() {
+                                                $.LoadingOverlay("hide")
+                                            }
+                                        });
+
+
+////new end
+ } else {
+                swal("you pressed cancel ");
+            }
+                             //send form - ajax function ends here
+
+
+                                    });
+                            }
+                        });
+            </script>
+
+
+
+    </div>
+
+
+
+    {% if user.is_authenticated and  not  user.is_superuser and   user.Account_Balance < 50  %}
+
+    <script>
+        $(document).ready(function() {
+            swal({
+
+                text: "Wallet below minimum vending amount N{{user.Account_Balance|intcomma}}",
+                icon: "info",
+                button: "ok",
+                timer: 60000,
+            }).then(() => {
+                window.location = "{% url 'profile' %}"
+            });
+        });
+    </script>
+    {% endif %}
+
+    {% endblock %}

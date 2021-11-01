@@ -1,0 +1,144 @@
+{% load humanize %} {% load static %}
+<!doctype html>
+<html lang="en">
+
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+
+
+     <meta name="theme-color" content="#110b94">
+     <link rel="stylesheet" href="{% static 'ogbam/form.css' %}">
+     <link rel="stylesheet" href="{% static 'ogbam/w3.css' %}">
+<link rel="manifest" href="/static/img/manifest.json">
+<meta name="msapplication-TileColor" content="#110b94">
+<meta name="msapplication-TileImage" content="/static/img/bg.jpg">
+ <meta itemprop="name" content="lensgold- Buy Airtime and Data for all Network. Make payment for DSTV, GOTV, PHCN other services">
+     <meta itemprop="description" content="Buy Cheap Internet Data Plan and Airtime Recharge for Airtel, 9mobile, GLO, MTN, Pay DSTV, GOTV, PHCN.">
+
+</head>
+
+<body>
+
+<div >
+<style>
+.table, tr, td {
+  border: 1px solid black;
+  border-style: dashed;
+  padding:0px;
+
+}
+
+
+td{
+    font-size:10px;
+}
+
+.amt{
+    float:right;
+    font-weight: bolder;
+}
+
+.content{
+    padding-right:60px;
+}
+img{
+   float:right;
+   height: 35px;
+   width: 35px;
+}
+
+.bottom{
+    clear:both ;
+}
+</style>
+
+
+
+
+        {% if rechargepin %}
+     <center>
+
+        <div class="w3-container mb-5">
+            <button class="w3-button w3-round-xxlarge w3-green" id="btnPrint">SAVE RECIEPT</button>
+            <button class="w3-button w3-round-xxlarge w3-blue" id="btnPrint">PRINT RECIEPT</button>
+
+        </div>
+
+
+
+        <table class=' w3-table-responsive' id="pins">
+
+
+            <tr>
+                {% for field in rechargepin.data_pin %}
+                <td>
+                 <center> <b>{{rechargepin.name_on_card}}</b>
+    </center> <br>  <img src="/static/ogbam/images/{{rechargepin.network.name}}.jpg">
+
+                 <div class="content" style="padding-left: 10px;margin-top:-19px;"><span><b>REF:</b></span> &nbsp;&nbsp;  <span> <b>{{field.pk}}</b></span> <br>
+                    <span><b>PIN:</b></span>&nbsp;&nbsp;<span style="font-size:11px"><b> {{field.fields.pin}}</b></span><br>
+                    <span><b>S/N:</b></span>&nbsp;&nbsp;<span><b> {{field.fields.serial}}</b></span><br>
+                    <span><b>Date:</b></span>&nbsp;&nbsp;<span><b>{{rechargepin.create_date}}</b></span><br>
+                </div>
+
+                <div class="bottom">
+
+                  <span class="amt"><b>₦{{rechargepin.network_amount.amount}}</b></span>
+
+
+                 <center>
+                 {% if not field.fields.load_code %}
+                          <span style="font-size:8px;"> <b> {{rechargepin.loadcode}}</b></span>
+                    {% else %}
+                          <span style="font-size:8px;"> <b> {{field.fields.load_code}}</b></span>
+               {% endif %}
+
+                    </center>
+
+
+                </div>
+
+                </td>
+                {% if not forloop.last and forloop.counter == 3 or forloop.counter == 6  or forloop.counter == 9 or forloop.counter == 12 or forloop.counter == 15 or forloop.counter == 18 or forloop.counter == 21 or forloop.counter == 24  or forloop.counter == 27  or forloop.counter == 30  or forloop.counter == 33  or forloop.counter == 36  %}
+
+            </tr>
+            <tr>
+            {% endif %}
+        {% endfor %}
+            </tr>
+
+        </table>
+        {% endif %}
+    </center>
+
+</div>
+
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+
+<script type="text/javascript">
+     document.getElementById('btnPrint').addEventListener('click',
+     Export);
+
+function Export() {
+          html2canvas(document.getElementById('pins'), {
+              onrendered: function (canvas) {
+                  var data = canvas.toDataURL();
+                  var docDefinition = {
+                      content: [{
+                          image: data,
+                          width: 500
+                      }]
+                  };
+                  pdfMake.createPdf(docDefinition).download("Rechargepin.pdf");
+              }
+          });
+      }  </script>
+</body>
+
+</html>
+

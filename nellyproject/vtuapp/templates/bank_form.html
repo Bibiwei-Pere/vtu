@@ -1,0 +1,72 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% load static %} {% load humanize %} {% block title %}BankPayment|Husmodata.com{% endblock %} {% block content %}
+
+<link rel="stylesheet" href="{% static 'ogbam/form.css' %}">
+
+<div style="padding:90px 15px 20px 15px" >
+
+
+    <h2 class="w3-center">BankPayment</h2>
+
+    <div class="box w3-card-4">
+
+        <form method='post'>
+
+
+            <div class="row">
+
+                <div class="col-sm-8">
+
+                    {% csrf_token %} {% include 'baseform.html' %}
+
+<br><font color="red">
+                     <p>Your account will be suspend ,if you submit without transfer.</p>   
+                    Please note that there is a charge of <b>#50</b> if the amount greater than N9,999.</font>
+                    <br>
+                    <button type="submit" value="Continue to Funding" class=" btn" style='margin-bottom:15px;'>Submit</button>
+
+                </div>
+                <div class="col-sm-4  ">
+
+{% if banks %}
+
+{% for bank in banks %}
+ <p style="font-size:18px;font-weight:bolder">
+  {{bank.bank_name}} <br>
+  {{bank.account_name}}<br>
+ {{bank.account_number}}<br>
+ 
+{% endfor %}
+
+{% endif %}
+                    {% if form.non_field_errors %} {% for errormessage in form.non_field_errors %}
+
+                    <div class=' alert alert-danger' style='padding:25px 10px;margin:0 0 20px; '>
+                        {{errormessage}}</div>
+                    {% endfor %}
+
+
+
+                </div>
+                {% endif %}
+             
+              <p>
+
+                      <br>
+                    You can deposit or transfer fund into our  account stated above. Use your registered username as depositor's name, naration or remarks 
+Your account will be funded as soon as your payment is confirmed.
+                    <br>
+                    
+                    </div>
+                </p>
+            </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+</div>
+{% endblock %}

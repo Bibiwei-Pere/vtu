@@ -1,0 +1,244 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% load static %} {% load humanize %} {% block title %}Generate Result Checker Pin{% endblock %} {% block content %}
+
+<link rel="stylesheet" href="{% static 'ogbam/form.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+    .control {
+        display: block;
+        width: 100%;
+        height: calc(2.25rem + 2px);
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+
+</style>
+<div style="padding:90px 15px 20px 15px" >
+
+
+    <h2 class="w3-center"> Generate Result Checker Pin</h2>
+
+    <div class="box w3-card-4">
+
+        <form method='post' id="form_id">
+
+
+            <div class="row">
+
+                <div class="col-sm-8">
+
+                    {% csrf_token %} {% include 'baseform.html' %}
+                    <label><b>Amount</b></label>
+                    <p class="control" id="amount"> </p>
+
+
+
+
+                    <button type="button" class=" btn" style='  color: white;' id ="btnsubmit"> Generate</button>
+
+                </div>
+                <div class="col-sm-4  ">
+
+
+
+                    {% if form.non_field_errors %} {% for errormessage in form.non_field_errors %}
+
+                    <div class=' w3-red w3-round' style='padding:25px 10px;margin:0 0 20px; '>
+                        {{errormessage}}</div>
+                    {% endfor %}
+
+                </div>
+                {% endif %}
+
+            </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+</div>
+</div>
+
+</div>
+</div>
+
+
+
+
+<!-- jQuery library -->
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $("#id_exam_name").change(function() {
+        var selectednetwork = $("#id_exam_name option:selected").val();
+            var quantity = $("#id_quantity").val();
+            if (selectednetwork == "WAEC") {
+                $("#amount").text("₦"+ quantity * Number('{{amt1}}'));
+
+
+            }
+            else if (selectednetwork == "NECO") {
+                $("#amount").text("₦"+ quantity * Number('{{amt2}}'));
+            }
+        });
+
+        $("#id_quantity").keyup(function() {
+            //var selectednetwork = $(this).children("option:selected").val();
+            var selectednetwork = $("#id_exam_name option:selected").val();
+            var quantity = $("#id_quantity").val();
+            console.log(quantity)
+            console.log(selectednetwork)
+
+ if (quantity > 5) {
+                $("#amount").text("Maximum per is 5");
+
+            }
+
+          else if (selectednetwork == "WAEC") {
+                $("#amount").text("₦"+ quantity * Number('{{amt1}}'));
+
+
+
+
+            }
+            else if (selectednetwork == "NECO") {
+                $("#amount").text("₦"+ quantity * Number('{{amt2}}'));
+            }
+
+
+        });
+
+
+
+
+
+    });
+</script>
+
+
+
+
+
+<script>
+
+
+    $("#btnsubmit").click(function() {
+
+        var url = "/api/epin/"; // get the url of the `load_cities` view
+        var exam_name = $("#id_exam_name").val(); // get the selected country ID from the HTML input
+        var quantity  = $("#id_quantity").val();
+
+        var token = '{{ csrf_token }}';
+
+     swal(
+          {
+            title: 'Dear {{user.username}}',
+            text: "Are you sure you want to Generate " + " " + quantity + " pieces of " + exam_name + "   Pin",
+            icon: 'warning',
+            buttons: ["Oh no!", "Yes"],
+            dangerMode: true,
+          }
+        ).then((willDelete) =>{
+
+    if (willDelete) {
+  //start
+
+        $.ajax({
+            type:'POST',
+            dataType: 'json',
+            contentType: "application/json",
+       beforeSend: function(){
+       $.LoadingOverlay("show");
+            }, // initialize an AJAX request
+            url: url,
+            headers: { "X-CSRFToken": token },
+            data: JSON.stringify( {
+                 "exam_name": exam_name,
+            "quantity": quantity,
+
+        }),
+         success: function (data) {
+                            console.log(data);
+                            console.log(data.id);
+
+                            swal({
+                              title: "Successful!",
+                              text: "You purchased " + quantity + ' pieces of ' + exam_name + " Epin ",
+                              icon: "success",
+                              button: "View reciept",
+                            })
+                            $('.swal-button--confirm').click(function(){
+                                  $.ajax({
+                                        beforeSend: function(){
+                                            $.LoadingOverlay("show");
+                                        },
+                                        success: window.location.href = '/Result-Checker-Pin-order/'+String(data.id)
+                                  });
+                            });
+                      },
+                      error: function(XMLHttpRequest, textStatus, errorThrown) {
+                           $.LoadingOverlay("hide");
+                                                    console.log(errorThrown)
+
+                                                    if ( String(JSON.parse(XMLHttpRequest.status)) == 500){
+                                                        swal("Oops!","Something went wrong please contact admin ","error")
+                                                    }
+                                                    else if (JSON.parse(XMLHttpRequest.responseText).error){
+                                                          swal("Oops!",String(JSON.parse(XMLHttpRequest.responseText).error),"error")
+                                                    }
+                                                    else{
+                                                        swal("Oops!",String(XMLHttpRequest.responseText),"error")
+                                                    }
+                      },
+
+                      complete: function(){
+                          $.LoadingOverlay("hide")
+                      }
+                  });
+
+
+}else{
+swal("you pressed cancel ");
+}
+
+
+
+ });
+});
+
+</script>
+
+
+{% if user.is_authenticated and  not  user.is_superuser and   user.Account_Balance < 50  %}
+
+<script>
+$( document ).ready(function() {
+swal({
+
+  text: "Wallet below minimum vending amount N{{user.Account_Balance|intcomma}}",
+  icon: "info",
+  button: "ok",
+  timer: 60000,
+}).then(() => {
+  window.location="{% url 'profile' %}"
+});
+});
+</script>
+{% endif %}
+
+{% endblock %}

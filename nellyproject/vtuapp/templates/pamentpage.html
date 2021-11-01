@@ -1,0 +1,174 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% load staticfiles %} {% load humanize %} {% block title %}Airtimepayment{% endblock %} {% block content %}
+
+<link rel="stylesheet" href="{% static 'ogbam/form.css' %}">
+<!-- Latest compiled and minified CSS -->
+
+<!-- Latest compiled JavaScript -->
+
+<div style="padding-top:120px; padding-bottom:90px; margin:20px">
+    <style>
+        .control {
+            display: block;
+            width: 100%;
+            height: calc(2.25rem + 2px);
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: .25rem;
+            transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+        }
+    </style>
+
+ <div class="box w3-card-4 ">
+<center> <b><font size="5">Deposit Money</font></b><br>
+</center>
+
+                                	<!--Form-->
+                                	<form>
+			                        <div class="form-group">
+			                        	<label class="control-label" for="txtAmount" name="lblAmount" id="lblAmount">Amount to Deposit</label>
+										<INPUT class="form-control input-md" type=text name="txtAmount" id="amount">
+			                        </div>
+		                            <div class="form-group">
+		                                <label class="control-label" for="cboPaymentOption">Choose how you will pay</label>
+		                                <select class="form-control" name="cboPaymentOption" id="method"  size="1">
+										            	<option value="-Select-">-Select-</option>
+										            		{% if not paystack %}
+												      	<option value="ATMCard">ATM Card (paystack 2% ) - N2450.00 to N20,000 daily</option>
+												      	{% endif %}
+
+												       	{% if not monnifyatm %}
+												       	<option value="ATMCard2">ATM Card (monnify 1.5% ) - N100.00 to N9,500.00</option>
+												       	{% endif %}
+
+												{% if not monnifybank %}
+													<option value="BankDeposit">Bank Deposit/Transfer - Auto Credit (instant N50 charge) - N100.00 to N1,000,000.00 </option>
+                                                  {% endif %}
+                                       {% if not air2cash %}
+                                                  	<option value="Airtime">Fund account with airtime</option>
+                                                        {% endif %}
+                                                    <option value="Coupon">Coupon Payment</option>
+
+
+													 	{% if not bank %}
+													 	<option value="BankDeposit2"> Bank Deposit /Transfer - Not Auto Credit (might not be instant) N2,000 to N9,999 to avoid stamp charges paying to personal account </option>
+
+													{% endif %}
+
+		                                </select>
+		                            </div>
+                   <button type="button" class=" btn" style='margin-bottom:15px; color: white; background-color:blue' id ="btnsubmit">proceed</button>
+
+</form>
+
+
+
+
+
+                </div>
+                <div class="col-sm-4 ">
+
+                </div>
+
+                {% if form.non_field_errors %}
+                <div class="col-sm-2 ">
+
+
+                    {% for errormessage in form.non_field_errors %}
+
+                    <div class=' alert alert-danger' style='padding:25px 10px;margin:0 0 20px; '>
+                        {{errormessage}}</div>
+                    {% endfor %}
+
+                </div>
+                {% endif %}
+
+            </div>
+
+
+
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+            <script>
+                $(document).ready(function() {
+
+                 $("#btnsubmit").click(function() {
+
+                         var amount = $("#amount").val();
+                         var method = $("#method").val();
+
+                            if (amount == "" || method == "") {
+
+                               alert("Amount or Payment method cannot be empty")
+
+
+                            }
+
+
+                            else if (method == "ATMCard") {
+                                window.location = "/payonline/?amount=" + amount
+
+
+                            }
+
+                             else if (method == "ATMCard2") {
+                                window.location = "/pay_with_monnify/?amount=" + amount
+
+
+                            }
+
+                             else if (method == "BankDeposit") {
+                                window.location = "/autobank/?amount=" + amount
+
+
+                            }
+
+                             else if (method == "BankDeposit2") {
+                                window.location = "/Bankpayment/?amount=" + amount
+
+                            }
+
+                               else if (method == "Airtime") {
+                                window.location = "/Airtime_funding/?amount=" + amount
+
+                            }
+
+                           
+                              else if (method == "Coupon") {
+                                window.location = "/Coupon_Payment/?amount=" + amount
+
+                            }
+
+
+
+
+
+                        });
+                    });
+
+            </script>
+
+
+<script>
+
+    $(function()
+    {
+      $('#btnsubmit').on('click',function()
+      {
+        $(this).text('Please wait ...')
+          .attr('disabled','disabled');
+        $('#myform').submit();
+      });
+
+    });
+    </script>
+
+
+
+</div>
+</div>
+{% endblock %}

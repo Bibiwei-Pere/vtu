@@ -1,0 +1,412 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% load static %} {% load humanize %} {% block title %}Buy Data|{% endblock %} {% block content %}
+<!-- Latest compiled and minified CSS -->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{% static 'ogbam/form.css' %}">
+
+<style>
+    #div_id_plan,
+    #process {
+        display: none;
+    }
+
+
+
+    /*--thank you pop starts here--*/
+    .thank-you-pop {
+        width: 100%;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .thank-you-pop img {
+        width: 76px;
+        height: auto;
+        margin: 0 auto;
+        display: block;
+        margin-bottom: 25px;
+    }
+
+    .thank-you-pop h1 {
+        font-size: 42px;
+        margin-bottom: 25px;
+        color: #5C5C5C;
+    }
+
+    .thank-you-pop p {
+        font-size: 20px;
+        margin-bottom: 27px;
+        color: #5C5C5C;
+    }
+
+    .thank-you-pop h3.cupon-pop {
+        font-size: 25px;
+        margin-bottom: 40px;
+        color: #222;
+        display: inline-block;
+        text-align: center;
+        padding: 10px 20px;
+        border: 2px dashed #222;
+        clear: both;
+        font-weight: normal;
+    }
+
+    .thank-you-pop h3.cupon-pop span {
+        color: #03A9F4;
+    }
+
+    .thank-you-pop a {
+        display: inline-block;
+        margin: 0 auto;
+        padding: 9px 20px;
+        color: #fff;
+        text-transform: uppercase;
+        font-size: 14px;
+        background-color: #8BC34A;
+        border-radius: 17px;
+    }
+
+    .thank-you-pop a i {
+        margin-right: 5px;
+        color: #fff;
+    }
+
+    #ignismyModal .modal-header {
+        border: 0px;
+    }
+
+    /*--thank you pop ends here--*/
+</style>
+<div style="padding:90px 15px 20px 15px">
+
+
+    <h2 class="w3-center">Buy Data Plan</h2>
+
+    <div class="box w3-card-4">
+
+
+
+        <form method="post" id='dataform' data-plans-url="{% url 'ajax_load_plans' %}" novalidate>
+
+
+            <div class="row">
+
+                <div class="col-sm-8">
+
+                    {% csrf_token %} {% include 'baseform.html' %}
+
+
+
+                    <button type="button" class=" btn" style='  color: white;' id="btnsubmit"> Buy Now</button>
+
+
+                </div>
+        </form>
+        <div class="col-sm-4 ">
+            <center>
+                <h4>Codes for Data Balance: </h4>
+            </center>
+            <ul class="list-group">
+                <li class="list-group-item list-group-item-warning">MTN [SME] *461*4# </li>
+                <li class="list-group-item list-group-item-warning">MTN [Gifting] *131*4# or *460*260# </li>
+                <li class="list-group-item list-group-item-dark"> 9mobile [Gifting] *228# </li>
+                <li class="list-group-item list-group-item-danger"> Airtel *140# </li>
+                <li class="list-group-item list-group-item-success"> Glo *127*0#. </li>
+            </ul>
+
+
+            {% if form.non_field_errors %} {% for errormessage in form.non_field_errors %}
+
+            <div class=' w3-red w3-round' style='padding:25px 10px;margin:0 0 20px; '>
+                {{errormessage}}
+            </div>
+            {% endfor %}
+
+        </div>
+        {% endif %}
+
+    </div>
+
+
+
+
+
+
+</div>
+</div>
+
+</div>
+</div>
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
+
+
+
+
+<script>
+    $("#id_network").change(function() {
+        var networkd = $("#id_network option:selected").text();
+
+        if (networkd == "MTN") {
+            $("#div_id_plan").css("display", "none");
+            $("#div_id_data_type").css("display", "block");
+
+        } else {
+
+            $("#div_id_data_type").css("display", "none");
+            $("#div_id_plan").css("display", "block");
+
+        }
+
+
+    });
+</script>
+
+{% if network.sme_disable == True %}
+<script>
+    $('#id_data_type option[value="SME"]').css('display', 'none');
+    $('#id_plan option[plantype="SME"]').css('display', 'none');
+</script>
+
+{% elif network.gifting_disable == True %}
+<script>
+    $('#id_data_type option[value="GIFTING"]').css('display', 'none');
+    $('#id_plan option[plantype="GIFTING"]').css('display', 'none');
+</script>
+
+{% elif network.corporate_gifting_disable == True %}
+<script>
+    $('#id_data_type option[value="CORPORATE GIFTING"]').css('display', 'none');
+    $('#id_plan option[plantype="CORPORATE GIFTING"]').css('display', 'none');
+</script>
+
+{% elif network.gifting_and_corporate_gifting_disable == True %}
+<script>
+    $('#id_data_type option[value="CORPORATE GIFTING"]').css('display', 'none');
+    $('#id_plan option[plantype="CORPORATE GIFTING"]').css('display', 'none');
+    $('#id_data_type option[value="GIFTING"]').css('display', 'none');
+    $('#id_plan option[plantype="GIFTING"]').css('display', 'none');
+</script>
+
+{% elif network.sme_and_corporate_gifting_disable == True %}
+<script>
+    $('#id_data_type option[value="CORPORATE GIFTING"]').css('display', 'none');
+    $('#id_plan option[plantype="CORPORATE GIFTING"]').css('display', 'none');
+    $('#id_data_type option[value="SME"]').css('display', 'none');
+    $('#id_plan option[plantype="SME"]').css('display', 'none');
+</script>
+
+{% elif network.gifting_and_sme_disable == True %}
+<script>
+    $('#id_data_type option[value="SME"]').css('display', 'none');
+    $('#id_plan option[plantype="SME"]').css('display', 'none');
+    $('#id_data_type option[value="GIFTING"]').css('display', 'none');
+    $('#id_plan option[plantype="GIFTING"]').css('display', 'none');
+</script>
+
+{% endif %}
+
+
+<script>
+    $("#id_data_type").change(function() {
+        var networkd = $("#id_data_type option:selected").text();
+        console.log(networkd)
+
+        if (networkd == "SME") {
+
+            $('#id_plan option[plantype="SME"]').css('display', 'block');
+            $("#div_id_plan").css("display", "block");
+            $('#id_plan option[plantype="GIFTING"]').css('display', 'none');
+            $('#id_plan option[plantype="CORPORATE GIFTING"]').css('display', 'none');
+
+
+        } else if (networkd == "GIFTING") {
+            $('#id_plan option[plantype="GIFTING"]').css('display', 'block');
+            $("#div_id_plan").css("display", "block");
+            $('#id_plan option[plantype="SME"]').css('display', 'none');
+            $('#id_plan option[plantype="CORPORATE GIFTING"]').css('display', 'none');
+
+        } else if (networkd == "CORPORATE GIFTING") {
+            $('#id_plan option[plantype="CORPORATE GIFTING"]').css('display', 'block');
+            $("#div_id_plan").css("display", "block");
+            $('#id_plan option[plantype="SME"]').css('display', 'none');
+            $('#id_plan option[plantype="GIFTING"]').css('display', 'none');
+
+
+        } else {
+
+            $("#div_id_plan").css("display", "none");
+            $('#id_plan option[plantype="GIFTING"]').css('display', 'block');
+            $('#id_plan option[plantype="CORPORATE GIFTING"]').css('display', 'block');
+
+            $('#id_plan option[plantype="SME"]').css('display', 'block');
+        }
+
+
+
+    });
+</script>
+
+
+<script>
+    $("#id_network").change(function() {
+        var url = $("#dataform").attr("data-plans-url"); // get the url of the `load_cities` view
+        var networkId = $(this).val(); // get the selected country ID from the HTML input
+
+        $.ajax({ // initialize an AJAX request
+            url: url, // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+            data: {
+                'network': networkId // add the country id to the GET parameters
+            },
+            success: function(data) { // `data` is the return of the `load_cities` view function
+                $("#id_plan").html(data); // replace the contents of the city input with the data that came from the server
+            }
+        });
+
+    });
+</script>
+
+
+<script>
+    $("#btnsubmit").click(function(e) {
+    e.preventDefault();
+    var url = "/api/data/"; // get the url of the `load_cities` view
+    var networkId = $("#id_network").val(); // get the selected country ID from the HTML input
+    var planId = $("#id_plan").val();
+    var phone = $("#id_mobile_number").val();
+    var Ported_number = $('#id_Ported_number').is(":checked")
+    console.log(networkId, planId, phone)
+    var token = '{{ csrf_token }}';
+    var networkd = $("#id_network option:selected").text(); // get the selected country ID from the HTML input
+    var pland = $("#id_plan option:selected").text();
+    var phoned = $("#id_mobile_number").val();
+
+    swal({
+        title: 'Dear {{user.username}}',
+        text: "Are you sure you want to buy data " + " " + pland + " " + "to  " + " " + phoned,
+        icon: 'warning',
+        buttons: ["Oh no!", "Yes"],
+        dangerMode: true,
+    }).then((willDelete) => {
+
+
+        //new start
+          if (willDelete) {
+
+
+        $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            contentType: "application/json",
+            beforeSend: function() {
+                $.LoadingOverlay("show");
+            },
+            url: url,
+            headers: {
+                "X-CSRFToken": token
+            },
+            data: JSON.stringify({
+                "network": networkId,
+                "mobile_number": phone,
+                "plan": planId,
+                "Ported_number": Ported_number
+            }),
+            success: function(data) {
+                console.log(data);
+                console.log(data.id);
+
+                swal({
+                    title: "Successful!",
+                    text: "You purchased " + data.plan_network + ' ' + data.plan_name + " " + data.plan_amount + " for " + data.mobile_number,
+                    icon: "success",
+                    button: "View reciept",
+                })
+                $('.swal-button--confirm').click(function() {
+                    $.ajax({
+                        beforeSend: function() {
+                            $.LoadingOverlay("show");
+                        },
+                        success: window.location.href = '/Data_success/' + String(data.id)
+                    });
+                });
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                $.LoadingOverlay("hide");
+                console.log(errorThrown)
+
+                if (String(JSON.parse(XMLHttpRequest.status)) == 500) {
+                    swal("Oops!", "Something went wrong please contact admin ", "error")
+                } else if (JSON.parse(XMLHttpRequest.responseText).error) {
+                    swal("Oops!", String(JSON.parse(XMLHttpRequest.responseText).error), "error")
+                } else {
+                    swal("Oops!", String(XMLHttpRequest.responseText), "error")
+                }
+            },
+
+            complete: function() {
+                $.LoadingOverlay("hide")
+            }
+        });
+
+
+////new end
+ } else {
+                swal("you pressed cancel ");
+            }
+
+
+    });
+    //end
+
+
+    });
+</script>
+
+
+
+{% if networks %}
+
+{% for net in networks %}
+{% if net.data_disable == True  %}
+<script>
+    $("#id_network option[value='{{net.id}}']").remove();
+</script>
+{% endif %}
+{% endfor %}
+
+{% endif %}
+
+<script>
+    $("#id_plan").change(function() {
+        var amt = $("#id_plan option:selected").attr("amt");
+        console.log(amt);
+        $("#id_Amount").val(String(amt));
+        $("#id_Amount").prop('disabled', true);
+    });
+</script>
+
+
+
+{% if user.is_authenticated and  not  user.is_superuser and   user.Account_Balance < 50  %}
+
+<script>
+    $(document).ready(function() {
+        swal({
+
+            text: "Wallet below minimum vending amount N{{user.Account_Balance|intcomma}}",
+            icon: "info",
+            button: "ok",
+            timer: 60000,
+        }).then(() => {
+            window.location = "{% url 'profile' %}"
+        });
+    });
+</script>
+{% endif %}
+
+
+{% endblock %}

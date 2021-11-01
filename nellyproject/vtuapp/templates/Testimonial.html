@@ -1,0 +1,99 @@
+{% extends 'base.html' %} {% load humanize %} {% load static %}
+<link rel="stylesheet" href="{% static 'ogbam/form.css' %}"> {% block title %} testimonial | Husmodata.com{% endblock %} {% block content %}
+<div style="padding-top:120px;margin-bottom:90px;">
+    <div class="row">
+        <div class="col-75 ">
+            <div class="box w3-card-4">
+
+
+                {% if testimonial %}
+
+                <h2>Testimonials</b>
+                </h2>
+
+            </div>
+
+            {% for Text in testimonial %}
+
+            <div class="w3-justify">
+                <a href="{% url 'testimonialdetail' Text.pk %}" class='w3-text-black'>
+                    <img src="{% static 'ogbam/images/ava1.png' %}" alt="{{testimonial.user.username}}" style=" vertical-align: middle;width: 100px;height:120px;border-radius: 50%;" class="w3-padding-16">
+                    <div style="font-size:20px;">{{Text.user.username}} <span class="w3-opacity w3-medium">| {{Text.create_date|naturaltime}}. </span></div>
+
+                    <div style='margin:20px; '>
+                        <p>{{Text.message}} </p>
+                    </div>
+                </a>
+                <hr style="color:black;">
+
+                <a href="{% url 'testimonialdetail' Text.pk %}">
+                    <p class="w3-right"><button class="w3-button w3-teal w3-border"><b> <i class="fa fa-comments"></i>{% if  Text.comment_set.count  > 1 %} Replys {% else %} Reply {% endif %} </b><span class="w3-tag w3-margin-left w3-white">{{ Text.comment_set.count }}</span></button></p>
+
+            </div>
+        </div>
+        {% endfor %} {% if user.is_authenticated %}
+        <div class="w3-container w3-margin w3-padding-large">
+
+
+
+            <a class="btn btn-default" href="{% url 'testimonial' %}"> <button type="submit" class="w3-button w3-right w3-theme w3-teal w3-round ">Add Testimonial <i class="fa fa-comments"></i> </button></a>
+
+
+            {% endif %} {% if is_paginated %}
+
+            <div class="w3-center">
+                <div class="w3-bar w3-border w3-round w3-large">
+
+                    <ul class='w3-ul' style='display:block;'> {% if page_obj.has_previous %}
+                        <a href="?page={{page_obj.previous_page_number}}">
+                            <li class="w3-bar-item w3-button">&laquo;</li>
+                        </a>
+
+                        {% else %}
+                        <li class="w3-button"> <span> &laquo;</span></li>
+                        {% endif %} {% for i in paginator.page_range %} {% if page_obj.number == i %}
+
+                        <li class="w3-button w3-blue"> <span>{{i}}</span><span></span></li>
+
+                        {% else %}
+                        <a href='?page={{i}}'>
+                            <li class="w3-button"> {{i}} </li>
+                        </a>
+                        {% endif %} {% endfor %} {% if page_obj.has_next %}
+                        <a href="?page={{page_obj.next_page_number}}">
+                            <li class="w3-button">&raquo;</li>
+                        </a>
+
+                        {% else %}
+                        <li class="w3-button"> <span> &raquo;</span></li>
+                        {% endif %}
+                    </ul>
+                    {% endif %}
+                </div>
+            </div>
+
+
+        </div>
+
+
+        {% else %}
+
+        <div style="padding-top:120px; margin-bottom:90px;">
+
+
+            <p>
+                <h2 class='w3-center'>No Testimonial Yet </h2>
+            </p>
+            </p>
+
+        </div>
+        {% endif %}
+
+    </div>
+</div>
+</div>
+</div>
+
+
+
+{% endblock %}

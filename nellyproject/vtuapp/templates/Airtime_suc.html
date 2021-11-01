@@ -1,0 +1,92 @@
+ {% extends 'base.html' %} {% load static %}
+<link rel="stylesheet" href="{% static 'ogbam/form.css' %}"> {% block title %} Airtime Payment | Husmodata.com{% endblock %} {% block content %}
+<div style="padding-top:120px;margin-bottom:90px;">
+
+    <div class="box w3-card-4">
+
+        <h3 class='w3-center' id='header'>Airtime Payment Details</h3>
+
+        <table class='w3-table-all'>
+
+            <tr>
+
+                <td><b>ID</b></td>
+                <td>{{Airtime_success.ident}} </td>
+
+            </tr>
+
+            <tr>
+
+                <td><b>Depositor</b></td>
+                <td>{{user.username}}</td>
+
+            </tr>
+
+            <tr>
+
+                <td><b>Amount</b></td>
+                <td>#{{Airtime_success.amount}}</td>
+            </tr>
+
+            <tr>
+
+                <td><b>Receive Amount</b></td>
+                <td>#{{Airtime_success.Receivece_amount}}</td>
+            </tr>
+
+
+            <tr>
+
+                <td><b>Pin</b></td>
+                <td>{{Airtime_success.pin}} </td>
+            </tr>
+
+            <tr>
+
+                <td><b>Network</b></td>
+                <td>{{Airtime_success.network}}</td>
+            </tr>
+
+            <tr>
+
+                <td><b>Type </b></td>
+                <td>Airtime Pin</td>
+            </tr>
+        </table>
+
+    </div>
+    <button type="button" onclick="document.getElementById('subscribe').style.display='block'" class="w3-button  w3-blue w3-round w3-right" style=' border-radius:0  0 20px 20px; '>Proceed</button>
+
+</div>
+<!--<a  href="{% url 'airtime' %}"  class="w3-button  w3-teal w3-round w3-right "  onclick = "document.getElementById('subscribe').style.display='block' "  style=' border-radius:0  0 20px 20px; '>Proceed</a>
+          -->
+
+<div id="subscribe" class="w3-modal w3-animate-opacity">
+    <div class="w3-modal-content" style="padding:32px; border-radius:20px; margin-top:100px;">
+        <div class="w3-container w3-white">
+
+            <div class='w3-center'>
+                <span class=' class="w3-button  w3-green ' style=' border-radius:50%; padding:2px 6px 2px 6px ; font-size:30px;margin-bottom:20px; '> ✓ </span>
+                <h5> <b>SUCCESS!</b></h5>
+
+                <p>Dear Customer , We will be shortly processing your request .</p>
+                <a href="{% url 'profile' %}" class="w3-button  w3-blue w3-margin-bottom" onclick="document.getElementById('subscribe').style.display='none' " style=' border-radius:10px; padding:6px 18px 6px 18px; '>OK</a>
+
+
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+</div>
+</div>
+
+</div>
+
+
+
+
+{% endblock %}

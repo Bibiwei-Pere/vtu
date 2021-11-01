@@ -1,0 +1,160 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% load static %} {% load humanize %} {% block title %}API{% endblock %} {% block content %}
+
+    <div class="container" style="margin:80px 20px 20px 30px; ; font-size:20px;">
+
+    	<div class="h5"><b>Authorization Details</b></div>
+    	<div class="table-responsive">
+        <table class="table table-striped tale-hovered">
+        	<tbody>
+        		<tr>
+        			<td class="text-wrap">My Authorization Token</td>
+        			<td>{{token}}</td>
+        		</tr>
+
+        		<tr>
+        		    <a href="https://documenter.getpostman.com/view/10645604/TVKHVFW7" class="btn btn-info"> API Documentation page </a>
+        		</tr>
+
+        	</tbody>
+        </table>
+        </div>
+
+
+    		    		<div class="h3 text-center" style="margin-top: 30px;" id="plan"><b>Price List</b></div>
+    		    		<div class="table-responsive">
+<table class="table table-striped tale-hovered">
+	<thead>
+		<tr>
+						<th>Data ID</th>
+						<th>Network</th>
+						<th>Plan type</th>
+			<th>Amount</th>
+			<th>Size</th>
+			<th>Validity</th>
+		</tr>
+	</thead>
+	<tbody>
+            {% for plan in plans %}
+				<tr>
+						<td>{{plan.id}}</td>
+						<td>{{plan.network}}</td>
+						<td>{{plan.plan_type}}</td>
+			<td>₦{{plan.plan_amount}}</td>
+			<td>{{plan.plan_size}} {{plan.plan_Volume}}</td>
+			<td>1 month</td>
+        </tr>
+        {% endfor %}
+
+
+			</tbody>
+</table>
+
+
+</div>
+
+    <div class="h3 text-center" style="margin-top: 30px;" id="network"><b>Network List</b></div>
+    <div class="table-responsive">
+<table class="table table-striped tale-hovered">
+	<thead>
+		<tr>
+						<th>Network ID</th>
+						<th>Network name</th>
+
+		</tr>
+	</thead>
+	<tbody>
+            {% for plan in network %}
+				<tr>
+						<td>{{plan.id}}</td>
+						<td>{{plan.name}}</td>
+
+        </tr>
+        {% endfor %}
+
+
+		</tbody>
+</table>
+</div>
+
+
+ <div class="h3 text-center" style="margin-top: 30px;" id="network"><b>Cable List</b></div>
+    <div class="table-responsive">
+<table class="table table-striped tale-hovered">
+	<thead>
+		<tr>
+						<th>Cable ID</th>
+						<th>Cable name</th>
+
+		</tr>
+	</thead>
+	<tbody>
+            {% for plan in cable %}
+				<tr>
+						<td>{{plan.id}}</td>
+						<td>{{plan.name}}</td>
+
+        </tr>
+        {% endfor %}
+
+
+		</tbody>
+</table>
+</div>
+
+
+ <div class="h3 text-center" style="margin-top: 30px;" id="network"><b>Cable  Plan List</b></div>
+    <div class="table-responsive">
+<table class="table table-striped tale-hovered">
+	<thead>
+		<tr>
+						<th>Cableplan ID</th>
+						<th>Cableplan name</th>
+						<th>Cableplan amount</th>
+
+		</tr>
+	</thead>
+	<tbody>
+            {% for plan in cableplans %}
+				<tr>
+						<td>{{plan.id}}</td>
+						<td>{{plan.package}}</td>
+						<td>{{plan.plan_amount}}</td>
+
+        </tr>
+        {% endfor %}
+
+
+		</tbody>
+</table>
+</div>
+
+
+<div class="h3 text-center" style="margin-top: 30px;" id="network"><b>Electricity Company  List</b></div>
+    <div class="table-responsive">
+<table class="table table-striped tale-hovered">
+	<thead>
+		<tr>
+						<th>Disco ID</th>
+						<th>Disco name</th>
+
+
+		</tr>
+	</thead>
+	<tbody>
+            {% for plan in disco %}
+				<tr>
+						<td>{{plan.id}}</td>
+						<td>{{plan.name}}</td>
+
+
+        </tr>
+        {% endfor %}
+
+
+		</tbody>
+</table>
+
+</div>
+    </div>
+
+{% endblock %}

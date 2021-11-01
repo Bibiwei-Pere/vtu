@@ -1,0 +1,170 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% load static %} {% load humanize %} {% block title %}Airtimepayment|Husmodata.com{% endblock %} {% block content %}
+
+<link rel="stylesheet" href="{% static 'ogbam/form.css' %}">
+<!-- Latest compiled and minified CSS -->
+
+<!-- Latest compiled JavaScript -->
+
+<div style="padding:90px 15px 20px 15px" >
+    <style>
+        .control {
+            display: block;
+            width: 100%;
+            height: calc(2.25rem + 2px);
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: .25rem;
+            transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+        }
+    </style>
+
+<h2 class="w3-center"> Airtime Funding/ Airtime to Cash</h2>
+<div class="alert alert-info">
+    <strong><i class="fa fa-fax w3-large"></i> Support Team:</strong><p class="">Have anything to say to us? Please contact our Support Team on Whatsapp  <a href="https://wa.me/2348105701744" class="btn " style="background-color: rgb(4, 219, 4) !important; color: white;"><strong>  <i class="fa fa-whatsapp w3-large"> </i> whatsapp us</strong></a>
+    </p>
+  </div>
+    <div class="box w3-card-4 ">
+
+     
+
+            <div class="row">
+
+                <div class="col-sm-8">
+                    {% if user.BankName == "" %}
+                    <div class="alert alert-info">
+                        <strong><i class="fa fa-bank"></i>
+                        Add Bank:  <br><div align="justify"><font size="2">Dear Customer , to perform this transaction ,kindly update your account to receive the money. </font>
+                        <a href="{%url 'Editprofile' %}" class="btn btn-primary btn-sm waves-effect waves-light">Add Bank</a></div>
+                        </strong>
+                      </div>
+                    {% elif user.AccountNumber == "" %}
+                    <div class="alert alert-info">
+                        <strong><i class="fa fa-bank"></i>
+                        Add Bank:  <br><div align="justify"><font size="2">Dear Customer , to perform this transaction ,kindly update your account to receive the money. </font>
+                        <a href="{%url 'Editprofile' %}" class="btn btn-primary btn-sm waves-effect waves-light">Add Bank</a></div>
+                        </strong>
+                      </div>
+                     
+           
+                  
+                    {% else %}
+                    <form method='post' id ="myform">
+
+                    {% csrf_token %} {% include 'baseform.html' %}
+
+                    <label><b>you will receive</b></label>
+                    <p class="control" id="amount"> </p>
+                    {% if user.BankName == "" %}
+                    <p>To add more bank accounts for withdrawal Click Here</p>
+                    {% elif user.AccountNumber == "" %}
+                    <p>To add more bank accounts for withdrawal Click Here</p>
+                 {% else %}
+                    <label><b>Bank name</b></label>
+                    <p class="control" id="bname"> {{user.BankName}}</p>
+
+                    <label><b>Account Number</b></label>
+                    <p class="control" id="Anum">{{user.AccountNumber}} </p>
+
+                    {% endif %}
+
+                    <button type="submit" class=" btn" style='margin-bottom:15px; color: white;' id ="btnsubmit">Submit Order</button>
+</form>
+{% endif %}
+                </div>
+                <div class="col-sm-4 ">
+ 
+                </div>
+
+                {% if form.non_field_errors %}
+                <div class="col-sm-2 ">
+
+
+                    {% for errormessage in form.non_field_errors %}
+
+                    <div class=' alert alert-danger' style='padding:25px 10px;margin:0 0 20px; '>
+                        {{errormessage}}</div>
+                    {% endfor %}
+
+                </div>
+                {% endif %}
+
+            </div>
+
+
+
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+            <script>
+                $(document).ready(function() {
+
+                    $("#id_network").change(function() {
+                        var name = $(this).children("option:selected").val();
+
+                        $("#id_amount").change(function() {
+                            var amount = $(this).children("option:selected").val();
+
+
+                            if (name == "1") {
+
+                                $("#amount").text('#' + (Number(amount) * (Number({{mtn}}) / 100)));
+
+
+                            }
+
+
+                            if (name == "2") {
+                                $("#amount").text('#' + (Number(amount) * (Number({{glo}}) / 100)));
+
+
+                            }
+
+                            if (name == "3") {
+                               $("#amount").text('#' + (Number(amount) * (Number({{mobie}}) / 100)));
+
+
+
+                            }
+                            if (name == "4") {
+                               $("#amount").text('#' + (Number(amount) * (Number({{airtel}}) / 100)));
+
+
+
+
+                            }
+
+
+                        });
+                    });
+
+
+
+
+
+                });
+            </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script>
+
+    $(function()
+    {
+      $('#btnsubmit').on('click',function()
+      {
+        $(this).text('Please wait ...')
+          .attr('disabled','disabled');
+        $('#myform').submit();
+      });
+    
+    });
+    </script>
+    
+
+
+    </div>
+{% endblock %}

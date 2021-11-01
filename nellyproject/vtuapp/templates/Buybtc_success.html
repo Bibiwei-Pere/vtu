@@ -1,0 +1,79 @@
+ {% extends 'base.html' %} {% load humanize %} {% load static %}
+<link rel="stylesheet" href="{% static 'ogbam/form.css' %}"> {% block title %} Buy Bitcoin Successful | Husmodata.com{% endblock %} {% block content %}
+<div style="padding-top:120px;margin-bottom:90px;">
+
+    <div class="box w3-card-4">
+
+        <h3 class='w3-center' id='header'>Buy Bitcoin Receipt </h3>
+
+        <table class='w3-table-all'>
+            <tr>
+
+                <td><b>ID</b></td>
+                <td>{{buybtc_list.ident}}</td>
+            </tr>
+
+            <tr>
+
+                <td><b>User</b></td>
+                <td>{{user.username}}</td>
+
+            </tr>
+
+            <tr>
+
+                <td><b>Amount in USD</b></td>
+                <td>$ {{buybtc_list.amount_in_USD }} </td>
+            </tr>
+
+            <tr>
+
+                <td><b>Amount in Naira</b></td>
+                <td> &#8358; {{buybtc_list.amount_in_naira }}  </td>
+            </tr>
+
+
+
+            <tr>
+
+                <td><b>wallet Address</b></td>
+                <td>{{buybtc_list.wallet_address}}</td>
+            </tr>
+
+        </table>
+
+    </div>
+    <button type="button" onclick="document.getElementById('subscribe').style.display='block'" class="w3-button  w3-blue w3-round w3-right" style=' border-radius:0  0 20px 20px; '>Proceed</button>
+
+</div>
+
+
+<div id="subscribe" class="w3-modal w3-animate-opacity">
+    <div class="w3-modal-content" style="padding:32px; border-radius:20px; margin-top:100px;">
+        <div class="w3-container w3-white">
+
+            <div class='w3-center'>
+                <span class=' class="w3-button  w3-green ' style=' border-radius:50%; padding:2px 6px 2px 6px ; font-size:30px;margin-bottom:20px; '> ✓ </span>
+                <h5> <b>SUCCESS!</b></h5>
+
+                <p>Dear Customer , We will be shortly processing your request .</p>
+                <a href="{% url 'profile' %}" class="w3-button  w3-blue w3-margin-bottom" onclick="document.getElementById('subscribe').style.display='none' " style=' border-radius:10px; padding:6px 18px 6px 18px; '>OK</a>
+
+
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+</div>
+</div>
+
+</div>
+
+
+
+
+{% endblock %}

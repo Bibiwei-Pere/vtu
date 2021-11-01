@@ -1,0 +1,4 @@
+<option value="">---------</option>
+{% for cableplan in cableplans %}
+<option value="{{ cableplan.pk }}">{{ cableplan.package }} {% if cableplan.Addon_name %} + {{cableplan.Addon_name}}  {% endif %} = N{{ cableplan.plan_amount }}</option>
+{% endfor %}

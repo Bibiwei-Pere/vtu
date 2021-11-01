@@ -1,0 +1,485 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% load static %} {% load humanize %} {% block title %}Airtime Topup|{% endblock %} {% block content %}
+
+<link rel="stylesheet" href="{% static 'ogbam/form.css' %}">
+<link rel="stylesheet" href="{% static 'ogbam/form.css' %}">
+<!-- Latest compiled and minified CSS -->
+
+<!-- jQuery library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+    .control {
+        display: block;
+        width: 100%;
+        height: calc(2.25rem + 2px);
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+
+    #process {
+        display: none;
+    }
+
+
+
+    /*--thank you pop starts here--*/
+    .thank-you-pop {
+        width: 100%;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .thank-you-pop img {
+        width: 76px;
+        height: auto;
+        margin: 0 auto;
+        display: block;
+        margin-bottom: 25px;
+    }
+
+    .thank-you-pop h1 {
+        font-size: 42px;
+        margin-bottom: 25px;
+        color: #5C5C5C;
+    }
+
+    .thank-you-pop p {
+        font-size: 20px;
+        margin-bottom: 27px;
+        color: #5C5C5C;
+    }
+
+    .thank-you-pop h3.cupon-pop {
+        font-size: 25px;
+        margin-bottom: 40px;
+        color: #222;
+        display: inline-block;
+        text-align: center;
+        padding: 10px 20px;
+        border: 2px dashed #222;
+        clear: both;
+        font-weight: normal;
+    }
+
+    .thank-you-pop h3.cupon-pop span {
+        color: #03A9F4;
+    }
+
+    .thank-you-pop a {
+        display: inline-block;
+        margin: 0 auto;
+        padding: 9px 20px;
+        color: #fff;
+        text-transform: uppercase;
+        font-size: 14px;
+        background-color: #8BC34A;
+        border-radius: 17px;
+    }
+
+    .thank-you-pop a i {
+        margin-right: 5px;
+        color: #fff;
+    }
+
+    #ignismyModal .modal-header {
+        border: 0px;
+    }
+
+    /*--thank you pop ends here--*/
+</style>
+
+<div style="padding:90px 15px 20px 15px">
+
+
+    <h2 class="w3-center">Airtime TopUp</h2>
+
+    <div class="box w3-card-4">
+
+        <form method='post' id="dataform">
+
+
+            <div class="row">
+
+                <div class="col-sm-8">
+
+                    {% csrf_token %} {% include 'baseform.html' %}
+
+
+
+                    <label><b>Amount to pay </b> <span class="price" id="discount"></span></label>
+                    <p class="control" id='charge'> </p>
+
+                    <button type="button" class=" btn" style='  color: white;' id="process" disabled="true"> <i class="fa fa-circle-o-notch fa-spin " style="font-size: 30px;animation-duration: 1s;"></i> Please wait </button>
+
+                    <button type="button" class=" btn" style='  color: white;' id="btnsubmit"> Buy Now</button>
+
+                </div>
+                <div class="col-sm-8  w3-text-brown">
+
+
+
+
+                    </ul>
+
+
+                </div>
+
+                {% if form.non_field_errors %}
+                <div class="col-sm-2 ">
+
+
+                    {% for errormessage in form.non_field_errors %}
+
+                    <div class=' w3-red w3-round' style='padding:25px 10px;margin:0 0 20px; '>
+                        {{errormessage}}
+                    </div>
+                    {% endfor %}
+
+                </div>
+                {% endif %}
+
+            </div>
+
+
+
+
+
+
+
+
+
+            <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="successModalCenterTitle">Order Submited succesfully</h5>
+
+                        </div>
+                        <div class="modal-body">
+
+                            <table class='table table-all'>
+                                <tr>
+
+                                    <td><b>ID</b></td>
+                                    <td id="ref"></td>
+                                </tr>
+
+                                <tr>
+
+                                    <td><b>Amount</b></td>
+                                    <td id="amt"></td>
+                                </tr>
+
+                                <tr>
+
+                                    <td><b>Paid Amount</b></td>
+                                    <td> <span></span>₦<span id="paid"></span></td>
+                                </tr>
+
+                                <tr>
+
+                                    <td><b>Previous Balance</b></td>
+                                    <td><span></span>₦<span id="before"></span></td>
+                                </tr>
+
+                                <tr>
+                                    <td><b> New Balance </b></td>
+                                    <td> <span></span>₦<span id="after"></span></td>
+                                </tr>
+                                <tr>
+
+                                    <td><b>Mobile Number</b></td>
+                                    <td id="num"> </td>
+                                </tr>
+
+                                <tr>
+
+                                    <td><b>Network</b></td>
+                                    <td id="net"></td>
+                                </tr>
+
+                                <tr>
+
+                                    <td><b>Status</b></td>
+                                    <td id="status"></td>
+                                </tr>
+
+                            </table>
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <a href="/profile" class="btn btn-secondary">OK</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+
+                        <div class="modal-body">
+                            <div class="thank-you-pop">
+                                <img src="https://www.pngmart.com/files/10/Stop-Sign-Transparent-Background.png" alt="">
+                                <p id="errmessage" style="font-size: 20px;"></p>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
+
+
+            <script>
+                $(document).ready(function() {
+
+                    $("#id_airtime_type ,#id_network").change(function() {
+
+
+                        var selectednetwork = $("#id_network option:selected").val();
+                        var selectedtype = $("#id_airtime_type option:selected").text();
+                        var network = $("#id_network option:selected").text();
+
+                        console.log(selectedtype)
+                        console.log("musa babalola")
+                        console.log(selectedtype)
+
+                        if (selectedtype == "VTU") {
+                            if (network == "MTN") {
+
+                                $("#id_amount").keyup(function() {
+                                    $("#charge").text('#' + (Number($("#id_amount").val()) * Number("{{mtn}}")));
+                                    $("#discount").text((100 - Number("{{mtn}}") * 100) + '% Discount');
+
+                                });
+
+
+
+                            } else if (network == "GLO") {
+                                $('form button[type="submit"]').prop("disabled", false);
+                                $("#id_amount").keyup(function() {
+                                    $("#charge").text('#' + (Number($("#id_amount").val()) * Number("{{glo}}")));
+                                    $("#discount").text((100 - Number("{{glo}}") * 100) + '% Discount');
+
+
+                                });
+
+                            } else if (network == "AIRTEL") {
+                                $('form button[type="submit"]').prop("disabled", false);
+                                $("#id_amount").keyup(function() {
+                                    $("#charge").text('#' + (Number($("#id_amount").val()) * Number("{{airtel}}")));
+                                    $("#discount").text((100 - Number("{{airtel}}") * 100) + '% Discount');
+
+
+                                });
+
+                            } else if (network == "9MOBILE") {
+                                $('form button[type="submit"]').prop("disabled", false);
+                                $("#id_amount").keyup(function() {
+                                    $("#charge").text('#' + (Number($("#id_amount").val()) * Number("{{mobile}}")));
+                                    $("#discount").text((100 - Number("{{mobile}}") * 100) + '% Discount');
+
+
+                                });
+
+                            }
+
+                        } else {
+
+                            if (network == "MTN") {
+
+                                $("#id_amount").keyup(function() {
+                                    $("#charge").text('#' + (Number($("#id_amount").val()) * Number("{{mtn_s}}")));
+                                    $("#discount").text((100 - Number("{{mtn_s}}") * 100) + '% Discount');
+
+                                });
+
+                            } else if (network == "GLO") {
+                                $('form button[type="submit"]').prop("disabled", false);
+                                $("#id_amount").keyup(function() {
+                                    $("#charge").text('#' + (Number($("#id_amount").val()) * Number("{{glo_s}}")));
+                                    $("#discount").text((100 - Number("{{glo_s}}") * 100) + '% Discount');
+
+
+                                });
+
+                            } else if (network == "AIRTEL") {
+                                $('form button[type="submit"]').prop("disabled", false);
+                                $("#id_amount").keyup(function() {
+                                    $("#charge").text('#' + (Number($("#id_amount").val()) * Number("{{airtel_s}}")));
+                                    $("#discount").text((100 - Number("{{airtel_s}}") * 100) + '% Discount');
+
+
+                                });
+
+                            } else if (network == "9MOBILE") {
+                                $('form button[type="submit"]').prop("disabled", false);
+                                $("#id_amount").keyup(function() {
+                                    $("#charge").text('#' + (Number($("#id_amount").val()) * Number("{{mobile_s}}")));
+                                    $("#discount").text((100 - Number("{{mobile_s}}") * 100) + '% Discount');
+
+
+                                });
+
+                            }
+
+
+                        }
+
+
+                    });
+
+
+
+
+
+                });
+            </script>
+
+
+
+
+            <script>
+                $("#btnsubmit").click(function() {
+                    var url = "/api/topup/";
+                    var networkId = $("#id_network").val();
+                    var amountId = $("#id_amount").val();
+                    var phone = $("#id_mobile_number").val();
+                    var Ported_number = $('#id_Ported_number').is(":checked")
+                    var token = '{{ csrf_token }}';
+                    var networkd = $("#id_network option:selected").text();
+                    var amountd = $("#id_amount").val();
+                    var phoned = $("#id_mobile_number").val();
+                    var airtime_type = $("#id_airtime_type option:selected").val();
+
+
+                    swal({
+                        title: "Dear {{user.username}}",
+                        text: "You're about to send " + networkd + " ₦" + amountd + " to " + phone,
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        //new start
+                            if (willDelete) {
+
+                        //second ajax function starts here
+                        $.ajax({
+                            type: 'POST',
+                            contentType: "application/json",
+                            beforeSend: function() {
+                                $.LoadingOverlay("show");
+
+                            },
+                            url: url,
+                            headers: {
+                                "X-CSRFToken": token
+                            },
+                            data: JSON.stringify({
+                                "network": networkId,
+                                "mobile_number": phone,
+                                "amount": amountId,
+                                "Ported_number": Ported_number,
+                                "airtime_type": airtime_type
+                            }),
+                            success: function(data) {
+
+                                swal({
+                                    title: "Transaction Successful!",
+                                    text: "you sent " + data.plan_amount + " " + data.plan_network + " airtime to " + data.mobile_number,
+                                    icon: "success",
+                                    button: "View Reciept!",
+                                });
+                                //
+                                $('.swal-button--confirm').click(function() {
+                                    $.ajax({
+                                        beforeSend: function() {
+                                            $.LoadingOverlay("show");
+                                        },
+                                        success: window.location.href = '/AirtimeTopup_success/' + String(data.id)
+                                    });
+                                });
+
+                            },
+                            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                                $.LoadingOverlay("hide");
+                                console.log(errorThrown)
+
+                                if (String(JSON.parse(XMLHttpRequest.status)) == 500) {
+                                    swal("Oops!", "Something went wrong please contact admin ", "error")
+                                } else if (JSON.parse(XMLHttpRequest.responseText).error) {
+                                    swal("Oops!", String(JSON.parse(XMLHttpRequest.responseText).error), "error")
+                                } else {
+                                    swal("Oops!", String(XMLHttpRequest.responseText), "error")
+                                }
+
+                            },
+                            complete: function() {
+                                //$('#process').css("display", "none");
+                                //$('#btnsubmit').css("display", "block");
+                                $.LoadingOverlay("hide");
+                            }
+                        });
+                        //second ajax function ends here
+////new end
+ } else {
+                swal("you pressed cancel ");
+            }
+
+                    });
+                });
+            </script>
+
+
+    </div>
+
+
+    {% if user.is_authenticated and  not  user.is_superuser and   user.Account_Balance < 50  %}
+
+    <script>
+        $(document).ready(function() {
+            swal({
+
+                text: "Wallet below minimum vending amount N{{user.Account_Balance|intcomma}}",
+                icon: "info",
+                button: "ok",
+                timer: 60000,
+            }).then(() => {
+                window.location = "{% url 'profile' %}"
+            });
+        });
+    </script>
+    {% endif %}
+
+
+    {% if networks %}
+
+    {% for net in networks %}
+    {% if net.airtime_disable == True and net.share_and_sell_disable == True   %}
+    <script>
+        $("#id_network option[value='{{net.id}}']").remove();
+    </script>
+    {% endif %}
+    {% endfor %}
+
+    {% endif %}
+    {% endblock %}

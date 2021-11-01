@@ -1,0 +1,244 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% load static %} {% load humanize %} {% block title %}Generate Result Checker Pin|gwillsub{% endblock %} {% block content %}
+
+<link rel="stylesheet" href="{% static 'ogbam/form.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+     #process{
+        display: none;
+    }
+    .control {
+        display: block;
+        width: 100%;
+        height: calc(2.25rem + 2px);
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+</style>
+<div style="padding:90px 15px 20px 15px" >
+
+
+    <h2 class="w3-center"> Start your own recharge card printing business & earn extra cash!</h2>
+    <div class="box w3-card-4">
+        <form method='post'>
+            <div class="row">
+
+                <div class="col-sm-8">
+                    {% csrf_token %} {% include 'baseform.html' %}
+                    <label><b>Amount</b></label>
+                    <b class="control" id="amount"> </b>
+
+                    <button type="button" class=" btn" style=' color: white;' id ="rechargebtn"> Generate</button>
+
+                </div>
+                <div class="col-sm-4">
+                      <ul class="list-group">
+                            <li class="list-group-item list-group-item-warning">AVAILABLE MTN PIN - {{amt1}}</li>
+                            <li class="list-group-item list-group-item-dark"> AVAILABLE 9MOBILE PIN - {{amt4}}</li>
+                            <li class="list-group-item list-group-item-danger"> AVAILABLE AIRTEL PIN - {{amt3}} </li>
+                            <li class="list-group-item list-group-item-success">AVAILABLE GLO PIN - {{amt2}} </li>
+                        </ul>
+
+                    {% if form.non_field_errors %}
+                        {% for errormessage in form.non_field_errors %}
+                        <div class=' w3-red w3-round' style='padding:25px 10px;margin:0 0 20px;'>{{errormessage}}</div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+            </div>
+            </form>
+
+    </div>
+</div>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+
+    $("#id_network").change(function() {
+        // get the url of the `load_cities` view
+        var networkId = $(this).val(); // get the selected country ID from the HTML input
+
+        $.ajax({ // initialize an AJAX request
+            url: "/ajax/loadrechargeplans/", // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+            data: {
+                'network': networkId // add the country id to the GET parameters
+            },
+            success: function(data) { // `data` is the return of the `load_cities` view function
+                $("#id_network_amount").html(data); // replace the contents of the city input with the data that came from the server
+            }
+        });
+
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+
+
+
+        $("#id_network_amount").change(function() {
+
+            var selectednetwork = $("#id_network_amount option:selected").attr("amounttopay");
+            var quantity = $("#id_quantity").val();
+            amount_to_pay = "₦" + selectednetwork * quantity
+        $("#amount").text(amount_to_pay);
+
+          });
+
+        $("#id_quantity").keyup(function() {
+            //var selectednetwork = $(this).children("option:selected").val();
+            var selectednetwork = $("#id_network_amount option:selected").attr("amounttopay");
+            var quantity = $("#id_quantity").val();
+            amount_to_pay = "₦" + selectednetwork * quantity
+
+            console.log(quantity)
+            console.log(amount_to_pay)
+            console.log(selectednetwork)
+
+ if (quantity > 39) {
+                $("#amount").text("Maximum at a time is 39");
+
+            }
+
+        else if (quantity < 1) {
+                $("#amount").text("Minimum at a time is 39");
+
+            }
+    else{
+
+        $("#amount").text(amount_to_pay);
+    }
+
+  });
+
+ });
+</script>
+
+
+
+
+
+
+<script>
+ $(document).ready(function() {
+    $("#rechargebtn").click(function() {
+         var url = "/api/rechargepin/"; // get the url of the `load_cities` view
+        var network = $("#id_network").val(); // get the selected country ID from the HTML input
+        var network_amount  = $("#id_network_amount").val();
+        var name_on_card  = $("#id_name_on_card").val();
+        var quantity  = $("#id_quantity").val();
+        var token = '{{ csrf_token }}';
+        var net = $("#id_network option:selected").text();
+
+        swal({
+            title: "Dear {{user.username}} !",
+            text: "Are you sure you want to Generate " + " " + quantity + "  " + net + "  Recharge Pin"  ,
+            icon: "warning",
+            buttons:["Oh no!", "Yes"],
+            dangerMode: true,
+        })  .then((willDelete) => {
+                if (willDelete) {
+                     $.ajax({
+                        type:'POST',
+                        dataType: 'json',
+                        contentType: "application/json",
+                        beforeSend: function(){
+                            //$('#process').css("display", "block");
+                            //$('#btnsubmit').css("display", "none");
+                            $.LoadingOverlay('show');
+                                }, // initialize an AJAX request
+                                url: url,
+                                headers: { "X-CSRFToken": token },
+                                data: JSON.stringify( {
+                                    "network": network,
+                                    "network_amount":network_amount,
+                                    "quantity": quantity,
+                                    "name_on_card":name_on_card
+                                }),
+                            success: function (data) {
+                                $('#ref').text(String(data.id));
+                                $('#net').text(String(data.network_name));
+                                $('#amt').text(String(data.amount));
+                                $('#q').text(String(data.quantity));
+                                $('#status').text(String(data.Status));
+                                $('#before').text(String(data.previous_balance));
+                                $('#after').text(String(data.after_balance));
+                                $('#mylink').attr("href",  "/Recharge-Pin-order/"+String(data.id));
+
+                                swal({
+                                    title: "Transaction Successful!",
+                                    //text: "you successfully recharged",
+                                    icon: "success",
+                                    button: "View Pin!",
+                                });
+                                //
+                                $('.swal-button--confirm').click(function(){
+                                    $.ajax({
+                                        beforeSend: function(){
+                                            $.LoadingOverlay('show');
+                                        },
+                                        complete: function(){
+                                            $.LoadingOverlay('hide');
+                                        }
+                                    })
+                                    window.location.href = '/Recharge-Pin-order/' + String(data.id)
+                                });
+
+                                },
+                            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                                $.LoadingOverlay('hide');
+                                var parsed_data = JSON.parse(XMLHttpRequest.responseText);
+                                $('#errmessage').text(String(parsed_data.error))
+                                swal("Oops!",String(parsed_data.error), "error");
+                                //   $('#myModal').modal()
+                                },
+                            complete: function(){
+                                //$('#process').css("display", "none");
+                                //$('#btnsubmit').css("display", "block");
+                                $.LoadingOverlay('hide');
+                                }
+                            });
+                //second ajax function ends
+                }
+                else {
+                    swal("You pressed Cancel!");
+                }
+        });
+
+
+   });
+    });
+</script>
+
+{% if user.is_authenticated and  not  user.is_superuser and   user.Account_Balance < 50  %}
+
+<script>
+$( document ).ready(function() {
+swal({
+
+  text: "Wallet below minimum vending amount N{{user.Account_Balance|intcomma}}",
+  icon: "info",
+  button: "ok",
+  timer: 60000,
+}).then(() => {
+  window.location="{% url 'profile' %}"
+});
+});
+</script>
+{% endif %}
+
+
+{% endblock %}

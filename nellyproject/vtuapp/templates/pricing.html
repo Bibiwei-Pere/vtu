@@ -1,0 +1,250 @@
+{% extends 'base.html' %} {% load humanize %} {% block title %}History{% endblock %} {% block content %}
+<link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+
+<div  style="padding-top:90px">
+
+<center>
+    <h1> <b>Pricing</b> </h1>
+</center>
+  
+<div class="container">
+
+
+   <div class="row justify-content-center align-items-center mb-1">
+
+
+
+						<div class="col-md-10 pl-md-0">
+							<div class="card card-pricing  bubble-shadow">
+									
+								<div class="card-body table-responsive">
+									 <table class="table table-all ">
+										<thead>
+											<tr>
+												<th scope="col">services</th>
+												<th scope="col">Smart Earner</th>
+												<th scope="col">Affilliate</th>
+												<th scope="col">Topuser</th>
+												<th scope="col">API user</th>
+											</tr>
+										</thead>
+
+										<tbody>
+										{% for air in  airtime %}
+											<tr>
+												<td>{{air.network.name}} AIRTIME </td>
+												<td>% {{air.percent}}</td>
+												<td>% {{air.Affilliate_percent}}</td>
+												<td>% {{air.topuser_percent}}</td>
+												<td>% {{air.api_percent}} </td>
+											</tr>
+
+											{% endfor %}
+
+										{% if result_checker %}	{% for air in  result_checker %}
+											<tr>
+												<td>{{air.exam_name}} Result Checker </td>
+												<td>₦ {{air.amount}}</td>
+												<td>₦ {{air.Affilliate_price}}</td>
+												<td>₦ {{air.TopUser_price}}</td>
+												<td>₦ {{air.api_price}} </td>
+											</tr>
+
+											{% endfor %}
+											{% endif %}
+                      {% if recharge %}
+											{% for air in  recharge %}
+											<tr>
+												<td>{{air.network.name}} Recharge Card pin</td>
+												<td>(₦{{air.amount}}) @ ₦{{air.amount_to_pay}}</td>
+												<td>(₦{{air.amount}}) @ ₦{{air.Affilliate_price}}</td>
+												<td>(₦{{air.amount}}) @ ₦{{air.topuser_price}}</td>
+												<td>(₦{{air.amount}}) @ ₦{{air.api_price}} </td>
+											</tr>
+
+											{% endfor %}
+
+							 {% endif %}				
+											
+										</tbody>
+									</table>
+								</div>
+							</div>
+							</div>
+							</div>
+
+
+
+
+   <div class="row justify-content-center align-items-center mb-1">
+
+
+
+						<div class="col-md-10 pl-md-0">
+							<div class="card card-pricing bg-warning-gradient bubble-shadow">
+								<div class="card-header">
+									
+									<div class="card-price">
+										<span class="price">MTN</span>
+										<span class="text"> DATA</span>
+									</div>
+								</div>
+								<div class="card-body table-responsive">
+									 <table class="table table-all ">
+                                     <tr>
+                                      <th> Plan Size </th>
+                                     
+                                     <th> Smart user </th>
+                                     
+                                     <th> Resseller </th>
+                                     
+                                     <th> Top user  </th>
+									   <th>API user</th>
+                                     <th> Vadidity </th>
+                                     </tr>
+                                {% for plans in plan %}
+                                <tr>
+                                <td style=" font-size:18px; font-weight: bolder;"> {{plans.plan_size}}{{plans.plan_Volume}} </td>
+                                <td style=" font-size:18px;  font-weight: bolder;"><i> &#8358;{{plans.plan_amount}}</i></td>
+                                <td style=" font-size:18px;  font-weight: bolder;"><i> &#8358;{{plans.Affilliate_price}}</i></td>
+                               <td style=" font-size:18px;  font-weight: bolder;"><i> &#8358;{{plans.TopUser_price}}</i></td>
+							      <td style=" font-size:18px;  font-weight: bolder;"><i> &#8358;{{plans.api_price}}</i></td>
+                              
+                                <td style=" font-size:12px;  font-weight: bolder;"><i>{{plans.month_validate}}</i></td>
+                                </tr>
+                                {% endfor %}
+                            </table>
+								</div>
+								
+							</div>
+						</div>
+						<div class="col-md-10 pl-md-0">
+							<div class="card card-pricing bg-success-gradient bubble-shadow">
+								<div class="card-header">
+									
+									<div class="card-price">
+										<span class="price">GLO</span>
+										<span class="text"> DATA</span>
+									</div>
+								</div>
+								<div class="card-body table-responsive">
+									 <table class="table table-all ">
+                                     <tr>
+                                     <th> Plan Size </th>
+                                     
+                                     <th> Smart user </th>
+                                     
+                                     <th> Resseller </th>
+                                     
+                                     <th> Top user  </th>
+									   <th>API user</th>
+                                     <th> Vadidity </th>
+                                     </tr>
+                                {% for plans in plan_2 %}
+                                <tr>
+                                <td style=" font-size:18px; font-weight: bolder;"> {{plans.plan_size}}{{plans.plan_Volume}} </td>
+                                <td style=" font-size:18px;  font-weight: bolder;"><i> &#8358;{{plans.plan_amount}}</i></td>
+                                <td style=" font-size:18px;  font-weight: bolder;"><i> &#8358;{{plans.Affilliate_price}}</i></td>
+                               <td style=" font-size:18px;  font-weight: bolder;"><i> &#8358;{{plans.TopUser_price}}</i></td>
+                                <td style=" font-size:18px;  font-weight: bolder;"><i> &#8358;{{plans.api_price}}</i></td>
+                              
+                                <td style=" font-size:12px;  font-weight: bolder;"><i>{{plans.month_validate}}</i></td>
+                                </tr>
+                                {% endfor %}
+                            </table>
+								</div>
+								
+							</div>
+						</div>	<div class="col-md-10 pl-md-0">
+							<div class="card card-pricing bg-danger-gradient bubble-shadow">
+								<div class="card-header">
+									
+									<div class="card-price">
+										<span class="price">AIRTEL</span>
+										<span class="text"> DATA</span>
+									</div>
+								</div>
+								<div class="card-body table-responsive">
+									 <table class="table table-all ">
+                                     <tr>
+                                     <th> Plan Size </th>
+                                     
+                                     <th> Smart user </th>
+                                     
+                                     <th> Resseller </th>
+                                     
+                                     <th> Top user  </th>
+									   <th>API user</th>
+                                     <th> Vadidity </th>v
+                                     </tr>
+                                {% for plans in plan_4 %}
+                                <tr>
+                                <td style=" font-size:18px; font-weight: bolder;"> {{plans.plan_size}}{{plans.plan_Volume}} </td>
+                                <td style=" font-size:18px;  font-weight: bolder;"><i> &#8358;{{plans.plan_amount}}</i></td>
+                                <td style=" font-size:18px;  font-weight: bolder;"><i> &#8358;{{plans.Affilliate_price}}</i></td>
+                               <td style=" font-size:18px;  font-weight: bolder;"><i> &#8358;{{plans.TopUser_price}}</i></td>
+                                <td style=" font-size:18px;  font-weight: bolder;"><i> &#8358;{{plans.api_price}}</i></td>
+                              
+                                <td style=" font-size:12px;  font-weight: bolder;"><i>{{plans.month_validate}}</i></td>
+                                </tr>
+                                {% endfor %}
+                            </table>
+								</div>
+								
+							</div>
+						</div>
+
+                        	<div class="col-md-10 pl-md-0">
+							<div class="card card-pricing bg-black-gradient bubble-shadow">
+								<div class="card-header">
+									
+									<div class="card-price">
+										<span class="price text-white">9MOBILE</span>
+										<span class="text"> DATA</span>
+									</div>
+								</div>
+								<div class="card-body table-responsive">
+									 <table class="table table-all text-white ">
+                                     <tr >
+                                     <th> Plan Size </th>
+                                     
+                                     <th> Smart user </th>
+                                     
+                                     <th> Resseller </th>
+                                     
+                                     <th> Top user  </th>
+									   <th>API user</th>
+                                     <th> Vadidity </th>
+                                     </tr>
+                                {% for plans in plan_3 %}
+                                <tr >
+                                <td style=" font-size:18px; font-weight: bolder;"> {{plans.plan_size}}{{plans.plan_Volume}} </td>
+                                <td style=" font-size:18px;  font-weight: bolder;"><i> &#8358;{{plans.plan_amount}}</i></td>
+                                <td style=" font-size:18px;  font-weight: bolder;"><i> &#8358;{{plans.Affilliate_price}}</i></td>
+                               <td style=" font-size:18px;  font-weight: bolder;"><i> &#8358;{{plans.TopUser_price}}</i></td>
+                               <td style=" font-size:18px;  font-weight: bolder;"><i> &#8358;{{plans.api_price}}</i></td>
+                              
+                                <td style=" font-size:12px;  font-weight: bolder;"><i>{{plans.month_validate}}</i></td>
+                                </tr>
+                                {% endfor %}
+                            </table>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+
+
+ <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+  <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+  <script>
+  $(function(){
+    $("#example").dataTable();
+  })
+  </script>
+</div>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,154 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% load static %} {% load humanize %} {% block title %}Sell_Bitcoin|Husmodata.com{% endblock %} {% block content %}
+
+
+<style>
+    .control {
+        display: block;
+        width: 100%;
+        height: calc(2.25rem + 2px);
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+</style>
+
+<link rel="stylesheet" href="{% static 'ogbam/form.css' %}">
+
+<div style="padding:90px 15px 20px 15px" >
+
+    <h2 class="w3-center">Sell Bitcoin</h2>
+    <div class="alert alert-info">
+        <strong><i class="fa fa-fax w3-large"></i> Support Team:</strong><p class="">Have anything to say to us? Please contact our Support Team on Whatsapp  <a href="https://wa.me/2348105701744" class="btn " style="background-color: rgb(4, 219, 4) !important; color: white;"><strong>  <i class="fa fa-whatsapp w3-large"> </i> whatsapp us</strong></a>
+        </p>
+      </div>
+    <div class="box w3-card-4">
+
+
+
+            <div class="row">
+
+                <div class="col-sm-8">
+                    <h2 style="text-align: center" color="blue"> CONFIRMATION &amp; PAYMENT ARE FASTER (Usually within 5-30mins).</h2>
+                    {% if user.BankName == "" %}
+                    <div class="alert alert-info">
+                        <strong><i class="fa fa-bank"></i>
+                        Add Bank:  <br><div align="justify"><font size="2">Dear Customer , to perform this transaction ,kindly update your account to receive the money. </font>
+                        <a href="{%url 'Editprofile' %}" class="btn btn-primary btn-sm waves-effect waves-light">Add Bank</a></div>
+                        </strong>
+                      </div>
+                    {% elif user.AccountNumber == "" %}
+                    <div class="alert alert-info">
+                        <strong><i class="fa fa-bank"></i>
+                        Add Bank:  <br><div align="justify"><font size="2">Dear Customer , to perform this transaction ,kindly update your account to receive the money. </font>
+                        <a href="{%url 'Editprofile' %}" class="btn btn-primary btn-sm waves-effect waves-light">Add Bank</a></div>
+                        </strong>
+                      </div>
+                    {% elif user.AccountName == "" %}
+                    <div class="alert alert-info">
+                        <strong><i class="fa fa-bank"></i>
+                        Add Bank:  <br><div align="justify"><font size="2">Dear Customer , to perform this transaction ,kindly update your account to receive the money. </font>
+                        <a href="{%url 'Editprofile' %}" class="btn btn-primary btn-sm waves-effect waves-light">Add Bank</a></div>
+                        </strong>
+                      </div>     
+           
+                  
+                    {% else %}
+                    <form method='post'>   {% csrf_token %} {% include 'baseform.html' %}
+
+                        <label><b>Naira Amount</b></label>
+                        <p class="control" id="amount"> </p>
+                    
+                    <label><b>Bank name</b></label>
+                    <p class="control" id="bname"> {{user.BankName}}</p>
+
+                    <label><b>Account Number</b></label>
+                    <p class="control" id="Anum">{{user.AccountNumber}} </p>
+
+                    <label><b>Account Name</b></label>
+                    <p class="control" id="Aname">{{user.AccountName}} </p>
+                   
+                    <button type="submit" value="Continue to Funding" class=" btn" style='background-image: linear-gradient(-20deg, rgb(136, 8, 8) 100%), rgb(204, 8, 8) ;margin-bottom:15px;'>Proceed</button>
+        </form>
+        {% endif %}
+                </div>
+                <div class="col-sm-4  ">
+                    <div class="card card-md">
+                        <div class="card-header">
+                            Quick Rules
+        
+                        </div>
+                        <div class="card-body text-center ">
+                            <div class="section quick-rules">
+                                <h4>Quick rules</h4>
+                                <p class="lead">Transactions are fulfilled within minutes</p>
+        
+                                <ul>
+                                    <li>Make sure to send the BTC to the specified wallet</li>
+                                    <li>Due to the volatile nature of BTC, All transaction should be processed within 30 mins</li>
+        
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                        <center style="color: rgb(61, 2, 155);"> 
+                            <b> Selling rate #{{sellrate}}</b>
+                            <p id="rate"> </p>
+                            <p id="date ">
+                                <p>
+                                </center> 
+
+                  
+                                
+                
+
+                            {% if form.non_field_errors %} {% for errormessage in form.non_field_errors %}
+
+                            <div class=' alert alert-danger' style='padding:25px 10px;margin:0 0 20px; '>
+                                {{errormessage}}</div>
+                            {% endfor %}
+
+                </div>
+                {% endif %}
+
+            </div>
+
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    $.getJSON("https://api.coindesk.com/v1/bpi/currentprice/usd.json", function(data) {
+
+        var exchangeRate = parseFloat(data.bpi.USD.rate_float);
+       // $("#rate").text(' Current rate in USD: ' + (exchangeRate).toLocaleString());
+      var rate = {{sellrate}};
+
+        $(document).ready(function() {
+
+
+            $("#id_amount_in_USD").keyup(function() {
+              
+                $("#amount").text((Number($("#id_amount_in_USD").val())  * rate  )); });
+
+
+            });
+
+
+       
+
+
+
+    });
+</script>
+
+
+
+</div>
+{% endblock %}

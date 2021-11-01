@@ -1,0 +1,148 @@
+{% load static %}
+{% load humanize %}
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>{% block title %}{% endblock %}
+    </title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <meta name="google" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/images/favicon.png' %}">
+    <link href="{% static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css'%}" rel="stylesheet" type="text/css">
+   
+    <link rel="stylesheet" href="{% static 'ogbam/w3.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v4.0&appId=506495133420968&autoLogAppEvents=1"></script>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v4.0&appId=506495133420968&autoLogAppEvents=1"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        body {
+            font-family: "Roboto", sans-serif;
+            font-size: 17px;
+            background-color: #fdfdfd;
+            word-spacing: normal;
+            font: normal 15px / 27px "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+            color: #626366;
+            overflow: auto;
+        }
+        
+        .shadow {
+            box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-danger {
+            color: #fff;
+            background-color: #f00000;
+            border-color: #dc281e;
+        }
+        
+        .masthead {
+            background: #3398E1;
+            height: auto;
+            padding-bottom: 15px;
+            box-shadow: 0 16px 48px #E3E7EB;
+            padding-top: 10px;
+        }
+        
+        p {
+            display: block;
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+        }
+        
+       
+    </style>
+
+    <!-- Navigation -->
+
+    <nav class="navbar navbar-expand-lg " style="background-color: navy; color: orange;">
+        <a class="navbar-brand" href="{% url 'home' %}">
+          <h2 ><a href="{% url 'home' %}" style="color:rgb(81, 255, 0);">Famz<span style="color:orange;">k<i class="fa fa-circle-notch"></i>nnect</span><span></span></a></h2> 
+                         
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{%url 'home' %}">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Wallet Balance &#8358;{{user.Account_Balance|intcomma}}0</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{%url 'buybtc' %}">Buy Data </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Services
+                  </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{%url 'data' %}">Buy Data</a>
+                        <a class="dropdown-item" href="{%url 'topup' %}">Buy Airtime</a>
+                        <a class="dropdown-item" href="{%url 'airtime' %}"> Airtime to cash</a>
+                        <a class="dropdown-item" href="{%url 'bulksms' %}"> Bulk Sms</a>
+                        <a class="dropdown-item" href="{%url 'cablesub' %}"> Cable Subscription </a>
+
+
+                </li>
+
+            </ul>
+
+
+            <div class="form-inline my-4 my-lg-0">
+                {% if user.is_authenticated %}
+                <a href="{%url 'logout' %}"> <button class="btn btn-primary nav-link mr-sm-2">logout</button> </a>
+                {% else %}
+                <a href="{%url 'signup' %}"> <button class="btn btn-primary nav-link mr-sm-2">Sign up</button> </a>
+                <a href="{%url 'login' %}"> <button class="btn btn-outline-primary nav-link my-2 my-sm-0">Login</button></a>
+                {% endif %}
+            </div>
+            </div>
+    </nav>
+    {% block content %}
+
+    <!-- Content Goes here -->
+    {% endblock content %}
+    <!-- Footer -->
+    <footer class="py-3 bg-grey "  style="background-color:rgb(1, 18, 56); text-decoration:none; color:white;">
+        <p class=" text-center text-bold ">&copy; Esublink 2019</p>
+        <p class="text-center text-bold">Developed by MS-ORG developer</p>
+    </footer>
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $.getJSON("https://api.coindesk.com/v1/bpi/currentprice/usd.json", function(data) {
+
+            var exchangeRate = parseFloat(data.bpi.USD.rate_float);
+            $("#rate").text('BTC/USD ' + (exchangeRate).toLocaleString());
+
+
+            console.log(exchangeRate)
+
+
+
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+
+{% extends 'base.html' %}
+
+
+{% block title %} referal|9jastoresng.com.ng{% endblock %}
+
+
+{% block content %}
+
+ <div  class=''>
+             <h3 class='w3-center' >My Referals </h3>
+
+<h4>you have refered {{referal_total}} users so far </h4>
+
+            <div class="table-responsive card">       <table class='table table-bordered table-striped'>
+
+
+{% if referal %}
+
+
+
+<tr>
+    <th>Username</th>
+      <th>Email</th>
+        <th>Phone Number</th>
+          <th>Date Joined</th>
+           <th>Bonus earned</th>
+</tr>
+{% for ref in referal %}
+<tr><td>{{ref.username}}</td>
+<td>{{ref.referal_user.email}}</td>
+<td>{{ref.referal_user.Phone}}</td>
+<td>{{ref.referal_user.date_joined}}</td>
+<td>N{{ref.referal_user.Bonus}}</td>
+</tr>
+
+{% endfor %}
+{% else %}
+  You have not refer any body
+{% endif %}
+
+
+
+</table>
+
+
+
+
+
+    </div>
+  </div>
+</div>
+
+        </div>
+</div>
+
+        </div>
+
+
+
+{% endblock %}

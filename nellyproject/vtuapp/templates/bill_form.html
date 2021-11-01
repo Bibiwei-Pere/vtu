@@ -1,0 +1,453 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% load static %} {% load humanize %} {% block title %}Electricity Bill Payment{% endblock %} {% block content %}
+
+<link rel="stylesheet" href="{% static 'ogbam/form.css' %}">
+
+<style>
+    .control {
+        display: block;
+        width: 100%;
+        height: calc(2.25rem + 2px);
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+
+    .process,
+    #div_id_customer_address,
+    #div_id_customer_name {
+        display: none;
+    }
+
+    #name {
+        display: none;
+    }
+
+    #process,
+    #process2 {
+        display: none;
+    }
+
+
+
+    /*--thank you pop starts here--*/
+    .thank-you-pop {
+        width: 100%;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .thank-you-pop img {
+        width: 76px;
+        height: auto;
+        margin: 0 auto;
+        display: block;
+        margin-bottom: 25px;
+    }
+
+    .thank-you-pop h1 {
+        font-size: 42px;
+        margin-bottom: 25px;
+        color: #5C5C5C;
+    }
+
+    .thank-you-pop p {
+        font-size: 20px;
+        margin-bottom: 27px;
+        color: #5C5C5C;
+    }
+
+    .thank-you-pop h3.cupon-pop {
+        font-size: 25px;
+        margin-bottom: 40px;
+        color: #222;
+        display: inline-block;
+        text-align: center;
+        padding: 10px 20px;
+        border: 2px dashed #222;
+        clear: both;
+        font-weight: normal;
+    }
+
+    .thank-you-pop h3.cupon-pop span {
+        color: #03A9F4;
+    }
+
+    .thank-you-pop a {
+        display: inline-block;
+        margin: 0 auto;
+        padding: 9px 20px;
+        color: #fff;
+        text-transform: uppercase;
+        font-size: 14px;
+        background-color: #8BC34A;
+        border-radius: 17px;
+    }
+
+    .thank-you-pop a i {
+        margin-right: 5px;
+        color: #fff;
+    }
+
+    #ignismyModal .modal-header {
+        border: 0px;
+    }
+
+    /*--thank you pop ends here--*/
+</style>
+<div style="padding:90px 15px 20px 15px">
+
+
+    <h2 class="w3-center">Electricity Bill Payment</h2>
+
+    <div class="box w3-card-4">
+
+        <form method="post" id='billform' name="billform" data-plans-url="{% url 'ajax_load_plans' %}" novalidate>
+
+
+            <div class="row">
+
+                <div class="col-sm-8">
+
+                    {% csrf_token %} {% include 'baseform.html' %}
+                    {% if charge %}
+                    <p class="control">{{charge}}</p>
+
+                    {% endif %}
+
+
+
+                    <button type="button" id="validateiuc" class=" btn" style='margin-bottom:15px;'>Validate </button>
+
+                    <button type="button" class=" btn process" id="btnsubmit" style='background-image: linear-gradient(-20deg, orange 0%, orange 100%);margin-bottom:15px;'> Submit Order </button>
+        </form>
+
+
+    </div>
+    <div class="col-sm-4 ">
+
+
+        {% if form.non_field_errors %} {% for errormessage in form.non_field_errors %}
+
+        <div class=' w3-red w3-round' style='padding:25px 10px;margin:0 0 20px; '>
+            {{errormessage}}
+        </div>
+        {% endfor %}
+
+    </div>
+    {% endif %}
+
+</div>
+
+
+
+
+
+</div>
+</div>
+
+</div>
+</div>
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+
+
+<script>
+    $(function() {
+
+        $("form[name='billform']").validate({
+            // Specify validation rules
+            rules: {
+                // The key name on the left side is the name attribute
+                // of an input field. Validation rules are defined
+                // on the right side
+                disco_name: {
+                    required: true,
+
+
+                },
+                meter_number: {
+                    required: true,
+
+                },
+                MeterType: {
+                    required: true,
+
+                },
+
+                amount: {
+                    required: true,
+
+                },
+
+            },
+            // Specify validation error messages
+            messages: {
+
+                disco_name: {
+                    required: "This field is required",
+
+                },
+                meter_number: {
+                    required: "This field is required",
+
+                },
+                MeterType: {
+                    required: "This field is required",
+
+                },
+
+                amount: {
+                    required: "This field is required",
+
+                },
+
+
+            },
+
+        });
+    });
+
+
+
+
+
+
+
+    $("#validateiuc").click(function() {
+        var meternumber = $("#id_meter_number").val();
+        var disconame = $("#id_disco_name option:selected").text();
+
+        var MeterType = $("#id_MeterType").val();
+        var mtype;
+        if (MeterType == "Prepaid") {
+            mtype = "PREPAID"
+        } else {
+            mtype = "POSTPAID"
+        }
+
+
+
+        $.ajax({
+            type: 'GET',
+            beforeSend: function() {
+                $('#process').css("display", "block");
+                $.LoadingOverlay("show");
+
+            },
+
+            url: '/ajax/validate_meter_number/',
+            data: {
+                'meternumber': meternumber,
+                'disconame': disconame,
+                'mtype': mtype,
+            },
+            dataType: 'json',
+
+            success: function(data) {
+
+                console.log(data);
+
+
+                if (data.invalid == false) {
+                    $("#div_id_customer_address").css("display", "block");
+                    $("#div_id_customer_name").css("display", "block");
+                    $("#id_customer_name").val(data.name);
+                    $("#id_customer_address").val(data.address);
+                    $("#id_customer_name").prop("disabled", true);
+                    $("#id_customer_address").prop("disabled", true);
+                    $(".process").css("display", "block");
+                    $("#validateiuc").css("display", "none");
+
+                } else {
+                    swal("Oops", "Invalid meter number  " + meternumber, "error")
+                }
+
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                $.LoadingOverlay("hide");
+                console.log(errorThrown)
+
+                if (String(JSON.parse(XMLHttpRequest.status)) == 500) {
+                    swal("Oops!", "Something went wrong please contact admin ", "error")
+                } else if (JSON.parse(XMLHttpRequest.responseText).error) {
+                    swal("Oops!", String(JSON.parse(XMLHttpRequest.responseText).error), "error")
+                } else {
+                    swal("Oops!", String(XMLHttpRequest.responseText), "error")
+                }
+            },
+            complete: function() {
+                $('#process').css("display", "none");
+                $.LoadingOverlay("hide");
+
+            }
+        });
+
+    });
+</script>
+
+
+
+
+
+<script>
+    $("#btnsubmit").click(function() {
+        var url = "/api/billpayment/"; // get the url of the `load_cities` view
+        var disco_name = $("#id_disco_name").val(); // get the selected country ID from the HTML input
+        var meter_number = $("#id_meter_number").val();
+        var MeterType = $("#id_MeterType").val();
+        var amount = $("#id_amount").val();
+        var Customer_Phone = $("#id_Customer_Phone").val();
+        var token = '{{ csrf_token }}';
+
+        var cableplantext = $("#id_cableplan option:selected").text(); // get the selected country ID from the HTML input
+        var id_cablenametext = $("#id_cablename option:selected").text();
+        var smart_card_numbertext = $("#id_smart_card_number").val();
+
+        var disco_name1 = $("#id_disco_name option:selected").text(); // get the selected country ID from the HTML input
+        var meter_number1 = $("#id_meter_number").val();
+        var MeterType1 = $("#id_MeterType option:selected").text();
+        var amount1 = $("#id_amount").val();
+        var customer_name = $("#id_customer_name").val();
+        var customer_address = $("#id_customer_address").val();
+
+        swal({
+            title: 'Dear {{user.username}}',
+            text: "You are about to buy " + "₦" + amount1 + " " + disco_name1 + " " + MeterType1 + " " + " for " + meter_number1 + "(" + customer_name + ", " + customer_address + ")",
+            icon: 'warning',
+            buttons: ["Cancel", "Yes"],
+            dangerMode: true,
+        }).then((willDelete) => {
+
+            if (willDelete) {
+                //start
+                $.ajax({
+                                    type: 'POST',
+                                    dataType: 'json',
+                                    contentType: "application/json",
+                                    beforeSend: function() {
+                                        $.LoadingOverlay("show");
+                                        $('#process2').css("display", "block");
+                                        $('#subm').css("display", "none");
+                                    }, // initialize an AJAX request
+                                    url: url,
+                                    headers: {
+                                        "X-CSRFToken": token
+                                    },
+                                    data: JSON.stringify({
+                                        "disco_name": disco_name,
+                                        "amount": amount,
+                                        "meter_number": meter_number,
+                                        "MeterType": MeterType,
+                                        "Customer_Phone": Customer_Phone,
+                                        "customer_name": customer_name,
+                                        "customer_address": customer_address
+                                    }),
+                                    success: function(data) {
+                                        console.log(data);
+                                        console.log(data.id);
+                                        $.LoadingOverlay("hide");
+
+                                        swal({
+                                            title: "Successful!",
+                                            text: "You purchased " + "    ₦ " + data.amount + "  " + data.package + ' ' + data.MeterType + " to " + data.meter_number,
+                                            icon: "success",
+                                            button: "View reciept",
+                                        })
+                                        $('.swal-button--confirm').click(function() {
+                                            $.ajax({
+                                                beforeSend: function() {
+                                                    $.LoadingOverlay("show");
+                                                },
+                                                success: window.location.href = '/bill_success/' + String(data.id)
+                                            });
+                                        });
+                                    },
+                                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                                        $.LoadingOverlay("hide");
+                                        console.log(errorThrown)
+
+                                        if (String(JSON.parse(XMLHttpRequest.status)) == 500) {
+                                            swal("Oops!", "Something went wrong please contact admin ", "error")
+                                        } else if (JSON.parse(XMLHttpRequest.responseText).error) {
+                                            swal("Oops!", String(JSON.parse(XMLHttpRequest.responseText).error), "error")
+                                        } else {
+                                            swal("Oops!", String(XMLHttpRequest.responseText), "error")
+                                        }
+                                    },
+
+                                    complete: function() {
+                                        $.LoadingOverlay("hide");
+                                        $('#process2').css("display", "none");
+                                        $('#subm').css("display", "block");
+                                    }
+                                });
+
+////new end
+ } else {
+                swal("you pressed cancel ");
+            }
+
+
+
+        });
+
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+
+<script type="text/javascript">
+    document.getElementById('btnPrint').addEventListener('click',
+        Export);
+
+    function Export() {
+        html2canvas(document.getElementById('receipt'), {
+            onrendered: function(canvas) {
+                var data = canvas.toDataURL();
+                var docDefinition = {
+                    content: [{
+                        image: data,
+                        width: 500
+                    }]
+                };
+                pdfMake.createPdf(docDefinition).download("billpaymentreceipt.pdf");
+            }
+        });
+    }
+</script>
+
+
+
+{% if user.is_authenticated and  not  user.is_superuser and   user.Account_Balance < 50  %}
+
+<script>
+    $(document).ready(function() {
+        swal({
+
+            text: "Wallet below minimum vending amount N{{user.Account_Balance|intcomma}}",
+            icon: "info",
+            button: "ok",
+            timer: 60000,
+        }).then(() => {
+            window.location = "{% url 'profile' %}"
+        });
+    });
+</script>
+{% endif %}
+
+{% endblock %}

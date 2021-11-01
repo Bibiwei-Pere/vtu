@@ -1,0 +1,342 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% load static %} {% load humanize %} {% block title %}KYC{% endblock %} {% block content %}
+
+<link rel="stylesheet" href="{% static 'ogbam/form.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% if user.verify %}
+    <script>
+        window.location ="/profile"
+    </script>
+
+    {% endif %}
+
+<style>
+     #process{
+        display: none;
+    }
+    .control {
+        display: block;
+        width: 100%;
+        height: calc(2.25rem + 2px);
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+</style>
+<div style="padding:90px 15px 20px 15px" >
+
+
+    <h2 class="w3-center"> Verify your Accout to pass transaction limit</h2>
+    <div class="box w3-card-4">
+        <form  enctype="multipart/form-data" id="id_ajax_upload_form" method="POST" novalidate="">
+            <div class="row">
+
+                <div class="col-sm-8">
+
+                    {% csrf_token %} {% include 'baseform.html' %}
+
+                    <button type="button" class=" btn" style='  color: white;' id ="process" disabled="true" > <i class="fa fa-circle-o-notch fa-spin " style="font-size: 30px;animation-duration: 1s;"></i> Please wait </button>
+
+                    <button type="submit" class=" btn" style='  color: white;' id ="btnsubmit"> Submit</button>
+
+                </div>
+                <div class="col-sm-4  ">
+
+
+
+                    {% if form.non_field_errors %} {% for errormessage in form.non_field_errors %}
+
+                    <div class=' w3-red w3-round' style='padding:25px 10px;margin:0 0 20px; '>
+                        {{errormessage}}</div>
+                    {% endfor %}
+
+                </div>
+                {% endif %}
+
+                <div class="container">
+                
+
+<h3 style='box-sizing: inherit; font-family: "Segoe UI", Arial, sans-serif; font-size: 24px; font-weight: 400; margin: 10px 0px; color: rgb(0, 0, 0); font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;'><b style="box-sizing: inherit;">Why KYC?</b></h3>
+<p style="box-sizing: inherit; color: rgb(0, 0, 0); font-family: Verdana, sans-serif; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">To confirm your true identity. With Verify account, you can enjoy the full features of Husmodata.com.</p>
+<h3 style='box-sizing: inherit; font-family: "Segoe UI", Arial, sans-serif; font-size: 24px; font-weight: 400; margin: 10px 0px; color: rgb(0, 0, 0); font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;'><b style="box-sizing: inherit;">Why BVN?</b></h3>
+<p style="box-sizing: inherit; color: rgb(0, 0, 0); font-family: Verdana, sans-serif; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">We request for BVN to validate your Husmodata.com registered details and as well validate that the account number you want to add to your account truly belongs to you. Also, to create a unique identity for each of the members of this platform. Lastly, to protect you as a customer and Husmodata.com as a business.</p>
+<h3 style='box-sizing: inherit; font-family: "Segoe UI", Arial, sans-serif; font-size: 24px; font-weight: 400; margin: 10px 0px; color: rgb(0, 0, 0); font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;'><b style="box-sizing: inherit;">Am I safe giving you my BVN?</b></h3>
+<p><span style="color: rgb(0, 0, 0); font-family: Verdana, sans-serif; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">Yes, you are. Your BVN is confidential to us. We only need it to confirm your identity with the bank account number provided. Also, take note that once you add your BVN, no other user on this platform can add the BVN.</span></p>
+<p style="box-sizing: inherit; color: rgb(0, 0, 0); font-family: Verdana, sans-serif; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><b style="box-sizing: inherit;">NOTE: Ensure you use your personal BVN for this KYC. You will be charge N100 per attempts</b></p>
+        </div>
+
+            </div>
+
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+<script>
+
+
+   $('#id_ajax_upload_form').submit(function(e){
+
+     
+        e.preventDefault();
+        $form = $(this)
+        var formData = new FormData(this);
+
+        var url = "/api/kyc/"; // get the url of the `load_cities` view
+
+if (this.First_Name.value == "" || this.Last_Name.value == "" || this.Middle_Name.value == "" || this.DOB.value == ""  || this.Gender.value == "" || this.State_of_origin.value == ""  || this.Local_gov_of_origin.value == "" || this.passport_photogragh.value == "" || this.BVN.value == ""){
+ swal("all fields are required")
+}
+else{
+ swal({
+  title: "Dear {{user.username}} !",
+  text: "You will be charge N100 per BVN Verify"  ,
+  icon: "warning",
+  buttons:["Oh no!", "Yes"],
+  dangerMode: true,
+})
+.then((willDelete) => {
+  if (willDelete) {
+
+
+        $.ajax({
+            type:'POST',
+            dataType: 'json',
+            //contentType: "application/json",
+             cache: false,
+            contentType: false,
+            processData: false,
+       beforeSend: function(){
+        $.LoadingOverlay("show");
+            }, // initialize an AJAX request
+            url: url,
+            headers: { "X-CSRFToken": '{{ csrf_token }}' },
+            data: formData,
+        success: function (data) {
+
+
+
+      swal("Success",String(data.message), "success");
+       $('.swal-button--confirm').click(function(){
+                                  $.ajax({
+                                        beforeSend: function(){
+                                            $.LoadingOverlay("show");
+                                        },
+                                        success: window.location.href = '/profile'
+                                  });
+                            });
+
+    },
+             error: function(XMLHttpRequest, textStatus, errorThrown) {
+                                        $.LoadingOverlay("hide");
+                                          if ( String(JSON.parse(XMLHttpRequest.status)) == 500){
+                        swal("Oops!","Something went wrong please contact admin ","error")
+                    }
+                    else if (JSON.parse(XMLHttpRequest.responseText).error){
+                          swal("Oops!",String(JSON.parse(XMLHttpRequest.responseText).error),"error")
+                    }
+                    else{
+                        swal("Oops!",String(XMLHttpRequest.responseText),"error")
+                    }
+                                    },
+
+     complete: function(){
+     $.LoadingOverlay("hide");
+
+  }
+        });
+
+        return false;
+
+  } else {
+    swal("You pressed Cancel!");
+  }
+
+
+   });
+}
+
+   });
+</script>
+
+
+{% endblock %}
+
+
+
+{% comment %} 
+
+
+
+
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% load static %} {% load humanize %} {% block title %}KYC{% endblock %} {% block content %}
+
+<link rel="stylesheet" href="{% static 'ogbam/form.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+     #process{
+        display: none;
+    }
+    .control {
+        display: block;
+        width: 100%;
+        height: calc(2.25rem + 2px);
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+</style>
+<div style="padding:90px 15px 20px 15px" >
+
+
+    <h2 class="w3-center"> Verify your Accout to pass transaction limit</h2>
+    <div class="box w3-card-4">
+        <form  enctype="multipart/form-data"  method="POST" novalidate="" name="KYCform" id="KYCform">
+            <div class="row">
+
+                <div class="col-sm-8">
+
+                    {% csrf_token %} {% include 'baseform.html' %}
+
+                  
+                    <button type="submit" class=" btn" style='  color: white;' id ="btnsubmit"> Submit</button>
+
+                </div>
+              </form>
+                <div class="col-sm-4  ">
+
+
+
+                    {% if form.non_field_errors %} {% for errormessage in form.non_field_errors %}
+
+                    <div class=' w3-red w3-round' style='padding:25px 10px;margin:0 0 20px; '>
+                        {{errormessage}}</div>
+                    {% endfor %}
+
+                </div>
+                {% endif %}
+    </div>
+
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+
+<script>
+   
+   $('#id_ajax_upload_form').submit(function(e){
+        e.preventDefault();
+        $form = $(this)
+        var formData = new FormData(this);
+
+        var url = "/api/kyc/"; // get the url of the `load_cities` view
+
+ swal({
+  title: "Dear {{user.username}} !",
+  text: "You will be charge N100 per BVN Verify"  ,
+  icon: "warning",
+  buttons:["Oh no!", "Yes"],
+  dangerMode: true,
+})
+.then((willDelete) => {
+  if (willDelete) {
+
+
+        $.ajax({
+            type:'POST',
+            dataType: 'json',
+            //contentType: "application/json",
+             cache: false,
+            contentType: false,
+            processData: false,
+            beforeSend: function(){
+                $.LoadingOverlay("show");
+
+                    }, // initialize an AJAX request
+            url: url,
+            headers: { "X-CSRFToken":  '{{ csrf_token }}' },
+            data: formData,
+            success: function (data) {
+
+            swal("Success",String(data.message), "success");
+
+    },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                $.LoadingOverlay("hide");
+              
+                    if ( String(JSON.parse(XMLHttpRequest.status)) == 500){
+                        swal("Oops!","Something went wrong please contact admin ","error")
+                    }
+                    else if (JSON.parse(XMLHttpRequest.responseText).error){
+                          swal("Oops!",String(JSON.parse(XMLHttpRequest.responseText).error),"error")
+                    }
+                    
+                    else if (JSON.parse(XMLHttpRequest.responseText).response){
+                          swal("Oops!",String(JSON.parse(XMLHttpRequest.responseText).response),"error")
+                    }
+                    else if (JSON.parse(XMLHttpRequest.responseText).message){
+                          swal("Oops!",String(JSON.parse(XMLHttpRequest.responseText).message),"error")
+                    }
+                    else{
+                        swal("Oops!",String(XMLHttpRequest.responseText),"error")
+                    }
+
+      },
+
+     complete: function(){
+        //$('#process').css("display", "none");
+         // $('#btnsubmit').css("display", "block");
+         $.LoadingOverlay("hide");
+
+  }
+        });
+
+  } else {
+    swal("You pressed Cancel!");
+  }
+
+
+   });
+    
+       });
+        
+     
+    
+    </script>
+
+
+{% endblock %} {% endcomment %}

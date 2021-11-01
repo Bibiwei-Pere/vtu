@@ -1,0 +1,4 @@
+<option value="">--select--</option>
+{% for plan in plans %}
+<option value="{{ plan.pk }}">{{ plan.plan_size }}{{ plan.plan_Volume }}    {{ plan.plan_type }} = &#8358;{{ plan.plan_amount }}</option>
+{% endfor %}

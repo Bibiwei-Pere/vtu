@@ -1,0 +1,75 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% load static %} {% load humanize %} 
+{% block title %}Couponpayment|Husmodata.com{% endblock %} 
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'ogbam/form.css' %}">
+
+<div style="padding:90px 15px 20px 15px" >
+
+
+    <h2 class="w3-center">Fund account with Coupon Code</h2>
+
+    <div class="box w3-card-4">
+
+        <form method='post' id="myform">
+
+
+            <div class="row">
+
+                <div class="col-sm-8">
+
+                    {% csrf_token %} {% include 'baseform.html' %}
+
+
+                    <button type="submit" value="Continue to Funding" class=" btn"  id="btnsubmit"style='margin-bottom:15px;'>Fund</button>
+
+                </div>
+                <div class="col-sm-4 ">
+
+
+                    <div class="alert alert-info">
+                        <strong><i class="fa fa-whatsapp w3-large"></i> Buy Coupon code:</strong><p class="">Contact us on whatsapp to buy your coupon code  <a href="+{{support_phone}}" class="btn " style="background-color: rgb(4, 219, 4) !important; color: white;"><strong>  <i class="fa fa-whatsapp w3-large"> </i> whatsapp us</strong></a></p>
+                      </div>
+                </div>
+
+                {% if form.non_field_errors %}
+                <div class="col-sm-4 ">
+
+
+                    {% for errormessage in form.non_field_errors %}
+
+                    <div class=' alert alert-danger' style='padding:25px 10px;margin:0 0 20px; '>
+                        {{errormessage}}</div>
+                    {% endfor %}
+
+                </div>
+                {% endif %}
+
+            </div>
+
+
+
+
+
+    </div>
+</div>
+
+</div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script>
+
+    $(function()
+    {
+      $('#btnsubmit').on('click',function()
+      {
+        $(this).text('Please wait ...')
+          .attr('disabled','disabled');
+        $('#myform').submit();
+      });
+    
+    });
+    </script>
+{% endblock %}

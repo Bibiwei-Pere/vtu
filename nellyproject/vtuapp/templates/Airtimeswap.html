@@ -1,0 +1,135 @@
+ {% extends 'base.html' %} {% load static %}
+<link rel="stylesheet" href="{% static 'ogbam/form.css' %}"> {% block title %} Airtime Payment Successful | Husmodata.com{% endblock %} {% block content %}
+<div style="padding-top:120px;margin-bottom:90px;">
+    <div class="row">
+        <div class="col-75 ">
+            <div class="box w3-card-4">
+
+                <h3 class='w3-center' id='header'>Airtimeswap Analysis </h3>
+
+
+
+
+                {% if Airtimeswap_list.swap_from_network == net %}
+
+                <p>
+                    <h5 class='w3-text-blue w3-center w3-padding'> Kindly Transfer the sum of {{Airtimeswap_list.amount }} to {{num_1.phone_number}} ,follow the process below </h5>
+                </p>
+                <hr>
+                <p>How to transfer Airtime on {{Airtimeswap_list.swap_from_network}} network MTN Share ’N’ Sell Dial:
+                    <b> *600*{{num_1.phone_number}}*{{Airtimeswap_list.amount }}*PIN# </b> If you don't have a PIN, to use 1234 as your PIN Dial: *600*0000*new pin*new pin# {i.e *600*0000*1234*1234#}
+                </p>
+
+                {% elif Airtimeswap_list.swap_from_network == net_2 %}
+                <div class='w3-container w3-card-4 w3-white' style='padding:25px;  border-radius:20px 20px 20px 0; '>
+                    <p>
+                        <h5 class='w3-text-blue w3-center w3-padding'> Kindly Transfer the sum of {{Airtimeswap_list.amount }} to {{num_2.phone_number}} ,follow the process below </h5>
+                    </p>
+                    <hr>
+
+                    <p>How to transfer on {{Airtimeswap_list.swap_from_network}} network
+                        <p>
+                            Dial:<b> *131*{{num_2.phone_number}}*{{Airtimeswap_list.amount }}*PIN# </b> If you don't have a PIN, Create new ,to use 1234 as your PIN Dial: <b>*132*00000*newpin*newpin#  {i.e *132*00000*1234*1234#}
+         </b> </p>
+
+                        {% elif Airtimeswap_list.swap_from_network == net_3 %}
+                        <div class='w3-container w3-card-4 w3-white' style='padding:25px;  border-radius:20px 20px 20px 0; '>
+                            <p>
+                                <h5 class='w3-text-blue w3-center w3-padding'> Kindly Transfer the sum of {{Airtimeswap_list.amount }} to {{num_3.phone_number}} ,follow the process below </h5>
+                            </p>
+                            <hr>
+                            <p>How to transfer on {{Airtimeswap_list.swap_from_network}} network
+                                <p>
+                                    Dial:<b> *223*{{num_3.phone_number}}*{{Airtimeswap_list.amount }}*PIN# </b> If you don't have a PIN, to use 1234 as your PIN Dial: *247*0000*new pin# {i.e *247*0000*1234#}
+                                </p>
+                                {% else %}
+                                <div class='w3-container w3-card-4 w3-white' style='padding:25px;  border-radius:20px 20px 20px 0; '>
+                                    <p>
+                                        <h5 class='w3-text-blue w3-center w3-padding'> Kindly Transfer the sum of {{Airtimeswap_list.amount }} to {{num_4.phone_number}} ,follow the process below </h5>
+                                    </p>
+                                    <hr>
+                                    <p>How to transfer on {{Airtimeswap_list.swap_from_network}} network
+                                        <p>
+                                            Dial:<b> *432*1*#</b> To {{num_4.phone_number}} If you don't have a PIN *432*1*# (Default pin:1234)</p>
+                                        {% endif %}
+                                        <hr>
+                                        <table class='w3-table'>
+
+                                            <tr>
+
+                                                <td><b>ID</b></td>
+                                                <td>{{Airtimeswap_list.ident}}</td>
+                                            </tr>
+
+                                            <tr>
+
+                                                <td><b>Depositor</b></td>
+                                                <td>{{user.username}}</td>
+
+                                            </tr>
+
+
+                                            <tr>
+                                                <td><b>Swap From Network</b></td>
+                                                <td>{{Airtimeswap_list.swap_from_network }}</td>
+                                            </tr>
+
+
+                                            <tr>
+
+                                                <td><b>Amount</b></td>
+                                                <td>#{{Airtimeswap_list.amount }}</td>
+                                            </tr>
+
+
+                                            <tr>
+
+                                                <td><b>Swap To Network</b></td>
+                                                <td>{{Airtimeswap_list.swap_to_network }}</td>
+                                            </tr>
+
+                                            <tr>
+
+                                                <td><b>Receive Amount</b></td>
+                                                <td>#{{Airtimeswap_list.Receivece_amount }}</td>
+                                            </tr>
+
+                                            <tr>
+
+                                                <td><b>Mobile Number</b></td>
+                                                <td>{{Airtimeswap_list.mobile_number}}</td>
+                                            </tr>
+
+
+                                            <tr>
+
+                                                <td><b>Payment Method</b></td>
+                                                <td> {{Airtimeswap_list.swap_from_network }} Transfer</td>
+                                            </tr>
+                                        </table>
+
+                                </div>
+                                <a href="{% url 'swap_change' Airtimeswap_list.pk %}" class="w3-button  w3-teal w3-round " style=' border-radius:0  0 20px 20px; '>Edit</a>
+                                <button type="button" onclick="document.getElementById('subscribe').style.display='block'" class="w3-button  w3-blue w3-round w3-right" style=' border-radius:0  0 20px 20px; '>Proceed</button>
+
+                                <div id="subscribe" class="w3-modal w3-animate-opacity">
+                                    <div class="w3-modal-content" style="padding:32px; border-radius:20px; margin-top:100px;">
+                                        <div class="w3-container w3-white">
+
+                                            <div class='w3-center'>
+                                                <span class=' class="w3-button  w3-green ' style=' border-radius:60px; padding:6px 14px 6px 14px; font-size:40px; '> ✓ </span>
+                                                <h5> <b>SUCCESS!</b></h5>
+
+                                                <p>Dear Customer , We will be shortly processing your request .</p>
+                                                <a href="{% url 'profile' %}" class="w3-button  w3-blue w3-margin-bottom" onclick="document.getElementById('subscribe').style.display='none' " style=' border-radius:10px; padding:6px 18px 6px 18px; '>OK</a>
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                </div>
+            </div>
+            {% endblock %}

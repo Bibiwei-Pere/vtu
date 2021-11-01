@@ -1,0 +1,60 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% load static %} {% load humanize %} {% block title %}Topuser|Husmodata.com{% endblock %} {% block content %}
+
+<link rel="stylesheet" href="{% static 'ogbam/form.css' %}">
+
+<div style="padding-top:120px; padding-bottom:90px;">
+
+
+    <h2 class="w3-center">retailer's website</h2>
+
+    <div class="box w3-card-4">
+
+        <form method='post'>
+
+
+            <div class="row">
+
+                <div class="col-sm-8">
+
+                    {% csrf_token %} {% include 'baseform.html' %}
+
+
+                    <button type="submit" value="Continue to Funding" class=" btn" style='background-image: linear-gradient(-20deg, #0500FF 0%, #0563FF 100%);margin-bottom:15px;'>Order website</button>
+
+                </div>
+                <div class="col-sm-4 ">
+  {% if form.non_field_errors %}
+                <div class="col-sm-4 ">
+
+
+                    {% for errormessage in form.non_field_errors %}
+
+                    <div class=' w3-red w3-round' style='padding:25px 10px;margin:0 0 20px; '>
+                        {{errormessage}}</div>
+                    {% endfor %}
+
+                </div>
+                {% endif %}
+
+
+   <div class="icon-container">
+
+                        <p>Note that Husmodata.com already have your basic information like Full Name, Email address and Phone Number. Below are the only details needed for the retailer's website. #15,000 + #5000 for ssl security will be debited from your wallet for this. Your website will be ready within 7-10 days. Kindly fill the below details to make order now..</p>
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+
+
+    </div>
+</div>
+</div>
+</div>
+{% endblock %}

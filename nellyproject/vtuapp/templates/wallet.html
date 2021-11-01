@@ -1,0 +1,99 @@
+{% extends 'base.html' %} {% load humanize %} {% block title %}History{% endblock %} {% block content %}
+
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
+<script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+
+<div class="m-4" style="padding-top:90px">
+
+    <h2 class=''> <b>Your wallet summary.</b> </h2>
+
+    <div class="">
+        <div class="">
+            <h4>FILTER</h4>
+        </div>
+
+    </div>
+    <hr>
+
+    <div class="mb-5 pb-5">
+
+        <!-- history start here -->
+        {% if wallet %}
+        <div class="card ">
+            <div class="card-header">
+                <h4 class="card-title">Wallet Summary</h4>
+            </div>
+            <div class="card-body">
+                
+                <div class="table-responsive">
+                    <table class='table table-bordered table-striped' id="myTable">
+                    <thead>
+        				<tr>
+                            <th>Reference</th>
+                            <th>Amount</th>
+                            <th>Product</th>
+                            <th>Previous Balance</th>
+                            <th>New Balance</th>
+                            <th>Date</th>
+                        </tr>
+        			</thead>
+        			<tfoot>
+        				<tr>
+                            <th>Reference</th>
+                            <th>Amount</th>
+                            <th>Product</th>
+                            <th>Previous Balance</th>
+                            <th>New Balance</th>
+                            <th>Date</th>
+                        </tr>
+        			</tfoot>
+        			
+        			<tbody>
+                        {% if wallet %}
+                            
+                            
+                            {% for dat in wallet %}
+                            <tr>
+                                <td>{{ dat.id}}</td>
+                                <td>&#8358;{{dat.amount}}</td>
+                                <td>{{dat.product}}</td>
+                                <td>&#8358;{{dat.previous_balance}}</td>
+                                <td>&#8358;{{dat.after_balance}}</td>
+                                <td> <span style="display:none;">{{forloop.counter}}</span> {{dat.create_date}}</td>
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                          No Transaction Record
+                        {% endif %}
+                    </tbody>
+                </table>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <!-- history end here -->
+
+    <!-- history end here -->
+
+
+
+    <script>
+        $(document).ready(function() {
+            $('#myTable').DataTable({
+                "order": [[ 0, "desc" ]]
+            });
+
+        });
+    </script>
+
+</div>
+</div>
+
+
+
+{% endblock %}
+
+
+

@@ -1,0 +1,117 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% load static %} {% load humanize %} {% block title %}Bank Payment|Husmodata.com{% endblock %} {% block content %}
+
+<link rel="stylesheet" href="{% static 'ogbam/form.css' %}">
+<link rel="stylesheet" href="{% static 'ogbam/w3.css' %}">
+
+<div style="padding:90px 15px 20px 15px" >
+
+
+    <div class="box w3-card-4">
+
+
+        <h3 class='w3-center'>Bank Payment Analysis </h3>
+
+
+
+        <p>
+            <h5 class='w3-text-blue w3-center w3-padding'> You are to Deposite the sum of {{bank.amount }} to any of the bank account below</h5>
+            <h5 class='w3-text-blue w3-center w3-padding'> Use this as Your Reference or Narration "{{bank.Reference}}" if it's bank transfer</h5>
+        </p>
+        <hr>
+
+
+
+        <div>
+
+{% if banks %}
+
+{% for bank in banks %}
+ <p style="font-size:18px;font-weight:bolder">
+  {{bank.bank_name}} <br>
+  {{bank.account_name}}<br>
+ {{bank.account_number}}<br>
+ 
+{% endfor %}
+
+{% endif %}
+
+
+            <hr>
+        </div>
+
+        <table class='table table-all'>
+
+            <tr>
+
+                <td><b>ID</b></td>
+                <td>{{bank.ident}}</td>
+            </tr>
+
+            <tr>
+
+                <td><b>Depositor</b></td>
+                <td>{{user.username}}</td>
+
+            </tr>
+
+            <tr>
+
+                <td><b>Amount</b></td>
+                <td>#{{bank.amount }}</td>
+            </tr>
+
+            <tr>
+
+                <td><b>Recieve Amount</b></td>
+                <td>#{{bank.Depositor_Name}} </td>
+            </tr>
+
+            <tr>
+
+                <td><b>Mobile Number</b></td>
+                <td>{{bank.Depositor_Phone}}</td>
+            </tr>
+
+            <tr>
+
+                <td class='w3-text-red'><b>Use this as Your Reference or Narration </b></td>
+                <td>{{bank.Reference}}</td>
+            </tr>
+
+            <tr>
+
+                <td><b>Payment Method</b></td>
+                <td> Bank payment</td>
+            </tr>
+        </table>
+
+    </div>
+
+    <button type="button" onclick="document.getElementById('subscribe').style.display='block'" class="w3-button  w3-orange w3-round w3-right" style=' border-radius:0  0 20px 20px; '>Proceed</button>
+
+    <div id="subscribe" class="w3-modal w3-animate-opacity">
+        <div class="w3-modal-content" style="padding:32px; border-radius:20px; margin-top:100px;">
+            <div class="w3-container w3-white">
+
+                <div class='w3-center'>
+                    <span class=' class="w3-button  w3-green ' style=' border-radius:60px; padding:6px 14px 6px 14px; font-size:40px; '> ✓ </span>
+                    <h5> <b>SUCCESS!</b></h5>
+
+                    <p>Dear Customer , We will be shortly processing your request .</p>
+                    <a href="{% url 'profile' %}" class="w3-button  w3-brown w3-margin-bottom" onclick="document.getElementById('subscribe').style.display='none' " style=' border-radius:10px; padding:6px 18px 6px 18px; '>OK</a>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+</div>
+{% endblock %}

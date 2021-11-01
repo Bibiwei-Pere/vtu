@@ -1,0 +1,1919 @@
+ {% extends 'base.html' %} {% load static %} {% load humanize %} {% load notifications_tags %} {% block title %} Dashboard  | Husmodata.com{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
+
+<style>
+      #process, #process2,#output{
+        display: none;
+    }
+
+
+.swal-overlay {
+  background-color: rgba(43, 165, 137, 0.45);
+}
+
+
+.swal-button {
+  padding: 7px 19px;
+  border-radius: 2px;
+  background-color: #4962B3;
+  font-size: 12px;
+  border: 1px solid #3e549a;
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
+}
+</style>
+
+
+
+ <script>
+
+ function greet() {
+
+  var greeting;
+  var time = new Date().getHours();
+  if (time < 10) {
+    greeting = "Good morning,";
+  } else if (time < 20) {
+    greeting = "Good day,";
+  } else {
+    greeting = "Good evening,";
+  }
+  document.getElementById("greet").innerHTML = greeting;
+}
+    </script>
+
+
+
+<script src="https://unpkg.com/sweetalert/dis/sweetalert.min.js"></script>
+{% if alert %}
+	{%for  alerty in alert %}
+		{% if alerty.image %}
+    		<script>
+    			Swal.fire({
+    				title: 'Notifications!',
+    				text: '{{alerty}}',
+    				imageUrl: '{{alerty.image.url}}',
+    				imageWidth: 400,
+    				imageHeight: 200,
+    			})
+    		</script>
+		{% else %}
+			<script>
+				Swal.fire("Notifications", '{{alerty.message}}')
+			</script>
+		{%  endif %}
+	{%  endfor %}
+{%  endif %}
+
+
+
+
+
+<div class="container">
+
+
+
+	<div class="panel-header bg-secondary-gradient  py-3 bubble-shadow" style="">
+		<div class="page-inner py-5">
+			<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row py-4">
+				<div>
+					<h2 class="text-white pb-2 fw-bold">Welcome to Husmodata</h2>
+					<h5 class="text-white mb-2" style="font-size: 14px;">Refer people to Husmodata.com and get 5% of their first payment
+</h5>
+					<p class="mb-0 text-white" style="font-size: 13px;"> <b>Referal Link:</b>
+						<span class="data-toggle=" id="mytext">https://www.Husmodata.com?referal={{user.username}}</span>
+						<span class="badge badge-dark" onclick="CopyToClipboard('mytext');"  style="cursor: pointer;">copy</span>
+
+					</p>
+				</div>
+				<div class="ml-md-auto py-2 py-md-0">
+					<button type="button" class="btn btn-info btn-round mr-2" data-toggle="modal" data-target="#fundWalletModal">
+						Fund Wallet
+					</button>
+					{% if user.is_superuser or user.is_staff %}
+						<a href= "/404/page-not-found-error/page/" class="btn btn-info btn-round text-white">Admin Panel</a>
+					{% endif %}
+
+						<a href= "/404/page-not-found-error/page/" class="btn btn-info btn-round text-white" style="visibility:hidden">.</a>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="page-inner mt--5">
+
+
+		<div class="row mt--2">
+			<div class="col-md-12">
+
+				<div class="card full-height">
+					<div class="card-body">
+						<div class="card-title"><span id="greet"></span> <b>{{user.username}}</b></div> <hr>
+						 <p class="text-center " style='font-size:20px;'><b> Package :    {{user.user_type}} <b></p>
+					 <center>
+
+								<span style='font-size:20px;font-weight: bolder;'>Account status:</span>
+		<!--				 {% if user.verify %}-->
+		<!--				  <img src="/static/verify-logo.png" height="50px">-->
+
+		<!--				 {% else %}-->
+		<!--						{% if verify %}-->
+		<!--						 {% if verify.status == 'Approved' %}-->
+
+		<!--						 <img src="/static/verify-logo.png" height="50px">-->
+
+		<!--						 {% elif verify.status == 'processing' %}-->
+
+		<!--						 Your Account verification in progress-->
+
+		<!--						 {% else %}-->
+		<!--						 Your Account verification is not approved due to {{verify.comment}} <a href="{%url 'kyc' %}" class="btn btn-info">Click here</a>-->
+		<!--						 {% endif %}-->
+
+		<!--						{% else  %}-->
+		<!--					  Your Account is no yet verified , Your Transaction is limit to ₦100,000 per day  <a href="{%url 'kyc' %}">Click here</a> to verify it-->
+		<!--					   {% endif  %}-->
+
+		<!--					   {% endif %}-->
+
+
+		<!--					 </center>-->
+		<!--					 <br><br>-->
+		<!--				  <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1" style="margin-bottom:5px;">FAQ regards Affilliate package. </a>-->
+  <!--<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2"  style="margin-bottom:5px;">FAQ regards Topuser package. </button>-->
+  <!-- <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample3"  style="margin-bottom:5px;">FAQ regards API users. </button>-->
+
+
+<div class="container">
+
+    <div class="collapse multi-collapse" id="multiCollapseExample1">
+      <div class="card card-body">
+     <p>When you upgrade you can buy MTN 1GB at 305 2GB at 610 E.t.c</p>
+<br>
+<p>MTN VTU 4% discount off.</p>
+<p>MTN share and sell 7% discount off.</p>
+<p>Glo VTU at 5% discount off.</p>
+<p>Airtel 3% discount off.</p>
+<p>9mobile 3% discount.</p>
+<p>Note, other network data plans has also been adjusted</p>
+<p>Lower if you upgrade you see it.&nbsp;</p>
+<p>Kindly take action to upgrade or ignore.</p>
+<p>Our support Team may not explain more on this when you chat us, as necessary information has been shared via FAQ</p>
+<p><br></p>
+<p>Note: This is one time payment no any subsequent payment involved</p></div>
+    </div>
+
+
+
+    <div class="collapse multi-collapse" id="multiCollapseExample3">
+      <div class="card card-body">
+
+
+<p>The Husmodata.com API is a RESTful API that allows you to integrate bills payment services available on the Husmodata.com platform on your application.</p>
+<p>Services available on the Husmodata.com API include:</p>
+<p>&nbsp;</p>
+<p><strong>Airtime VTU</strong></p>
+<p>MTN VTU Airtime</p>
+<p>Airtel VTU Airtime</p>
+<p>Glo VTU Airtime</p>
+<p>9mobile VTU Airtime</p>
+<p>&nbsp;</p>
+<p><strong>Data</strong></p>
+<p>MTN Data Bundle</p>
+<p>Airtel Data Bundle</p>
+<p>Glo Data Bundle</p>
+<p>9mobile Data Bundle</p>
+<p>&nbsp;</p>
+<p><strong>Electricity Payment</strong></p>
+<p>Abuja Electricity Distribution Company (AEDC) – Prepaid &amp; Postpaid</p>
+<p>Port Harcourt Electricity Distribution Company (PHED) – Prepaid &amp; Postpaid</p>
+<p>Ikeja Electricity Distribution Company (IKEDC) – Prepaid &amp; Postpaid</p>
+<p>Eko Electricity Distribution Company (EKEDC) – Prepaid &amp; Postpaid</p>
+<p>Jos Electricity Distribution PLC (JEDplc) – Prepaid &amp; Postpaid</p>
+<p>Kano Electricity Distribution Company (KEDCO) – Prepaid &amp; Postpaid</p>
+<p>&nbsp;</p>
+<p><strong>TV Subscription</strong></p>
+<p>DSTV subscription payment</p>
+<p>GOTV Subscription Payment</p>
+<p>Startimes Subscription Payment</p>
+<p>&nbsp;</p>
+<p><strong>Education Payment</strong></p>
+<p>WAEC Registration PINs</p>
+<p>NECO Result checker PINs</p>
+<p>&nbsp;</p>
+
+<p><strong>Recharge Card printing</strong></p>
+<p>MTN </p>
+<p>Airtel </p>
+<p>Glo </p>
+<p>9mobile </p>
+<p>&nbsp;</p>
+
+<p>  contact admin to upgrade to api user </p>
+
+	    </div>
+    </div>
+
+
+
+    <div class="collapse multi-collapse" id="multiCollapseExample2">
+      <div class="card card-body">
+      <p>When you upgrade you can buy MTN 1GB at 295 2GB at 590 E.t.c</p>
+<p>MTN VTU 4% discount off.</p>
+<p>MTN share and sell 7% discount off.</p>
+<p>Glo VTU at 5% discount off.</p>
+<p>Airtel 3% discount off.</p>
+<p>9mobile 3% discount.</p>
+<p>Note, other network data plans has also been adjusted</p>
+<p>Lower if you upgrade you see it. Click here&nbsp;</p>
+<p>Kindly take action to upgrade or ignore.</p>
+<p>Our support Team may not explain more on this when you chat us, as necessary information has been shared via FAQ</p>
+<p><br></p>
+<p>Note: This is one time payment no any subsequent payment involved</p> </div>
+    </div>
+  </div>
+</div>
+
+
+
+ {% if messages %} {% for message in messages %} {% if message.tags == 'success'%}
+
+
+            <div class="alert alert-success" role="alert">
+              <span onclick="this.parentElement.style.display='none'" style="text-align:right">&times;</span>
+         <span class="glyphicon glyphicon-ok " aria-hidden="true"></span>
+         <span class="sr-only">Success!</span>
+        {{message}}.
+       </div>
+
+
+           {% elif message.tags == 'info'%}
+            <div class="alert alert-info" role="alert">
+              <span onclick="this.parentElement.style.display='none'" style="text-align:right">&times;</span>
+         <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+         <span class="sr-only">Info!</span>
+        {{message}}.
+       </div>
+
+      {% endif %}  {% endfor %} {% endif %}
+
+    {% comment %} <p style="margin:10px; background-image:linear-gradient(45deg,#477f9a,#465abdd9);background-color:#ff0000;border-radius:10px;color:white;padding:7px;font-size:14px;"><span style="color:orange"><b>**NEW**</b></span>&nbsp; Own a Husmodata.com retailer website and retail all our services; Such as DATA, Recharge cards printing, AIRTIME and BILLS Payment. <a class="w3-btn  w3-border w3-round-large" href="/retailer_faq/" style="background-color:white;color:blue;">Click Here</a></p> {% endcomment %}
+
+
+
+    <div class="mt-4">
+		<ul class="nav nav-tabs" id="myTab" role="tablist">
+			<li class="nav-item">
+				<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">WEMA BANK</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">ROLEZ BANK</a>
+			</li>
+		</ul>
+
+		<div class="tab-content" id="myTabContent">
+			<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+				<div class="card card-dark bg-secondary-gradient">
+					<div class="card-body skew-shadow">
+						<img src="https://upload.wikimedia.org/wikipedia/en/e/ef/Wema_Bank_Plc.jpg" height="60" alt="Visa Logo">
+
+						{% with user.f_account.accounts|first as first %}
+							<h2 class="py-4 mb-0">
+								Account Number:{{ first.accountNumber }}
+							</h2>
+
+							<div class="row">
+								<div class="col-8 pr-0">
+									<h3 class="fw-bold mb-1">Account Name: Husmodata - {{user.username}}</h3>
+									<h3 class="fw-bold mb-1">Bank Name: {{first.bankName }}</h3>
+									<br>
+									<div class="text-small text-uppercase fw-bold op-8">Automated Bank Transfer</div>
+									<p class="text-small ">Make transfer to this account to fund your wallet </p>
+								</div>
+								<div class="col-4 pl-0 text-right">
+									<h3 class="fw-bold mb-1">₦50</h3>
+									<div class="text-small text-uppercase fw-bold op-8">Charge</div>
+								</div>
+							</div>
+						{% endwith %}
+
+					</div>
+				</div>
+			</div>
+
+			<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+				  <div class="card card-dark bg-primary-gradient">
+					<div class="card-body skew-shadow">
+						<img src="https://1000logos.net/wp-content/uploads/2017/05/Rolex-logo.png" height="60" alt="Rolex Logo">
+
+						{% with user.f_account.accounts|last as last %}
+							<h2 class="py-4 mb-0">
+								Account Number:{{ last.accountNumber }}
+							</h2>
+
+							<div class="row">
+								<div class="col-8 pr-0">
+									<h3 class="fw-bold mb-1">Account Name: Husmodata - {{user.username}}</h3>
+									<h3 class="fw-bold mb-1">Bank Name: {{last.bankName }}</h3>
+									<br>
+									<div class="text-small text-uppercase fw-bold op-8">Automated Bank Transfer</div>
+									<p class="text-small ">Make transfer to this account to fund your wallet </p>
+								</div>
+								<div class="col-4 pl-0 text-right">
+									<h3 class="fw-bold mb-1">₦50</h3>
+									<div class="text-small text-uppercase fw-bold op-8">Charge</div>
+								</div>
+							</div>
+						{% endwith %}
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% if alert %}
+{%for  alerty in alert %}
+<marquee style="background-color: white; color: darkblue; padding: 10px; font-size: 25px;;">  {{alerty}} </marquee>
+{%  endfor %}
+{%  endif %}
+
+						<div class="row">
+						<div class="col-6 col-lg-3">
+							<div class="card p-3">
+								<div class="d-flex align-items-center">
+									<span class="stamp stamp-md bg-primary mr-3">
+										<i class="fas fa-history"></i>
+									</span>
+									<div>
+										<h5 class="mb-1"><b><a href="{%url 'history' %}">Transactions</a></b></h5>
+
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-6 col-lg-3">
+							<div class="card p-3">
+								<div class="d-flex align-items-center">
+									<span class="stamp stamp-md bg-primary mr-3">
+										<i class="fas fa-history"></i>
+									</span>
+									<div>
+										<h5 class="mb-1"><b><a href="{%url 'wallet' %}"> Wallet summary</a></b></h5>
+
+									</div>
+								</div>
+							</div>
+						</div>
+
+					{% if user.is_superuser or user.is_staff %}	<div class="col-6 col-lg-3">
+							<div class="card p-3">
+								<div class="d-flex align-items-center">
+									<span class="stamp stamp-md bg-primary mr-3">
+										<i class="fas fa-bell"></i>
+									</span>
+									<div>
+										<h5 class="mb-1"><b><a href="{% url 'notify_user' %}">Notifiy users</a></b></h5>
+
+									</div>
+								</div>
+							</div>
+						</div>
+						{% endif %}
+						<!--   {% if user.user_type == "Smart Earner" %}-->
+						<!--<div class="col-6 col-lg-3">-->
+						<!--	<div class="card p-3">-->
+						<!--		<div class="d-flex align-items-center">-->
+						<!--			<span class="stamp stamp-md bg-success mr-3">-->
+						<!--				<i class="fa fa-shopping-cart"></i>-->
+						<!--			</span>-->
+						<!--			<div>-->
+						<!--				<h5 class="mb-1"><b><a href="javascript:void()" id = "Affilliate" class="  " style= "margin-bottom:5px;">  <span id="process"><i class="fa fa-circle-o-notch fa-spin " style="font-size: 30px;animation-duration: 1s;"></i> Upgrading Please wait </span>  <span id ="displaytext">Upgrade to Affilliate &#8358;1,000 </span></a> <br>-->
+      <!--     </b></h5>-->
+
+						<!--			</div>-->
+						<!--		</div>-->
+						<!--	</div>-->
+						<!--</div>-->
+						<!--<div class="col-6 col-lg-3">-->
+						<!--	<div class="card p-3">-->
+						<!--		<div class="d-flex align-items-center">-->
+						<!--			<span class="stamp stamp-md bg-danger mr-3">-->
+						<!--				<i class="fa fa-users"></i>-->
+						<!--			</span>-->
+						<!--			<div>-->
+						<!--					<h5 class="mb-1"><b><a href="javascript:void()" id = "Topuser" class="  " style= "margin-bottom:5px;">  <span id="process"><i class="fa fa-circle-o-notch fa-spin " style="font-size: 30px;animation-duration: 1s;"></i> Upgrading Please wait </span>  <span id ="displaytext">Upgrade to Topuser &#8358;2,000 </span></a> <br>-->
+      <!--     </b></h5>-->
+						<!--			</div>-->
+						<!--		</div>-->
+						<!--	</div>-->
+						<!--</div>-->
+
+						<!-- {% elif user.user_type == "Affilliate" %}-->
+						<!-- 	<div class="col-6 col-lg-3">-->
+						<!--	<div class="card p-3">-->
+						<!--		<div class="d-flex align-items-center">-->
+						<!--			<span class="stamp stamp-md bg-danger mr-3">-->
+						<!--				<i class="fa fa-users"></i>-->
+						<!--			</span>-->
+						<!--			<div>-->
+						<!--					<h5 class="mb-1"><b><a href="javascript:void()" id = "Topuser" class="  " style= "margin-bottom:5px;">  <span id="process"><i class="fa fa-circle-o-notch fa-spin " style="font-size: 30px;animation-duration: 1s;"></i> Upgrading Please wait </span>  <span id ="displaytext">Upgrade to Topuser &#8358;2,000 </span></a> <br>-->
+      <!--     </b></h5>-->
+						<!--			</div>-->
+						<!--		</div>-->
+						<!--	</div>-->
+						<!--</div>-->
+						<!--{% endif %}-->
+
+
+					</div>
+
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+
+			{% if user.is_superuser or user.is_staff %}
+			<div class="container">
+
+<div class="card"><div class="card-header">
+									<h4 class="card-title">Sales & Accounting</h4>
+								</div>
+								<div class="card-body">
+								<form id="salesCheckForm">
+								 {% csrf_token %}
+									<div class="row">
+
+									<div class="col-md-4">
+											<div class="form-group">
+												<label>Start Date</label>
+												<div class="input-group">
+													<input type="text" class="form-control" id="datepicker" name="start_date" required>
+													<div class="input-group-append">
+														<span class="input-group-text">
+															<i class="fa fa-calendar-check"></i>
+														</span>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="col-md-4">
+											<div class="form-group">
+												<label>End Date</label>
+												<div class="input-group">
+													<input type="text" class="form-control" id="datepicker2" name="end_date" required>
+													<div class="input-group-append">
+														<span class="input-group-text">
+															<i class="fa fa-calendar-check"></i>
+														</span>
+													</div>
+												</div>
+											</div>
+										</div>
+
+
+<div class="col-md-4">
+											<div class="form-group">
+												<label>Click to calculate</label>
+												<div class="input-group">
+													<button type="submit" class="btn btn-primary" id="calculate">
+											<span class="btn-label">
+												<i class="fas fa-calculator"></i>
+											</span>
+											Calculate
+										</button>
+												</div>
+											</div>
+										</div>
+
+										</div>
+
+									</div>
+									</form>
+<div class="container" id="output">
+<div class="row py-4 border-bottom">
+<div class="col-sm-2 text-uppercase">
+
+            </div>
+            <div class="col-sm-4 text-uppercase">
+                CREDIT TRANSACTION <br>
+                <span id="credit" style="font-size: 40px; font-weight: bold;"></span>
+            </div>
+
+              <div class="col-sm-4 text-uppercase">
+                DEBIT TRANSACTION <br>
+                <span id="debit" style="font-size: 40px; font-weight: bold;"></span>
+            </div>
+			<div class="col-sm-2 text-uppercase">
+
+            </div>
+        </div>
+									<div class="row row-card-no-pd mt--2">
+						<div class="col-12 col-sm-6 col-md-3">
+							<div class="card">
+								<div class="card-body">
+									<div class="d-flex justify-content-between">
+										<div>
+											<h5><b>MTN Data Sold</b></h5>
+
+										</div>
+										<h3 class="text-info fw-bold" id='mtn_dataSold_total'></h3>
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+						<div class="col-12 col-sm-6 col-md-3">
+							<div class="card">
+								<div class="card-body">
+									<div class="d-flex justify-content-between">
+										<div>
+											<h5><b>GLO Data Sold</b></h5>
+
+										</div>
+										<h3 class="text-info fw-bold" id='glo_dataSold_total'></h3>
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+						<div class="col-12 col-sm-6 col-md-3">
+							<div class="card">
+								<div class="card-body">
+									<div class="d-flex justify-content-between">
+										<div>
+											<h5><b>9MOBILE Data Sold</b></h5>
+
+										</div>
+										<h3 class="text-info fw-bold" id='eti_dataSold_total'></h3>
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+						<div class="col-12 col-sm-6 col-md-3">
+							<div class="card">
+								<div class="card-body">
+									<div class="d-flex justify-content-between">
+										<div>
+											<h5><b>AIRTEL Data Sold</b></h5>
+
+										</div>
+										<h3 class="text-info fw-bold" id='airtel_dataSold_total'></h3>
+									</div>
+
+								</div>
+							</div>
+						</div>
+						<div class="col-12 col-sm-6 col-md-3">
+							<div class="card">
+								<div class="card-body">
+									<div class="d-flex justify-content-between">
+										<div>
+											<h5><b>MTN Airtime Sold</b></h5>
+
+										</div>
+										<h3 class="text-success fw-bold" id='mtn_airtimeSold_total'></h3>
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+						<div class="col-12 col-sm-6 col-md-3">
+							<div class="card">
+								<div class="card-body">
+									<div class="d-flex justify-content-between">
+										<div>
+											<h5><b>GLO Airtime Sold</b></h5>
+
+										</div>
+										<h3 class="text-success fw-bold" id='glo_airtimeSold_total'></h3>
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+						<div class="col-12 col-sm-6 col-md-3">
+							<div class="card">
+								<div class="card-body">
+									<div class="d-flex justify-content-between">
+										<div>
+											<h5><b>9MOBILE Airtime Sold</b></h5>
+
+										</div>
+										<h3 class="text-success fw-bold" id='eti_airtimeSold_total'></h3>
+									</div>
+
+								</div>
+							</div>
+						</div>
+						<div class="col-12 col-sm-6 col-md-3">
+							<div class="card">
+								<div class="card-body">
+									<div class="d-flex justify-content-between">
+										<div>
+											<h5><b>AIRTEL Airtime Sold</b></h5>
+
+										</div>
+										<h3 class="text-success fw-bold" id='airtel_airtimeSold_total'></h3>
+									</div>
+
+								</div>
+							</div>
+						</div>
+						<div class="col-12 col-sm-6 col-md-3">
+							<div class="card">
+								<div class="card-body">
+									<div class="d-flex justify-content-between">
+										<div>
+											<h5><b>Smile Data Sold Amount </b></h5>
+
+										</div>
+										<h3 class="text-danger fw-bold" id='smile'></h3>
+									</div>
+
+								</div>
+							</div>
+						</div>
+						<div class="col-12 col-sm-6 col-md-3">
+							<div class="card">
+								<div class="card-body">
+									<div class="d-flex justify-content-between">
+										<div>
+											<h5><b>Cablesub</b></h5>
+
+										</div>
+										<h3 class="text-secondary fw-bold" id="cable"></h3>
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+							<div class="col-12 col-sm-6 col-md-3">
+							<div class="card">
+								<div class="card-body">
+									<div class="d-flex justify-content-between">
+										<div>
+											<h5><b>Bill Payment</b></h5>
+
+										</div>
+										<h3 class="text-secondary fw-bold" id="bill"></h3>
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+
+							<div class="col-12 col-sm-6 col-md-3">
+							<div class="card">
+								<div class="card-body">
+									<div class="d-flex justify-content-between">
+										<div>
+											<h5><b>Result Checker</b></h5>
+
+										</div>
+										<h3 class="text-secondary fw-bold" id="result"></h3>
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+
+
+							<div class="col-12 col-sm-6 col-md-3">
+							<div class="card">
+								<div class="card-body">
+									<div class="d-flex justify-content-between">
+										<div>
+											<h5><b>Manual Bank Transfer</b></h5>
+
+										</div>
+										<h3 class="text-secondary fw-bold" id="total_bank_payments"></h3>
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+							<div class="col-12 col-sm-6 col-md-3">
+							<div class="card">
+								<div class="card-body">
+									<div class="d-flex justify-content-between">
+										<div>
+											<h5><b>Payment Gateway</b></h5>
+
+										</div>
+										<h3 class="text-secondary fw-bold" id="total_atm_payments"></h3>
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+
+							<div class="col-12 col-sm-6 col-md-3">
+							<div class="card">
+								<div class="card-body">
+									<div class="d-flex justify-content-between">
+										<div>
+											<h5><b>Coupon Payment  </b></h5>
+
+										</div>
+										<h3 class="text-info fw-bold" id="total_coupon_payments"></h3>
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+						<div class="col-12 col-sm-6 col-md-3">
+							<div class="card">
+								<div class="card-body">
+									<div class="d-flex justify-content-between">
+										<div>
+											<h5><b>Recharge Card printing </b></h5>
+
+										</div>
+										<h3 class="text-danger fw-bold" id="rcard"></h3>
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+                    <div class="row">
+					<div class="col-sm-6 ">
+
+					<div class="card">
+								<div class="card-header">
+									<div class="card-title">Data Sold Chart</div>
+								</div>
+								<div class="card-body">
+									<div class="chart-container"><div class="chartjs-size-monitor" style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+										<canvas id="multipleLineChart" width="412" height="300" class="chartjs-render-monitor" style="display: block; width: 412px; height: 300px;"></canvas>
+									</div>
+								</div>
+							</div>
+
+					</div>
+
+					<div class="col-sm-6 ">
+
+						<div class="card">
+								<div class="card-header">
+									<div class="card-title">Airtime Sold Chart</div>
+								</div>
+								<div class="card-body">
+									<div class="chart-container"><div class="chartjs-size-monitor" style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+										<canvas id="multipleLineChart2" width="412" height="300" class="chartjs-render-monitor" style="display: block; width: 412px; height: 300px;"></canvas>
+									</div>
+								</div>
+							</div>
+					</div>
+
+<div class="col-sm-6 ">
+
+
+							<div class="card">
+								<div class="card-header">
+									<div class="card-title">Eletricity Bill Payment Chart</div>
+								</div>
+								<div class="card-body">
+									<div class="chart-container"><div class="chartjs-size-monitor" style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+										<canvas id="multipleBarChart" width="409" height="300" class="chartjs-render-monitor" style="display: block; width: 409px; height: 300px;"></canvas>
+									</div>
+								</div>
+							</div>
+
+	</div>
+
+
+
+
+<div class="col-sm-6 "><div class="card">
+								<div class="card-header">
+									<div class="card-title">Cable Sold Chart</div>
+								</div>
+								<div class="card-body">
+									<div class="chart-container"><div class="chartjs-size-monitor" style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+										<canvas id="multipleLineChart3" width="412" height="300" class="chartjs-render-monitor" style="display: block; width: 412px; height: 300px;"></canvas>
+									</div>
+								</div>
+							</div>
+					</div>
+
+
+						</div>
+
+								</div>
+								</div>
+
+
+								</div>
+							{% endif %}
+							<div class="container">
+		<div class="row mb-3 mt-3">
+			<div class="col-sm-6 col-md-4">
+				<div class="card card-stats card-round">
+					<div class="card-body ">
+						<div class="row align-items-center">
+							<div class="col-icon">
+								<div class="icon-big text-center icon-primary bubble-shadow-small">
+									<i class="fas fa-wallet"></i>
+								</div>
+							</div>
+							<div class="col col-stats ml-3 ml-sm-0">
+								<div class="numbers">
+									<p class="card-category">Wallet Balance</p>
+									<h4 class="card-title">&#8358; {{user.Account_Balance|intcomma}}</h4>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="col-sm-6 col-md-4">
+				<div class="card card-stats card-round">
+					<div class="card-body">
+						<div class="row align-items-center">
+							<div class="col-icon">
+								<div class="icon-big text-center icon-primary bubble-shadow-small">
+									<i class="flaticon-coins"></i>
+								</div>
+							</div>
+							<div class="col col-stats ml-3 ml-sm-0">
+								<div class="numbers">
+									<p class="card-category">Referral Bonus</p>
+									<h4 class="card-title">&#8358; {{user.Referer_Bonus|intcomma}}</h4>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6 col-md-4">
+				<div class="card card-stats card-round">
+					<div class="card-body">
+						<div class="row align-items-center">
+							<div class="col-icon">
+								<div class="icon-big text-center icon-primary bubble-shadow-small">
+									<i class="icon-people"></i>
+								</div>
+							</div>
+							<div class="col col-stats ml-3 ml-sm-0">
+								<div class="numbers">
+									<p class="card-category"> My Total Referral </p>
+									<h4 class="card-title">{{referral | intcomma}}</h4>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			{% if user.is_superuser or user.is_staff %}
+			<div class="col-sm-6 col-md-4">
+				<div class="card card-stats card-round">
+					<div class="card-body">
+						<div class="row align-items-center">
+							<div class="col-icon">
+								<div class="icon-big text-center icon-primary bubble-shadow-small">
+									<i class="fas fa-file-invoice-dollar"></i>
+								</div>
+							</div>
+							<div class="col col-stats ml-3 ml-sm-0">
+								<div class="numbers">
+									<p class="card-category">Total User Wallet</p>
+									<h4 class="card-title">&#8358; {{twallet |intcomma}}</h4>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+			<div class="col-sm-6 col-md-4">
+				<div class="card card-stats card-round">
+					<div class="card-body">
+						<div class="row align-items-center">
+							<div class="col-icon">
+								<div class="icon-big text-center icon-primary bubble-shadow-small">
+									<i class="flaticon-presentation"></i>
+								</div>
+							</div>
+							<div class="col col-stats ml-3 ml-sm-0">
+								<div class="numbers">
+									<p class="card-category">Total User Bonus</p>
+									<h4 class="card-title">&#8358; {{tbonus |intcomma}}</h4>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-sm-6 col-md-4">
+				<div class="card card-stats card-round">
+					<div class="card-body">
+						<div class="row align-items-center">
+							<div class="col-icon">
+								<div class="icon-big text-center icon-primary bubble-shadow-small">
+									<i class="icon-people"></i>
+								</div>
+							</div>
+							<div class="col col-stats ml-3 ml-sm-0">
+								<div class="numbers">
+									<p class="card-category"> Total Registered Users </p>
+									<h4 class="card-title">{{users | intcomma}}</h4>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			{% endif %}
+		</div>
+
+
+		<div class="row">
+			<div class="col-md-4">
+				<div class="card card-dark bg-info-gradient">
+					<div class="card-body bubble-shadow">
+						<h3>Notifications</h3>
+
+					 {% if Noti %}	<h5 class="op-8">{% for notice in Noti %} {{notice.verb}} {% endfor %}.</h5>
+
+							<a href="/Notifications/" class="btn btn-info">all messages</a>
+
+
+						{% endif %}
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="card card-dark bg-info-gradient">
+					<div class="card-body bubble-shadow">
+						<h3>FAQs:</h3>
+						<h5 class="op-9">Please go through them to have a better knowledge of this platform</h5>
+							<a href="/FAQ/" class="btn btn-info text-white">
+								<i class="fas fa-question"></i> FAQs
+							</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="card card-dark bg-info-gradient">
+					<div class="card-body bubble-shadow">
+						<h3>Support Team:</h3>
+						<h5 class="op-9">Have anything to say to us? Please contact our Support Team on Whatsapp </h5>
+
+							<a href="https://wa.me/{{support_phone}}/" class="btn btn-success"> <i class="fab fa-whatsapp"></i> whatsapp us</a>
+						  <br>
+						  <br>
+							<a href="{{whatsapp_group_link}}" class="btn btn-success"> <i class="fab fa-whatsapp"></i> Join Our Whatsapp group</a>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="row">
+			<div class="col-6 col-sm-4 col-lg-3">
+				<a href="{% url 'topup' %}">
+					<div class="card">
+						<div class="card-body p-3 text-center">
+							<span style="font-size: 30px;">
+								<img src="/static/dashboard/assets/img/airtime.svg" height="100px">
+							</span>
+							<div class="h4 m-2 text-dark">Airtime TopUp</div>
+						</div>
+					</div>
+				</a>
+			</div>
+			<div class="col-6 col-sm-4 col-lg-3">
+				<a href="{% url 'data' %}">
+					<div class="card">
+						<div class="card-body p-3 text-center">
+							<span style="font-size: 30px;">
+								<img src="/static/dashboard/assets/img/data.jpg" height="100px">
+							</span>
+							<div class="h4 m-2 text-dark">Buy Data</div>
+						</div>
+					</div>
+				</a>
+			</div>
+			<div class="col-6 col-sm-4 col-lg-3">
+				<a href="/Airtime_funding/">
+					<div class="card">
+						<div class="card-body p-3 text-center">
+							<span style="font-size: 30px;">
+								<img src="/static/dashboard/assets/img/airtime2cash.jpg" height="100px">
+							</span>
+							<div class="h4 m-2 text-dark">Airtime to cash</div>
+						</div>
+					</div>
+				</a>
+			</div>
+			<div class="col-6 col-sm-4 col-lg-3">
+				<a href="{% url 'bill' %}">
+					<div class="card">
+						<div class="card-body p-3 text-center">
+							<span style="font-size: 30px;">
+								<img src="/static/dashboard/assets/img/utility.jpg" height="100px">
+							</span>
+							<div class="h4 m-2 text-dark">Electricity Bills</div>
+						</div>
+					</div>
+				</a>
+			</div>
+			<div class="col-6 col-sm-4 col-lg-3">
+				<a href="{% url 'cablesub' %}">
+					<div class="card">
+						<div class="card-body p-3 text-center">
+							<span style="font-size: 30px;">
+								<img src="/static/dashboard/assets/img/cable.jpg" height="100px">
+							</span>
+							<div class="h4 m-2 text-dark">Cable Subscription</div>
+						</div>
+					</div>
+				</a>
+			</div>
+			<div class="col-6 col-sm-4 col-lg-3">
+				<a href="{% url 'bonus' %}">
+					<div class="card">
+						<div class="card-body p-3 text-center">
+							<span style="font-size: 10px;">
+								<img src="/static/dashboard/assets/img/fundacc.JPG" height="100px">
+							</span>
+							<div class="h4 m-2 text-dark">Bonus to wallet</div>
+						</div>
+					</div>
+				</a>
+			</div>
+			{% if  user.is_superuser %}
+
+			<div class="col-6 col-sm-4 col-lg-3">
+				<a href="{% url 'transfer' %}">
+					<div class="card">
+						<div class="card-body p-3 text-center">
+							<span style="font-size: 30px;">
+								<img src="/static/dashboard/assets/img/transfer.svg" height="100px">
+							</span>
+							<div class="h4 m-2 text-dark">Transfer to other user</div>
+						</div>
+					</div>
+				</a>
+			</div>
+
+			{% endif %}
+			<div class="col-6 col-sm-4 col-lg-3">
+				<a href="{% url 'bulksms' %}">
+					<div class="card">
+						<div class="card-body p-3 text-center">
+							<span style="font-size: 30px;">
+								<img src="/static/dashboard/assets/img/sms.png" height="100px">
+							</span>
+							<div class="h4 m-2 text-dark">Bulk SMS</div>
+						</div>
+					</div>
+				</a>
+			</div>
+			<div class="col-6 col-sm-4 col-lg-3">
+				<a href="{% url 'Result_Checker' %}">
+					<div class="card">
+						<div class="card-body p-3 text-center">
+							<span style="font-size: 30px;">
+								<img src="/static/dashboard/assets/img/resultchecker.png" height="100px">
+							</span>
+							<div class="h4 m-2 text-dark">Result Checker</div>
+						</div>
+					</div>
+				</a>
+			</div>
+
+			<div class="col-6 col-sm-4 col-lg-3">
+				<a href="{% url 'recharge' %}">
+					<div class="card">
+						<div class="card-body p-3 text-center">
+							<span style="font-size: 30px;">
+								<img src="/static/styling/images/printer.svg" height="100px">
+							</span>
+							<div class="h4 m-2 text-dark">Recharge card Printing</div>
+						</div>
+					</div>
+				</a>
+			</div>
+			<div class="col-6 col-sm-4 col-lg-3">
+				<a href="/referal/">
+					<div class="card">
+						<div class="card-body p-3 text-center">
+							<span style="font-size: 30px;">
+								<img src="/static/dashboard/assets/img/referral.png" height="100px">
+							</span>
+							<div class="h4 m-2 text-dark">My Referrals</div>
+						</div>
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+
+		<div class="row">
+
+			{% if user.is_superuser or user.is_staff %}
+			<div class="col-md-5">
+				<div class="card full-height">
+					<div class="card-header">
+						<div class="card-title fw-bold">ADMIN QUICK LINKS</div>
+					</div>
+					<div class="card-body">
+						<table class="table table-striped" style="background-color: white">
+							<tbody>
+								<tr>
+                                  	<td> <a href="/404/page-not-found-error/page/">  Admin page</a> </td>
+                              	</tr>
+                          		<tr>
+									<td> <a href="/404/page-not-found-error/page/vtuapp/couponcode/add/">   Generate Counpon</a> </td>
+									<td>{{unusedcoupon}}</td>
+                              	</tr>
+								<tr>
+									<td> <a href="/404/page-not-found-error/page/vtuapp/fund_user/">  Fund User Wallet</a> </td>
+
+								</tr>
+								<tr>
+									<td> <a href="/404/page-not-found-error/page/vtuapp/charge_user/"> Withdraw from user Wallet </a></td>
+
+								</tr>
+								<tr>
+									<td><a href="/404/page-not-found-error/page/vtuapp/data/"> processing Data order </a></td>
+									<td>{{data}}</td>
+								</tr>
+										<tr>
+									<td> <a href="/404/page-not-found-error/page/vtuapp/Airtime_funding/"> processing Airtime share to cash </a></td>
+									<td>{{Airtime_funding}}</td>
+								</tr>
+
+                          		<tr>
+                                  <td><a href="/404/page-not-found-error/page/vtuapp/withdraw/"> processing Withdraw </a></td>
+                                  <td>{{withdraw}}</td>
+                              	</tr>
+                			</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			{% endif %}
+		</div>
+	</div>
+</div>
+
+
+
+<!-- Modal STARTS HERER-->
+<div class="modal fade" id="fundWalletModal" tabindex="-1" role="dialog" aria-labelledby="fundWalletModalTitle" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+				<div class="modal-header">
+					<h3 class="modal-title fw-bold" id="fundWalletModalTitle">Fund Wallet</h3>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+
+				<div class="row mb-3 mt-3">
+				    	{% if not paystack2 %}
+		<div class="col-sm-6 col-md-6 col-6">
+			<a href="{%url 'pay' %}">	<div class="card card-stats card-round">
+					<div class="card-body ">
+						<div class="row align-items-center">
+							<div class="col-icon">
+								<div class="icon-big text-center icon-primary bubble-shadow-small">
+									<i class="fas fa-wallet"></i>
+								</div>
+							</div>
+							<div class="col col-stats ml-3 ml-sm-0">
+								<div class="numbers">
+									<p class="card-category">ATM Funding (Paystack)</p>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				</a>
+			</div>
+			{% endif %}
+				{% if not monnifyatm2 %}
+			<div class="col-sm-6 col-md-6 col-6">
+			<a href="{%url 'monnify' %}">
+				<div class="card card-stats card-round">
+					<div class="card-body">
+						<div class="row align-items-center">
+							<div class="col-icon">
+								<div class="icon-big text-center icon-info bubble-shadow-small">
+									<i class="fas fa-credit-card"></i>
+								</div>
+							</div>
+							<div class="col col-stats ml-3 ml-sm-0">
+								<div class="numbers">
+									<p class="card-category">ATM Funding (Monnify)</p>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				</a>
+			</div>
+			{% endif %}
+				{% if not monnifybank2 %}
+			<div class="col-sm-6 col-md-6 col-6">
+			<a href="{%url 'monnifypage' %}">	<div class="card card-stats card-round">
+					<div class="card-body">
+						<div class="row align-items-center">
+							<div class="col-icon">
+								<div class="icon-big text-center icon-secondary bubble-shadow-small">
+									<i class="fas fa-bank"></i>
+								</div>
+							</div>
+							<div class="col col-stats ml-3 ml-sm-0">
+								<div class="numbers">
+									<p class="card-category"> Automated Bank Funding (N50 charge) </p>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				</a>
+			</div>
+			{% endif %}
+
+{% if not bank2 %}
+				<div class="col-sm-6 col-md-6 col-6">
+			<a href="{%url 'BankCreate' %}">	<div class="card card-stats card-round">
+					<div class="card-body">
+						<div class="row align-items-center">
+							<div class="col-icon">
+								<div class="icon-big text-center icon-secondary bubble-shadow-small">
+									<i class="fas fa-bank"></i>
+								</div>
+							</div>
+							<div class="col col-stats ml-3 ml-sm-0">
+								<div class="numbers">
+									<p class="card-category"> Manual Bank Funding </p>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				</a>
+			</div>
+				{% endif %}
+
+			<div class="col-sm-6 col-md-6 col-6">
+			<a href="{%url 'Coupon' %}">
+				<div class="card card-stats card-round">
+					<div class="card-body">
+						<div class="row align-items-center">
+							<div class="col-icon">
+								<div class="icon-big text-center icon-success bubble-shadow-small">
+									<i class="fas fa-qrcode"></i>
+								</div>
+							</div>
+							<div class="col col-stats ml-3 ml-sm-0">
+								<div class="numbers">
+									<p class="card-category">Coupon Fund</p>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				</a>
+			</div>
+
+			 {% if not air2cash %}
+				<div class="col-sm-6 col-md-6 col-6">
+			<a href="/Airtime_funding/">
+				<div class="card card-stats card-round">
+					<div class="card-body">
+						<div class="row align-items-center">
+							<div class="col-icon">
+								<div class="icon-big text-center icon-success bubble-shadow-small">
+									<i class="fas fa-qrcode"></i>
+								</div>
+							</div>
+							<div class="col col-stats ml-3 ml-sm-0">
+								<div class="numbers">
+									<p class="card-category">Airtime to cash/ Funding</p>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				</a>
+			</div>
+			{% endif %}
+
+		</div>
+
+							</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">cancel</button>
+				</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+<script>
+
+        function CopyToClipboard(containerid) {
+      if (document.selection) {
+        var range = document.body.createTextRange();
+        range.moveToElementText(document.getElementById(containerid));
+        range.select().createTextRange();
+        document.execCommand("copy");
+
+      } else if (window.getSelection) {
+        var range = document.createRange();
+        range.selectNode(document.getElementById(containerid));
+        window.getSelection().removeAllRanges(); // clear current selection
+        window.getSelection().addRange(range); // to select text
+        document.execCommand("copy");
+        window.getSelection().removeAllRanges();
+        alert("text copied")
+      }
+    }
+
+
+            </script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+
+<script>
+
+
+    $("#Affilliate").click(function() {
+
+
+	   swal({
+  title: "Dear {{user.username}} !",
+  text: "  kindly note that you will be charge N1,000 to upgrade to Affilliate Package Yes to continue  Cancel to go back",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
+  if (willDelete) {
+    $.ajax({
+       type:'GET',
+       beforeSend: function(){
+
+         $.LoadingOverlay("show");
+
+            },
+       url: '/ajax/Affilliate/',
+       data: {
+         'btn': "send",
+
+       },
+       dataType: 'json',
+       success: function (data) {
+          // $("#name").css("display", "block");
+           //$("#name").text(data.name);
+           alert(data.message);
+
+       },
+       complete: function(){
+       $.LoadingOverlay("hide");
+         location.reload();
+
+  }
+     });
+  } else {
+    swal("You pressed Cancel!");
+  }
+
+
+
+   });
+
+   });
+
+
+
+   $("#Topuser").click(function() {
+
+	   swal({
+  title: "Dear {{user.username}} !",
+  text: " kindly note that you will be charge N2,000 to upgrade to Topuser Package Yes to continue  Cancel to go back",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
+  if (willDelete) {
+    $.ajax({
+       type:'GET',
+       beforeSend: function(){
+         $.LoadingOverlay("show");
+            },
+       url: '/ajax/Topuser/',
+       data: {
+         'btn': "send",
+
+       },
+       dataType: 'json',
+       success: function (data) {
+          // $("#name").css("display", "block");
+           //$("#name").text(data.name);
+           alert(data.message);
+
+       },
+       complete: function(){
+         $.LoadingOverlay("hide");
+         location.reload();
+
+  }
+     });
+  } else {
+    swal("You pressed Cancel!");
+  }
+});
+
+
+
+   });
+
+
+
+
+
+
+</script>
+
+<script>
+
+
+ $("#calculate").click(function() {
+ var from_date = $("#datepicker").val();
+ var to_date = $("#datepicker").val();
+ var services = $("#basic").val;
+
+console.log("hello buddy");
+console.log( from_date );
+
+
+	  /* swal({
+  title: "Dear {{user.username}} !",
+  text: " kindly note that you will be charge N10,000 to upgrade to Topuser Package Yes to continue  Cancel to go back",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
+  if (willDelete) {
+    $.ajax({
+       type:'GET',
+       beforeSend: function(){
+         $.LoadingOverlay("show");
+            },
+       url: '/ajax/Topuser/',
+       data: {
+         'btn': "send",
+
+       },
+       dataType: 'json',
+       success: function (data) {
+          // $("#name").css("display", "block");
+           //$("#name").text(data.name);
+           alert(data.message);
+
+       },
+       complete: function(){
+         $.LoadingOverlay("hide");
+         location.reload();
+
+  }
+     });
+  } else {
+    swal("You pressed Cancel!");
+  }
+});
+
+
+*/
+   });
+
+</script>
+
+
+
+
+<script>
+
+    $(function(){
+
+        $('#salesCheckForm').on('submit', function(e){
+            e.preventDefault();
+
+            $.ajax({
+                method: 'POST',
+                url: '/ajax/sales/account/',
+                data: new FormData(this),
+                processData: false,
+                contentType: false,
+                beforeSend: function(){
+                    $.LoadingOverlay("show");
+                },
+                complete: function(){
+                    $.LoadingOverlay("hide");
+                },
+                success: function(data){
+                    $.LoadingOverlay("hide");
+                    $('#successModal').modal()
+
+                    console.log(data);
+                    // data
+                    $('#mtn_dataSold_total').text("₦" + data['mtn_dataSold_total'] + "GB )")
+                    $('#airtel_dataSold_total').text("₦" + data['airtel_dataSold_total']+ "GB )")
+                    $('#glo_dataSold_total').text("₦" + data['glo_dataSold_total']+ "GB )")
+                    $('#eti_dataSold_total').text("₦" + data['eti_dataSold_total']+ "GB )")
+                    // airitme
+                    $('#mtn_airtimeSold_total').text("₦" + data['mtn_airtimeSold_total'])
+                    $('#airtel_airtimeSold_total').text("₦" + data['airtel_airtimeSold_total'])
+                    $('#glo_airtimeSold_total').text("₦" + data['glo_airtimeSold_total'])
+                    $('#eti_airtimeSold_total').text("₦" + data['eti_airtimeSold_total'])
+                    // others
+                    $('#total_bank_payments').text("₦" + data['total_bank_payments'])
+                    $('#total_atm_payments').text("₦" + data['total_atm_payments'])
+                    $('#total_coupon_payments').text("₦" + data['total_coupon_payments'])
+
+					$('#rcard').text("₦" + data['recharge_card'])
+					$('#result').text("₦" + data['result_checker'])
+					$('#bill').text("₦" + data['bill_payment'])
+					$('#cable').text("₦" + data['Cable_payment'])
+					$('#smile').text("₦" + data['smile_dataSold_total'])
+					$('#credit').text("₦" + data['credit'])
+					$('#debit').text("₦" + data['debit'])
+
+					console.log(data["cable_list"])
+
+
+multipleLineChart = document.getElementById('multipleLineChart').getContext('2d');
+var myMultipleLineChart = new Chart(multipleLineChart, {
+			type: 'line',
+			data: {
+				labels: ["MTN","GLO","AIRTEL","9MOBILE","SMILE"],
+				datasets: [{
+					label: "Pending Orders",
+					borderColor: "#1d7af3",
+					pointBorderColor: "#FFF",
+					pointBackgroundColor: "#1d7af3",
+					pointBorderWidth: 2,
+					pointHoverRadius: 4,
+					pointHoverBorderWidth: 1,
+					pointRadius: 4,
+					backgroundColor: 'transparent',
+					fill: true,
+					borderWidth: 2,
+					data: data["data_list2"]
+				},{
+					label: "Successful Orders",
+					borderColor: "#59d05d",
+					pointBorderColor: "#FFF",
+					pointBackgroundColor: "#59d05d",
+					pointBorderWidth: 2,
+					pointHoverRadius: 4,
+					pointHoverBorderWidth: 1,
+					pointRadius: 4,
+					backgroundColor: 'transparent',
+					fill: true,
+					borderWidth: 2,
+					data: data["data_list"]
+				}, {
+					label: "Failed order",
+					borderColor: "#f3545d",
+					pointBorderColor: "#FFF",
+					pointBackgroundColor: "#f3545d",
+					pointBorderWidth: 2,
+					pointHoverRadius: 4,
+					pointHoverBorderWidth: 1,
+					pointRadius: 4,
+					backgroundColor: 'transparent',
+					fill: true,
+					borderWidth: 2,
+					data: data["data_list3"]
+				}]
+			},
+			options : {
+				responsive: true,
+				maintainAspectRatio: false,
+				legend: {
+					position: 'top',
+				},
+				tooltips: {
+					bodySpacing: 4,
+					mode:"nearest",
+					intersect: 0,
+					position:"nearest",
+					xPadding:10,
+					yPadding:10,
+					caretPadding:10
+				},
+				layout:{
+					padding:{left:15,right:15,top:15,bottom:15}
+				},
+				scales: {
+                xAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Networks'
+                    }
+                }],
+                yAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Amount (Naira)'
+                    }
+                }]
+            }
+			}
+		});
+
+
+multipleLineChart = document.getElementById('multipleLineChart2').getContext('2d');
+var myMultipleLineChart = new Chart(multipleLineChart, {
+			type: 'line',
+			data: {
+				labels: ["MTN","GLO","AIRTEL","9MOBILE"],
+				datasets: [{
+					label: "Pending Orders",
+					borderColor: "#1d7af3",
+					pointBorderColor: "#FFF",
+					pointBackgroundColor: "#1d7af3",
+					pointBorderWidth: 2,
+					pointHoverRadius: 4,
+					pointHoverBorderWidth: 1,
+					pointRadius: 4,
+					backgroundColor: 'transparent',
+					fill: true,
+					borderWidth: 2,
+					data: data["airtime_list2"]
+				},{
+					label: "Successful Orders",
+					borderColor: "#59d05d",
+					pointBorderColor: "#FFF",
+					pointBackgroundColor: "#59d05d",
+					pointBorderWidth: 2,
+					pointHoverRadius: 4,
+					pointHoverBorderWidth: 1,
+					pointRadius: 4,
+					backgroundColor: 'transparent',
+					fill: true,
+					borderWidth: 2,
+					data: data["airtime_list"]
+				}, {
+					label: "Failed order",
+					borderColor: "#f3545d",
+					pointBorderColor: "#FFF",
+					pointBackgroundColor: "#f3545d",
+					pointBorderWidth: 2,
+					pointHoverRadius: 4,
+					pointHoverBorderWidth: 1,
+					pointRadius: 4,
+					backgroundColor: 'transparent',
+					fill: true,
+					borderWidth: 2,
+					data: data["airtime_list3"]
+				}]
+			},
+			options : {
+				responsive: true,
+				maintainAspectRatio: false,
+				legend: {
+					position: 'top',
+				},
+				tooltips: {
+					bodySpacing: 4,
+					mode:"nearest",
+					intersect: 0,
+					position:"nearest",
+					xPadding:10,
+					yPadding:10,
+					caretPadding:10
+				},
+				layout:{
+					padding:{left:15,right:15,top:15,bottom:15}
+				},
+				scales: {
+                xAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Networks'
+                    }
+                }],
+                yAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Amount (Naira)'
+                    }
+                }]
+            }
+			}
+		});
+
+
+
+
+multipleLineChart = document.getElementById('multipleLineChart3').getContext('2d');
+var myMultipleLineChart = new Chart(multipleLineChart, {
+			type: 'line',
+			data: {
+				labels:["GOTV","DSTV","STARTIMES"],
+				datasets: [{
+					label: "Pending Orders",
+					borderColor: "#1d7af3",
+					pointBorderColor: "#FFF",
+					pointBackgroundColor: "#1d7af3",
+					pointBorderWidth: 2,
+					pointHoverRadius: 4,
+					pointHoverBorderWidth: 1,
+					pointRadius: 4,
+					backgroundColor: 'transparent',
+					fill: true,
+					borderWidth: 2,
+					data:data["cable_list2"]
+				},{
+					label: "Successful Orders",
+					borderColor: "#59d05d",
+					pointBorderColor: "#FFF",
+					pointBackgroundColor: "#59d05d",
+					pointBorderWidth: 2,
+					pointHoverRadius: 4,
+					pointHoverBorderWidth: 1,
+					pointRadius: 4,
+					backgroundColor: 'transparent',
+					fill: true,
+					borderWidth: 2,
+					data: data["cable_list"]
+				}, {
+					label: "Failed order",
+					borderColor: "#f3545d",
+					pointBorderColor: "#FFF",
+					pointBackgroundColor: "#f3545d",
+					pointBorderWidth: 2,
+					pointHoverRadius: 4,
+					pointHoverBorderWidth: 1,
+					pointRadius: 4,
+					backgroundColor: 'transparent',
+					fill: true,
+					borderWidth: 2,
+					data: data["cable_list3"]
+				}]
+			},
+			options : {
+				responsive: true,
+				maintainAspectRatio: false,
+				legend: {
+					position: 'top',
+				},
+				tooltips: {
+					bodySpacing: 4,
+					mode:"nearest",
+					intersect: 0,
+					position:"nearest",
+					xPadding:10,
+					yPadding:10,
+					caretPadding:10
+				},
+				layout:{
+					padding:{left:15,right:15,top:15,bottom:15}
+				},
+				scales: {
+                xAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Decoder'
+                    }
+                }],
+                yAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Amount (Naira)'
+                    }
+                }]
+            }
+			}
+		});
+
+
+
+multipleBarChart = document.getElementById('multipleBarChart').getContext('2d');
+
+var myMultipleBarChart = new Chart(multipleBarChart, {
+			type: 'bar',
+			data: {
+					labels: ["IKEDC", "EKEDC", "AEDC", "IBEDC", "KEDC", "EEDC", "PHEDC", "KAEDC", "JEDC", "BEDC", "YEDC"],
+
+				datasets : [{
+					label: "Successful orders",
+					backgroundColor: '#59d05d',
+					borderColor: '#59d05d',
+					data: data["bill_list"],
+				},{
+					label: "Failed orders",
+					backgroundColor: '#fdaf4b',
+					borderColor: '#fdaf4b',
+					data: data["bill_list3"],
+				}, {
+					label: "Pending orders",
+					backgroundColor: '#177dff',
+					borderColor: '#177dff',
+					data: data["bill_list2"],
+				}],
+			},
+			options: {
+				responsive: true,
+				maintainAspectRatio: false,
+				legend: {
+					position : 'bottom'
+				},
+				title: {
+					display: true,
+					text: 'Traffic Stats'
+				},
+				tooltips: {
+					mode: 'index',
+					intersect: false
+				},
+				responsive: true,
+				scales: {
+					xAxes: [{
+						stacked: true,
+					}],
+					yAxes: [{
+						stacked: true
+					}]
+				}
+			}
+		});
+
+$("#output").css("display","block");
+
+                },
+                error: function(){
+                    $.LoadingOverlay("hide");
+
+                    Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Something went wrong!',
+                    })
+                },
+            })
+        });
+    });
+</script>
+
+
+
+
+
+    {% endblock %}

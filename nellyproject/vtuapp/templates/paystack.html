@@ -1,0 +1,199 @@
+{% extends 'base.html' %} {% block title %}Paystackpayment{% endblock %} {% block content %}
+
+
+<style>
+    .col-25 {
+        -ms-flex: 25%;
+        /* IE10 */
+        flex: 25%;
+    }
+
+    .col-50 {
+        -ms-flex: 50%;
+        /* IE10 */
+        flex: 50%;
+    }
+
+    .col-75 {
+        -ms-flex: 75%;
+        /* IE10 */
+        flex: 75%;
+    }
+
+    .col-25,
+    .col-50,
+    .col-75 {
+        padding: 0 16px;
+    }
+
+    .box {
+        background-color: #f2f2f2;
+        padding: 5px 20px 15px 20px;
+        border: 1px solid lightgrey;
+        border-radius: 3px;
+    }
+
+    input[type=number] {
+        width: 100%;
+        margin-bottom: 20px;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+
+    label {
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    .icon-container {
+        margin-bottom: 20px;
+        padding: 7px 0;
+        font-size: 24px;
+    }
+
+    .btn {
+        background-color: #4CAF50;
+        color: white;
+        padding: 12px;
+        margin: 10px 0;
+        border: none;
+        width: 100%;
+        border-radius: 3px;
+        cursor: pointer;
+        font-size: 17px;
+    }
+
+    .btn:hover {
+        background-color: #45a049;
+    }
+
+    a {
+        color: #2196F3;
+    }
+
+    hr {
+        border: 1px solid lightgrey;
+    }
+
+    span.price {
+        float: right;
+        color: grey;
+    }
+    /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (also change the direction - make the "cart" column go on top) */
+
+    @media (max-width: 800px) {
+        .row {
+            flex-direction: column-reverse;
+        }
+        .col-25 {
+            margin-bottom: 20px;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+    <div style="padding:90px 15px 20px 15px" >
+
+        <h2 class="w3-center">Fund account with Paystack </h2>
+
+        <div class="box">
+            <form>
+                <script src="https://js.paystack.co/v1/inline.js"></script>
+
+                <div class="row">
+
+                    <div class="col-sm-8">
+
+                        <label for="amount">Amount<span style='color:red'>*</span></label>
+                        <input type="number" id="amount" name="amount" placeholder="1000" onkeyup="annotate()" min='500' required>
+                        <div class="container">
+
+                            <p>Transaction charge</a> <span class="price" id='charge'></span></p>
+
+                            <hr>
+                            <p>Total <span class="price" style="color:black" id='printchatbox'><b></b></span></p>
+                        </div>
+                        <input type="button" value="Continue to Funding" class="w3-blue btn" onclick="payWithPaystack()">
+                    </div>
+                    <div class="col-sm-4">
+                        <h3>Payment</h3>
+                        <label for="fname">Accepted Cards</label>
+                        <div class="icon-container">
+                            <i class="fa fa-cc-visa" style="color:navy;"></i>
+                            <i class="fa fa-cc-amex" style="color:blue;"></i>
+                            <i class="fa fa-cc-mastercard" style="color:red;"></i>
+                            <i class="fa fa-cc-discover" style="color:orange;"></i>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+        </div>
+
+    </div>
+
+
+
+    <script>
+        function annotate() {
+            var typed = Number(document.getElementById("amount").value);
+            var charge = (typed * 2) / 100;
+            var total = typed + charge;
+            document.getElementById("printchatbox").innerHTML = '#' + total;
+            document.getElementById("charge").innerHTML = '#' + charge;
+        }
+    </script>
+
+    <script>
+        function payWithPaystack() {
+            var typed = Number(document.getElementById("amount").value);
+
+            if (typed > 50000) {
+                alert("Maximum Deposite with ATM is #2,450")
+            } else {
+                var payamount = Number(document.getElementById('amount').value) * 100;
+                var amt = (payamount * 2.0) / 100;
+                var paynow = payamount + amt;
+                var usermail = "{{user.email}}"
+
+
+                var handler = PaystackPop.setup({
+                    key: 'pk_live_2dfe12ac85fff2f3f41045b99dcac2cb81b05e74',
+                    email: usermail,
+                    amount: paynow,
+                    currency: "NGN",
+                    ref: '' + Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
+                    metadata: {
+                        custom_fields: [{
+                            display_name: "Mobile Number",
+                            variable_name: "mobile_number",
+                            value: "+2348012345678"
+                        }]
+                    },
+                    callback: function(response) {
+                        if (response.status == "success") {
+
+                            window.location = "https://www.Husmodata.com/web/paystackpaymentdone?ref=" + response.reference;
+                        } else {
+                            window.location = "https://www.Husmodata.com/";
+                        }
+                    },
+                    onClose: function() {
+
+                    }
+                });
+                handler.openIframe();
+            }
+
+        }
+    </script>
+
+
+
+
+    {% endblock %}

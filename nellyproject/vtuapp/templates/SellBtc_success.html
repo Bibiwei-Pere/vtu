@@ -1,0 +1,138 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% load static %} {% load humanize %} {% block title %}Send Btc Topup|Husmodata.com{% endblock %} {% block content %}
+
+<link rel="stylesheet" href="{% static 'ogbam/form.css' %}">
+<link rel="stylesheet" href="{% static 'ogbam/form.css' %}">
+<!-- Latest compiled and minified CSS -->
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
+<style>
+    .control {
+        display: block;
+        width: 100%;
+        height: calc(2.25rem + 2px);
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+</style>
+<div style="padding:90px 15px 20px 15px" >
+
+
+    <h2 class="w3-center">ORDER DETAIL</h2>
+
+    <div class="box w3-card-4">
+
+  
+
+            <div class="row">
+
+                <div class="col-sm-8">
+
+					<table class='table table-all'>
+						<tr>
+			
+							<td><b>ID</b></td>
+							<td>{{sellbtc_list.ident}}</td>
+						</tr>
+			
+						<tr>
+			
+							<td><b>Wallet to send to </b></td>
+							<td>{{adminwallet}}</td>
+			
+						</tr>
+			
+						<tr>
+			
+							<td><b>Dollar Value</b></td>
+							<td> $ {{sellbtc_list.amount_in_USD}} </td>
+						</tr>
+			
+			
+						<tr>
+			
+							<td><b>Naira Value</b></td>
+							<td> &#8358; {{sellbtc_list.amount_in_naira}} </td>
+						</tr>
+			
+							   
+			
+					</table>
+					<hr>
+					<p>
+					   <h4> To complete this order, follow the instructions below.</h4>
+					</p>
+					<p>Kindly pay ${{sellbtc_list.amount_in_USD}} BTC to the above wallet address ( {{adminwallet}} ), As soon as ${{sellbtc_list.amount_in_USD}} worth of bitcoin is received from you, your bank account will be automatically credited with &#8358;{{sellbtc_list.amount_in_USD}}(minus &#8358;{{sellbtc_list.amount_in_naira}} withdrawal charge) within 5-30mins.
+						
+			
+				<button type="button" onclick="document.getElementById('subscribe').style.display='block'" class="btn btn-primary btn-lg btn-block">BITCOIN SENT</button>
+				
+				<p><b>NOTE: Ensure you have paid ${{sellbtc_list.amount_in_USD}} BTC into our paxful wallet before clicking on bitcoin sent. Also, you must send exactly ${{sellbtc_list.amount_in_USD}} BTC within 30 minutes or this transaction will be cancelled.</b></p>
+					<P>NOTE: We only buy bitcoin via PAXFUL wallet, confirmation is instant and payment is automated usually within 5-30mins.</P>
+				
+				<p>Also note that to sell bitcoin to us, you need to send from your personal Paxful account. Thanks.</p>
+				
+			</div>
+			
+               
+                
+                <div class="col-sm-4 ">
+
+					<div class="card card-md">
+                        <div class="card-header">
+							<h4>Note</h4>
+        
+                        </div>
+						<div class="card-body text-center">
+							<p class="lead">Do you want to sell bitcoin to us from another wallet aside Paxful? Please send message to our cryptocurrency unit 08123976759 on whatsApp.
+	NOTE: For non paxful wallet minimum order is $500, Please send message to us if only your order meet our minimum requirement.</p>
+</div>
+					
+				</div>
+                </div>
+               
+
+            </div>
+
+
+
+
+
+    </div>
+</div>
+
+<div id="subscribe" class="w3-modal w3-animate-opacity">
+	<div class="w3-modal-content" style="padding:32px; border-radius:20px; margin-top:100px;">
+		<div class="w3-container w3-white">
+
+			<div class='w3-center'>
+				<span class=' class="w3-button  w3-green ' style=' border-radius:50%; padding:2px 6px 2px 6px ; font-size:30px;margin-bottom:20px; '> ✓ </span>
+				<h5> <b>SUCCESS!</b></h5>
+
+				<p>Dear Customer , We will  process your request shortly .</p>
+				<a href="{% url 'profile' %}" class="w3-button  w3-blue w3-margin-bottom" onclick="document.getElementById('subscribe').style.display='none' " style=' border-radius:10px; padding:6px 18px 6px 18px; '>OK</a>
+
+
+
+			</div>
+
+
+		</div>
+	</div>
+{% endblock %}
+
+

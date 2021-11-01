@@ -1,0 +1,115 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% load static %} {% load humanize %} {% block title %}Buy_Bitcoin|Husmodata.com{% endblock %} {% block content %}
+
+
+<style>
+    .control {
+        display: block;
+        width: 100%;
+        height: calc(2.25rem + 2px);
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+</style>
+<link rel="stylesheet" href="{% static 'ogbam/form.css' %}">
+
+<div style="padding:90px 15px 20px 15px" >
+
+
+    <h2 class="w3-center">Buy Bitcoin</h2>
+    <div class="alert alert-info">
+        <strong><i class="fa fa-fax w3-large"></i> Support Team:</strong><p class="">Have anything to say to us? Please contact our Support Team on Whatsapp <a href="tel:08165435701"><strong>08165435701</strong></a></p>
+      </div>
+    <div class="box w3-card-4">
+
+        <form method='post'>
+
+
+            <div class="row">
+
+                <div class="col-sm-8">
+
+                    {% csrf_token %} {% include 'baseform.html' %}
+
+                    <label><b>Naira Amount*</b></label>
+                    <p class="control" id="amount"> </p>
+
+                    <button type="submit" value="Continue to Funding" class=" btn" style='margin-bottom:15px;'>Submit Order</button>
+
+                </div>
+                <div class="col-sm-4  ">
+
+                    <div class="card card-md">
+                        <div class="card-header">
+                            Quick Rules
+        
+                        </div>
+                        <div class="card-body text-center ">
+                            <div class="section quick-rules">
+                                <h4>Quick rules</h4>
+                                <p class="lead">Transactions are fulfilled within minutes</p>
+        
+                                <ul>
+                                    <li>Make sure to send the BTC to the specified wallet</li>
+                                    <li>Due to the volatile nature of BTC, All transaction should be processed within 30 mins</li>
+        
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                  <center style="color: rgb(61, 2, 155);"> <b> Buying rate #{{buyrate}} </b>
+                    <p id="rate"> </p>
+                    <p id="date ">
+                        <p>
+                        </center> 
+
+                            {% if form.non_field_errors %} {% for errormessage in form.non_field_errors %}
+
+                            <div class=' alert alert-danger' style='padding:25px 10px;margin:0 0 20px; '>
+                                {{errormessage}}</div>
+                            {% endfor %}
+
+                </div>
+                {% endif %}
+
+            </div>
+
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    $.getJSON("https://api.coindesk.com/v1/bpi/currentprice/usd.json", function(data) {
+
+        var exchangeRate = parseFloat(data.bpi.USD.rate_float);
+        //$("#rate").text(' Current rate in USD: ' + (exchangeRate).toLocaleString());
+        var rate = {{buyrate}} ;
+       
+
+
+        $(document).ready(function() {
+
+
+            $("#id_amount_in_USD").keyup(function() {
+                $("#amount").text((Number($("#id_amount_in_USD").val())  * rate  )); });
+
+
+        });
+
+
+
+    });
+</script>
+
+
+
+</div>
+{% endblock %}

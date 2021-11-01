@@ -1,0 +1,47 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% load static %} {% load humanize %} {% block title %}Topup|Husmodata.com{% endblock %} {% block content %}
+
+<link rel="stylesheet" href="{% static 'ogbam/form.css' %}">
+
+<div style="padding:90px 15px 20px 15px" >
+
+
+    <h2 class="w3-center">Topup</h2>
+
+    <div class="box w3-card-4">
+
+        <form method='post'>
+
+
+            <div class="row">
+
+                <div class="col-sm-8">
+
+                    {% csrf_token %} {% include 'baseform.html' %}
+
+
+                    <button type="submit" class=" btn" style='background-image: linear-gradient(-20deg, rgb(136, 8, 8) 0%, rgb(204, 8, 8) 100%);margin-bottom:15px;' onClick="this.form.submit(); this.disabled=true; this.innerText ='Processing.....'; ">Proceed</button>
+
+                </div>
+                <div class="col-sm-4  ">
+
+
+
+                    {% if form.non_field_errors %} {% for errormessage in form.non_field_errors %}
+
+                    <div class=' alert alert-danger' style='padding:25px 10px;margin:0 0 20px; '>
+                        {{errormessage}}</div>
+                    {% endfor %}
+
+                </div>
+                {% endif %}
+
+            </div>
+
+
+
+
+
+
+
+    </div>
+{% endblock %}

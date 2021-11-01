@@ -1,0 +1,125 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% load static %} {% load humanize %} {% block title %}auto bank{% endblock %} {% block content %}
+
+<link rel="stylesheet" href="{% static 'ogbam/form.css' %}">
+<!-- Latest compiled and minified CSS -->
+
+<!-- Latest compiled JavaScript -->
+
+<div style="padding:90px 15px 20px 15px" >
+	
+    <div class="mt-4">
+		<ul class="nav nav-tabs" id="myTab" role="tablist">
+			<li class="nav-item">
+				<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">WEMA BANK</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">ROLEZ BANK</a>
+			</li>
+		</ul>
+
+		<div class="tab-content" id="myTabContent">
+			<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+				<div class="card card-dark bg-secondary-gradient">
+					<div class="card-body skew-shadow">
+						<img src="https://upload.wikimedia.org/wikipedia/en/e/ef/Wema_Bank_Plc.jpg" height="60" alt="Visa Logo">
+
+						{% with user.f_account.accounts|first as first %}
+							<h2 class="py-4 mb-0">
+								Account Number:{{ first.accountNumber }}
+							</h2>
+
+							<div class="row">
+								<div class="col-8 pr-0">                   
+									<h3 class="fw-bold mb-1">Account Name: Husmodata - {{user.username}}</h3>
+									<h3 class="fw-bold mb-1">Bank Name: {{first.bankName }}</h3>
+									<br>
+									<div class="text-small text-uppercase fw-bold op-8">Automated Bank Transfer</div>
+									<p class="text-small ">Make transfer to this account to fund your wallet </p>
+								</div>
+								<div class="col-4 pl-0 text-right">
+									<h3 class="fw-bold mb-1">₦50</h3>
+									<div class="text-small text-uppercase fw-bold op-8">Charge</div>
+								</div>
+							</div>
+						{% endwith %}
+
+					</div>
+				</div>
+			</div>
+
+			<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+				  <div class="card card-dark bg-primary-gradient">
+					<div class="card-body skew-shadow">
+						<img src="https://1000logos.net/wp-content/uploads/2017/05/Rolex-logo.png" height="60" alt="Rolex Logo">
+
+						{% with user.f_account.accounts|last as last %}
+							<h2 class="py-4 mb-0">
+								Account Number:{{ last.accountNumber }}
+							</h2>
+
+							<div class="row">
+								<div class="col-8 pr-0">
+									<h3 class="fw-bold mb-1">Account Name: Husmodata - {{user.username}}</h3>
+									<h3 class="fw-bold mb-1">Bank Name: {{last.bankName }}</h3>
+									<br>
+									<div class="text-small text-uppercase fw-bold op-8">Automated Bank Transfer</div>
+									<p class="text-small ">Make transfer to this account to fund your wallet </p>
+								</div>
+								<div class="col-4 pl-0 text-right">
+									<h3 class="fw-bold mb-1">₦50</h3>
+									<div class="text-small text-uppercase fw-bold op-8">Charge</div>
+								</div>
+							</div>
+						{% endwith %}
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+							<!-- <div class="card card-dark bg-secondary-gradient">
+								<div class="card-body skew-shadow">
+									<img src="https://i1.wp.com/media.premiumtimesng.com/wp-content/files/2013/06/Sterling-Bank.png?fit=500%2C500&ssl=1" height="60" alt="Visa Logo">
+
+									<h2 class="py-4 mb-0">Account Number: {{user.reservedaccountNumber}}</h2>
+									<div class="row">
+										<div class="col-8 pr-0">
+											<h3 class="fw-bold mb-1">Account Name: Husmodata.com-{{user.username}}</h3>
+											<h3 class="fw-bold mb-1">Bank Name: {{user.reservedbankName}} Bank</h3>
+											<br>
+											<div class="text-small text-uppercase fw-bold op-8">{{user.reservedbankName}} Automated Bank Transfer</div>
+											<p class="text-small ">Make transfer to this account to fund your wallet </p>
+										</div>
+										<div class="col-4 pl-0 text-right">
+											<h3 class="fw-bold mb-1">₦50</h3>
+											<div class="text-small text-uppercase fw-bold op-8">Charge</div>
+										</div>
+									</div>
+								</div>
+							</div> -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <script>
+    $(document).ready(function() {
+
+        var amount = location.search.split('amount=')[1];
+ if (amount){
+        $("#amt").text(amount);
+
+
+}
+
+
+
+
+
+    });
+</script>
+
+
+    </div>
+{% endblock %}

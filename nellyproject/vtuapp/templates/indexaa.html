@@ -1,0 +1,733 @@
+{% load static %}{% load humanize %}
+<!DOCTYPE HTML>
+<html lang="zxx">
+
+<head>
+
+<meta charset="utf-8">
+    <meta name="description" content="Aila">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Husmodata | Buy Data, VTU Recharge, Bills Payment</title>
+
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/static/img/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <script src="https://use.fontawesome.com/d3bea22ec6.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <link rel="stylesheet" href="/static/gigabundle/bootstrap.css">
+    <link rel="stylesheet" href="/static/gigabundle/main.css">
+    <script src="/static/gigabundle/jquery-2.2.4.min.js"></script>
+    <script src="/static/gigabundle/main.js"></script>
+
+    <meta name="msapplication-TileColor" content="#5230b0 ">
+    <meta name="msapplication-TileImage" content="/static/img/bg.jpg">
+    <meta itemprop="name" content="Husmodata- Buy Airtime and Data for all Network. Make payment for DSTV, GOTV, PHCN other services">
+    <meta itemprop="description" content="Buy Cheap Internet Data Plan and Airtime Recharge for Airtel, 9mobile, GLO, MTN, Pay DSTV, GOTV, PHCN.">
+    <meta itemprop="image" content="/static/img/bg.jpg">
+    <link rel="stylesheet" href="{% static 'ogbam/w3.css' %}">
+
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="/static/img/bg.jpg">
+    <meta name="twitter:title" content="Husmodata- Buy Airtime and Data for all Network. Make payment for DSTV, GOTV, PHCN other services">
+    <meta name="twitter:description" content="Buy Cheap Internet Data Plan and Airtime Recharge for Airtel, 9mobile, GLO, MTN, Pay DSTV, GOTV, PHCN.">
+    <meta name="twitter:image:src" content="/static/img/bg.jpg">
+
+    <!-- Open Graph data -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:title" content="Husmodata- Buy Airtime and Data for all Network. Make payment for DSTV, GOTV, PHCN other services">
+    <meta property="og:image" content="/static/img/bg.jpg">
+    <meta property="og:description" content="Buy Cheap Internet Data Plan and Airtime Recharge for Airtel, 9mobile, GLO, MTN, Pay DSTV, GOTV, PHCN."/>
+    <meta property="og:site_name" content="Husmodata"/>
+    <meta property="og:url" content="https://www.Husmodata.com">
+    <meta property="og:type" content="website">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+<link rel="stylesheet" type="text/css" href="/static/stylem/assets/css/bootstrap.min.css%2bslicknav.min.css%2bicofont.css.pagespeed.cc.p6kHA50ZUn.css" media="all" />
+
+
+
+<link rel="stylesheet" type="text/css" href="/static/stylem/assets/css/slick.css%2bfont-awesome.min.css%2bowl.carousel.css%2bmagnific-popup.css%2bswitcher-style.css%2banimate.min.css.pagespeed.cc.2nN2x9s5gu.css" />
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/static/stylem/assets/css/style.css%2bresponsive.css.pagespeed.cc.k02REXUlKe.css" media="all" />
+
+
+
+<link rel="icon" type="image/png" href="/static/stylem/assets/img/favicons.png" sizes="16x16">
+
+</head>
+<body data-spy="scroll" data-target=".header" data-offset="50">
+
+
+
+<header class="header">
+<div class="container">
+<div class="row flexbox-center">
+<div class="col-lg-2 col-md-3 col-6">
+<div class="logo">
+<a href="#home"><h3 style="color:white;">Husmodata</h3></a>
+</div>
+</div>
+<div class="col-lg-10 col-md-9 col-6">
+<div class="responsive-menu"></div>
+<div class="mainmenu">
+<ul id="primary-menu">
+<li><a class="nav-link" href="#home">Home</a></li>
+<li><a class="nav-link" href="#about">About Us</a></li>
+<li><a class="nav-link" href="#feature">Our Features</a></li>
+<li><a class="nav-link" href="#services">Our Services</a></li>
+{% if user.is_authenticated %}
+<li><a class="nav-link" href="/profile">Dashboard</a></li>
+<li><a class="nav-link" href="/logout">LogOut</a></li>
+{% else %}
+<li><a class="nav-link" href="/signup">Register</a></li>
+<li><a class="nav-link" href="/login">Login</a></li>
+{% endif %}
+
+</ul>
+</div>
+</div>
+</div>
+</div>
+</header>
+
+<section class="hero-area" id="home">
+<div class="player" data-property="{videoURL:'http://youtu.be/kn-1D5z3-Cs',containment:'#home',autoPlay:true, mute:true, startAt:0, showControls:false, loop:true, opacity:1}"></div>
+<div class="container">
+<div class="row">
+<div class="col-lg-7">
+<div class="hero-area-content">
+<h2 style="color:white;">Welcome To Husmodata</h2>
+<p>This is a telecommunication industry playing a major role in <br>distribution, selling affordable and most cheapest data, airtime,<br> Dstv subscription, Gotv subscription, Startimes subscription, <br>Convert Airtime to Cash and Electricity subscription.
+</p>
+{% if user.is_authenticated %}
+<a href="/profile" class="appao-btn"><i class="fa fa-plus"> Dashboard</a></i>
+<a href="/logout" class="appao-btn"><i class="fa fa-unlock"> LogOut</a></i>
+{% else %}
+<a href="/signup" class="appao-btn"><i class="fa fa-plus"> Register</a></i>
+<a href="/login" class="appao-btn"><i class="fa fa-unlock"> Login</a></i>
+{% endif %}
+</div>
+</div>
+<div class="col-lg-5">
+<div class="hand-mockup text-lg-left text-center">
+<img src="/static/stylem/assets/img/datagirl.png" alt="Hand Mockup" />
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="about-area ptb-90">
+<div class="container">
+<div class="row">
+<div class="col-lg-12">
+<div class="sec-title">
+<h2 id="about">About Husmodata<span class="sec-title-border"><span></span><span></span><span></span></span></h2>
+<p>Trusted Data Platform for Resellers. Subscribe for cheap data plans at affordable price for all networks.</p>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-4">
+<div class="single-about-box">
+<i class="fab fa-telegram"></i>
+<h4>Automation</h4>
+<p>In assurance to give you the best treat, all our services and transactions are running on an automated system. Without any delay in delivery.
+
+</p>
+</div>
+</div>
+<div class="col-lg-4">
+<div class="single-about-box active">
+<i class="fa fa-shield"></i>
+<h4>You're Safe</h4>
+<p>Our Data delivery and wallet funding is automated, Airtime topup and data purchase are automated and get delivered to you almost instantly...
+
+</p>
+</div>
+</div>
+<div class="col-lg-4">
+<div class="single-about-box">
+<i class="icofont icofont-headphone-alt"></i>
+<h4>24/7 Support</h4>
+<p>Our customers are premium to us, hence satisfying them is our topmost priority. Our customer service is just a click away.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<div class="container">
+<div class="sec-title">
+<h2  id="services">Our Services<span class="sec-title-border"><span></span><span></span><span></span></span></h2>
+</div>
+</div>
+<section class="feature-area ptb-90" >
+<div class="container">
+<div class="row flexbox-center">
+<div class="col-lg-4">
+
+<div class="single-feature-box text-lg-right text-center">
+<ul>
+<li>
+<div class="feature-box-info">
+<h4>Buy Data</h4>
+<p>Start enjoying this very low rates Data plan for your internet browsing databundle. </p>
+</div>
+<div class="feature-box-icon">
+<i class="icofont icofont-wifi"></i>
+</div>
+</li>
+<li>
+<div class="feature-box-info">
+<h4></h4>
+<p>Instantly Activate Cable subscription with favourable discount compare to others. </p>
+</div>
+<div class="feature-box-icon">
+<i class="icofont icofont-computer"></i>
+</div>
+</li>
+<li>
+<div class="feature-box-info">
+<h4>Airtime TopUp</h4>
+<p>Making an online recharge has become very easy and safe on Husmodata. </p>
+</div>
+<div class="feature-box-icon">
+<i class="icofont icofont-phone"></i>
+</div>
+</li>
+
+</ul>
+</div>
+</div>
+<div class="col-lg-4">
+<div class="single-feature-box text-center">
+<img src="/static/stylem/assets/img/faq.png" alt="feature">
+</div>
+</div>
+<div class="col-lg-4">
+<div class="single-feature-box text-lg-left text-center">
+<ul>
+<li>
+<div class="feature-box-icon">
+<i class="icofont icofont-money"></i>
+</div>
+<div class="feature-box-info">
+<h4>Airtime To Cash</h4>
+<p>We offer this service at a very good attractive rate login to see current conversion rate.</p>
+</div>
+</li>
+<li>
+<div class="feature-box-icon">
+<i class="icofont icofont-ui-message"></i>
+</div>
+<div class="feature-box-info">
+<h4>Bulk SMS</h4>
+<p>Send BulkSMS to any number for as low as just 1.5kobo per unit. </p>
+</div>
+</li>
+<li>
+<div class="feature-box-icon">
+<i class="icofont icofont-light-bulb"></i>
+</div>
+<div class="feature-box-info">
+<h4>Utility Payment</h4>
+<p>Because we understand your needs, we have made bills and utilities payment convenient..</p>
+</div>
+
+</li>
+
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="showcase-area ptb-90" id="feature">
+<div class="container">
+<div class="row">
+<div class="col-lg-12">
+<div class="sec-title">
+<h2>Our Features<span class="sec-title-border"><span></span><span></span><span></span></span></h2>
+<p>We offer instant recharge of Airtime, Databundle, CableTV (DStv, GOtv & Startimes), Electricity Bill Payment, Airtime to cash, Educational pins and more...</p>
+</div>
+</div>
+</div>
+<div class="row flexbox-center">
+<div class="col-lg-6">
+<div class="single-showcase-box">
+<h4>We Provide Awesome Services</h4>
+<p>Certain things are hard; making payments shouldn't be one of them. Husmodata helps you make payments for services you enjoy right from the comfort of your home or office. The experience of total convenience, fast service delivery and easy payment is just at your fingertips.</p>
+<a href="/profile" class="appao-btn appao-btn2">Learn More...</a>
+</div>
+</div>
+<div class="col-lg-6">
+<div class="single-showcase-box">
+<img src="/static/stylem/assets/img/fam.png" alt="showcase">
+</div>
+</div>
+</div>
+<div class="row flexbox-center">
+<div class="col-lg-6">
+<div class="single-showcase-box">
+<img src="/static/stylem/assets/img/lady.png" alt="showcase">
+</div>
+</div>
+<div class="col-lg-6">
+<div class="single-showcase-box">
+<h4>
+Become Our Agent</h4>
+<p>Join our network of outstanding entrepreneurs patnering with Husmodata. Bring the Husmodata 'easy-payments' experience closer to your network and earn a commission for every transaction you perform for your customers. </p>
+<a href="/profile" class="appao-btn appao-btn2" >Learn More...</a>
+</div>
+</div>
+</div>
+
+<div class="row flexbox-center">
+<div class="col-lg-6">
+<div class="single-showcase-box">
+<h4>
+Integrate our API</h4>
+<p>With our ready-to-use and developer friendly API, you can easily integrate with your website or app for FREE to start receiving payments in a breeze. API DOCUMENTATION.</p>
+<a href="/profile" class="appao-btn appao-btn2">View Documentation...</a>
+</div>
+</div>
+<div class="col-lg-6">
+<div class="single-showcase-box">
+<img src="/static/stylem/assets/img/api.png" alt="showcase">
+</div>
+</div>
+</div>
+</section>
+
+<section class="video-area ptb-90">
+<div class="container">
+<div class="row">
+<div class="col-lg-12">
+<div class="video-popup">
+<h1>Contact Us</h1>
+<br>
+<p>We are available 24/7 for any complaints our customers might have.</p>
+ <h1>08146008285</h1>
+</div>
+</div>
+</div>
+</div>
+</section>
+<br>
+<br>
+<br>
+<section class="pricing-area ptb-90" id="pricing">
+
+        <!--pricing section start-->
+    
+        <div class="container">
+             <div class="sec-title">
+<h2 style="color:black;">EXCLUSIVE DATA PRICES.<span class="sec-title-border"><span></span><span></span><span></span></span></h2>
+<p style="color:black;">Affordable Plans And Prices</p>
+</div>
+                <span class="animate-border mr-auto ml-auto mb-4"></span>
+
+            </div>
+        </div>
+        <!--</div>-->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-lg-3 ftco-animate fadeInUp ftco-animated">
+                    <div class="shadow-lg p-3 mb-5 bg-white rounded">
+                        <div class="text-center">
+                            <img src="https://qstoresng.com//static/styling/img/app-landing/mockup/a.jpg" alt="">
+                            <span class="excerpt d-block">MTN DATA</span>
+                            <div class="pricing-text mb-5">
+                                <table class="table table-all ">
+
+                                    <tbody>
+                                        {% for plans in plan %}
+                                        <tr>
+                                        <td style="color: rgb(5, 37, 78); font-size:16px; font-weight: bolder;"> {{plans.plan_size}}{{plans.plan_Volume}} </td>
+                                        <td style="color: rgb(5, 37, 78); font-size:16px;  font-weight: bolder;"><i> &#8358;{{plans.plan_amount}}</i></td>
+                                        <td style="color: rgb(5, 37, 78); font-size:12px;  font-weight: bolder;"><i>{{plans.month_validate}}</i></td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+
+                           <a href="/profile" class="appao-btn appao-btn2" >Shop Now<i class="fa fa-shopping-cart"></i> </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 ftco-animate fadeInUp ftco-animated">
+                    <div class="shadow-lg p-3 mb-5 bg-white rounded">
+                        <div class="text-center">
+                            <img src="https://qstoresng.com//static/styling/img/app-landing/mockup/b.jpg" alt="">
+                            <span class="excerpt d-block">AIRTEL DATA</span>
+                            <div class="pricing-text mb-5">
+                                <table class="table table-all ">
+                                </table>
+                                <table class="table table-all ">
+
+
+                                    <tbody>
+                                        {% for plans in plan_4 %}
+                                        <tr>
+                                        <td style="color: rgb(5, 37, 78); font-size:16px; font-weight: bolder;"> {{plans.plan_size}}{{plans.plan_Volume}} </td>
+                                        <td style="color: rgb(5, 37, 78); font-size:16px;  font-weight: bolder;"><i> &#8358;{{plans.plan_amount}}</i></td>
+                                        <td style="color: rgb(5, 37, 78); font-size:12px;  font-weight: bolder;"><i>{{plans.month_validate}}</i></td>
+                                        </tr>
+                                         {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+                           <a href="/profile" class="appao-btn appao-btn2" >Shop Now<i class="fa fa-shopping-cart"></i> </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 ftco-animate fadeInUp ftco-animated">
+                    <div class="shadow-lg p-3 mb-5 bg-white rounded">
+                        <div class="text-center">
+                            <img src="https://qstoresng.com//static/styling/img/app-landing/mockup/d.jpg" alt="">
+                            <span class="excerpt d-block">GLO DATA</span>
+                            <div class="pricing-text mb-5">
+                                <table class="table table-all ">
+                                </table>
+                                <table class="table table-all ">
+
+                                    <tbody>
+                                        {% for plans in plan_2 %}
+                                        <tr>
+                                        <td style="color: rgb(5, 37, 78); font-size:16px; font-weight: bolder;"> {{plans.plan_size}}{{plans.plan_Volume}} </td>
+                                        <td style="color: rgb(5, 37, 78); font-size:16px;  font-weight: bolder;"><i> &#8358;{{plans.plan_amount}}</i></td>
+                                        <td style="color: rgb(5, 37, 78); font-size:12px;  font-weight: bolder;"><i>{{plans.month_validate}}</i></td>
+                                        </tr>
+                                        {% endfor %}
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                          <a href="/profile" class="appao-btn appao-btn2" >Shop Now<i class="fa fa-shopping-cart"></i> </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 ftco-animate fadeInUp ftco-animated">
+                    <div class="shadow-lg p-3 mb-5 bg-white rounded">
+                        <div class="text-center">
+                            <img src="https://qstoresng.com//static/styling/img/app-landing/mockup/c.jpg" alt="">
+                            <span class="excerpt d-block">9MOBILE DATA</span>
+                            <div class="pricing-text mb-5">
+                                <table class="table table-all ">
+                                </table>
+                                <table class="table table-all ">
+
+                                    <tbody>
+                                        {% for plans in plan_3 %}
+                                            <tr>
+                                            <td style="color: rgb(5, 37, 78); font-size:16px; font-weight: bolder;"> {{plans.plan_size}}{{plans.plan_Volume}} </td>
+                                            <td style="color: rgb(5, 37, 78); font-size:16px;  font-weight: bolder;"><i> &#8358;{{plans.plan_amount}}</i></td>
+                                            <td style="color: rgb(5, 37, 78); font-size:12px;  font-weight: bolder;"><i>{{plans.month_validate}}</i></td>
+                                            </tr>
+                                        {% endfor %}
+
+                                    </tbody>
+                                </table>
+                            </div>
+  <a href="/profile" class="appao-btn appao-btn2" >Shop Now<i class="fa fa-shopping-cart"></i> </a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        <!--pricing section end-->
+
+<section class="counter-area ptb-90">
+<div class="container">
+<div class="row">
+<div class="col-md-3 col-sm-6">
+<div class="single-counter-box">
+<i class="icofont icofont-heart-alt"></i>
+<h1><span class="counter">1000</span></h1>
+<p>Happy Clients</p>
+</div>
+</div>
+<div class="col-md-3 col-sm-6">
+<div class="single-counter-box">
+<i class="icofont icofont-calendar"></i>
+<h1><span class="counter">3</span></h1>
+<p>Years Of Experience</p>
+</div>
+</div>
+<div class="col-md-3 col-sm-6">
+<div class="single-counter-box">
+<i class="icofont icofont-computer"></i>
+<h1><span class="counter">500</span></h1>
+<p>Logged In Users</p>
+</div>
+</div>
+<div class="col-md-3 col-sm-6">
+<div class="single-counter-box">
+<i class="icofont icofont-users-social"></i>
+<h1><span class="counter">1250</span></h1>
+<p>Users</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<br>
+<br>
+
+<section class="testimonial-area ptb-90">
+<div class="container">
+<div class="row">
+<div class="col-lg-12">
+<div class="sec-title">
+<h2>Testimonials<span class="sec-title-border"><span></span><span></span><span></span></span></h2>
+<p>What Our Clients Say About Husmodata </p>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-8 offset-lg-2">
+<div class="testimonial-wrap">
+<div class="single-testimonial-box">
+<div class="author-img">
+<img src="/static/stylem/assets/img/a1.jpg" alt="author" />
+</div>
+<h5>Olamide Bakare</h5>
+<p> I can really say that since I joined this site I have been earning more than before... Kudus To Husmodata </p>
+<div class="author-rating">
+<i class="icofont icofont-star"></i>
+<i class="icofont icofont-star"></i>
+<i class="icofont icofont-star"></i>
+<i class="icofont icofont-star"></i>
+<i class="icofont icofont-star"></i>
+</div>
+</div>
+<div class="single-testimonial-box">
+<div class="author-img">
+<img src="/static/stylem/assets/img/a3.jpg" alt="author" />
+</div>
+<h5>Mojeed Dada</h5>
+<p> These site is great. Husmodata is best platform when its come to affordable data plan for both end-user and resseller ,i recommend this platform it's fast, automated and secured. </p>
+<div class="author-rating">
+<i class="icofont icofont-star"></i>
+<i class="icofont icofont-star"></i>
+<i class="icofont icofont-star"></i>
+<i class="icofont icofont-star"></i>
+<i class="icofont icofont-star"></i>
+</div>
+</div>
+<div class="single-testimonial-box">
+<div class="author-img">
+<img src="/static/stylem/assets/img/a4.png" alt="author" />
+</div>
+<h5>Olatubosun Musa</h5>
+<p>I also love the quick response to issues. We might just get along well. So far so good. </p>
+<div class="author-rating">
+<i class="icofont icofont-star"></i>
+<i class="icofont icofont-star"></i>
+<i class="icofont icofont-star"></i>
+<i class="icofont icofont-star"></i>
+<i class="icofont icofont-star"></i>
+</div>
+</div>
+</div>
+<div class="testimonial-thumb">
+<div class="thumb-prev">
+<div class="author-img">
+<img src="/static/stylem/assets/img/a3.jpg" alt="author" />
+</div>
+</div>
+<div class="thumb-next">
+<div class="author-img">
+<img src="/static/stylem/assets/img/a4.png" alt="author" />
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="download-area ptb-90">
+<div class="container">
+<div class="row">
+<div class="col-lg-12">
+<div class="sec-title">
+<h2>Download Our App<span class="sec-title-border"><span></span><span></span><span></span></span></h2>
+<p>COMING SOON! </p>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-12">
+<ul>
+<li>
+<a href="#" class="download-btn flexbox-center">
+<div class="download-btn-icon">
+<i class="icofont icofont-brand-android-robot"></i>
+</div>
+<div class="download-btn-text">
+<p>Available on</p>
+<h4>Android Store</h4>
+</div>
+</a>
+</li>
+<li>
+<a href="#" class="download-btn flexbox-center">
+<div class="download-btn-icon">
+<i class="icofont icofont-brand-apple"></i>
+</div>
+<div class="download-btn-text">
+<p>Available on</p>
+<h4>Apple Store</h4>
+</div>
+</a>
+</li>
+
+</ul>
+</div>
+</div>
+</div>
+</section>
+<br>
+<br>
+<br>
+<br>
+
+<footer class="footer" id="contact">
+<div class="container">
+<div class="row">
+
+<div class="col-lg-12">
+<div class="contact-address">
+<h4>Address</h4>
+<ul>
+<li>
+<div class="contact-address-icon">
+<i class="icofont icofont-home"></i>
+</div>
+<div class="contact-address-info">
+Dutse jigawa state,zai plaza shop no 9 and 10.<br>
+Garki Kofar kudu,jigawa state.
+
+</div>
+</li>
+<li>
+<div class="contact-address-icon">
+<i class="icofont icofont-headphone-alt"></i>
+</div>
+<div class="contact-address-info">
+<a href="callto:#"> +234 814 6008 285</a>
+</div>
+</li>
+<li>
+<div class="contact-address-icon">
+<i class="icofont icofont-envelope"></i>
+</div>
+<div class="contact-address-info">
+<a href="#">dahiruhabibuwapzone@gmail.com</a>
+</div>
+</li>
+<li>
+<div class="contact-address-icon">
+<i class="icofont icofont-web"></i>
+</div>
+<div class="contact-address-info">
+<a href="www.jsoftbd.html">www.Husmodata.com</a>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-12">
+
+</div>
+</div>
+<div class="row">
+<div class="col-lg-12">
+<div class="copyright-area">
+<ul>
+<li><a href="#"><i class="icofont icofont-social-facebook"></i></a></li>
+<li><a href="#"><i class="icofont icofont-social-whatsapp"></i></a></li>
+<li><a href="#"><i class="icofont icofont-brand-linkedin"></i></a></li>
+<li><a href="#"><i class="icofont icofont-social-google-plus"></i></a></li>
+</ul>
+<p>&copy; 
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Husmodata 
+</p>
+<p> 
+ Developed By <a href="https://msorgdevelopers.com/" target="_blank">MSORG DEVELOPERS</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<a href="#" class="scrollToTop">
+<i class="icofont icofont-arrow-up"></i>
+</a>
+<script src="/static/stylem/assets/js/jquery.min.js"></script>
+
+<script src="/static/stylem/assets/js/bootstrap.min.js%2bjquery.slicknav.min.js.pagespeed.jc.kO39x9Z9Rf.js"></script><script>eval(mod_pagespeed_pm8CtmlRaB);</script>
+
+<script>eval(mod_pagespeed_W1T_DWRWyC);</script>
+
+<script src="/static/stylem/assets/js/slick.min.js%2bowl.carousel.min.js.pagespeed.jc.5V-uOAr_YK.js"></script><script>eval(mod_pagespeed_sswyDDZu_f);</script>
+
+<script>eval(mod_pagespeed_BIvniU$CAJ);</script>
+
+<script src="/static/stylem/assets/js/jquery.magnific-popup.min.js%2bjquery.counterup.min.js%2bwaypoints.min.js%2bjquery.mb.YTPlayer.min.js.pagespeed.jc.4hCdfqlGty.js"></script><script>eval(mod_pagespeed_ik9DtF5nAo);</script>
+
+<script>eval(mod_pagespeed_Qn7YQW9F7n);</script>
+
+<script>eval(mod_pagespeed_5q78va6Qfc);</script>
+
+<script>eval(mod_pagespeed_hPKKGq2dCs);</script>
+
+<script src="/static/stylem/assets/js/jquery.easing.1.3.html"></script>
+
+<script src="/static/stylem/assets/js/gmap3.min.js%2bcustom-map.js%2bwow-1.3.0.min.js%2bswitcher.js%2bmain.js.pagespeed.jc.eGkh7VbQ6O.js"></script><script>eval(mod_pagespeed_N3ABYGPGkY);</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnKyOpsNq-vWYtrwayN3BkF3b4k3O9A_A"></script>
+
+<script>eval(mod_pagespeed_OQaJbSqvVA);</script>
+
+<script>eval(mod_pagespeed_El9KeqUxn$);</script>
+
+<script>eval(mod_pagespeed_OZFnwBIW3l);</script>
+
+<script>eval(mod_pagespeed_A2FDoDIJXM);</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-23581568-13');
+</script>
+<script defer src="../../../../static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"rayId":"66ed66dabe79c4fc","token":"cd0b4b3a733644fc843ef0b185f98241","version":"2021.6.0","si":10}'></script>
+</body>
+
+</html>
