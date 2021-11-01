@@ -1,1 +1,0 @@
-[{"model": "vtuapp.cable", "pk": 1, "fields": {"name": "GOTV", "status": "Strong"}}, {"model": "vtuapp.cable", "pk": 2, "fields": {"name": "DSTV", "status": "Strong"}}, {"model": "vtuapp.cable", "pk": 3, "fields": {"name": "STARTIME", "status": "Strong"}}]
